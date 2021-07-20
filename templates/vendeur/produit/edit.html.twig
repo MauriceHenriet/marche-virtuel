@@ -47,9 +47,8 @@
                             <th class="col-3">image</th>
                             <th class="col-2">Nom</th>
                             <th class="col-1">Prix</th>
-                            <th class="col-1">Statut</th>
                             <th class="col-3">Description</th>
-                            <th class="col-2">actions</th>
+                            <th class="col-3">actions</th>
                         </tr>
                     </thead>
                     <tbody  >
@@ -68,14 +67,11 @@
                             <td class="col-1">
                                  {{ produit.prix}} €
                             </td>
-                            <td class="col-1">
-                                 {{ produit.status}}
-                            </td>
                             <td class="col-3">
                                  {{ produit.description}}
                             </td>
-                            <td class="col-2">
-                                <a class="btn btn-info" href="{{ path('edit_produit', { 'id' : produit.id } ) }}"><i class="fas fa-pen"></i> Modifier </a>
+                            <td class="col-3">
+                                <a class="btn btn-info" href="{{ path('show_produit', { 'id' : produit.id } ) }}"><i class="fas fa-pen"></i> Détail (et Modification) </a>
                             </td>
                         </tr>
                         {% endfor %}
