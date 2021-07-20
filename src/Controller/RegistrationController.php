@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresse;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,10 +31,13 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            if($request->query->get('vendeur') === 'true'){
+                $user->setRoles([User::ROLE_VENDEUR]);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_login');
         }

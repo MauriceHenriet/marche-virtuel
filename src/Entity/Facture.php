@@ -21,7 +21,7 @@ class Facture
      * @ORM\OneToOne(targetEntity=Commande::class, inversedBy="facture", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $commandeId;
+    private $commande;
 
     /**
      * @ORM\Column(type="datetime")
@@ -38,14 +38,14 @@ class Facture
         return $this->id;
     }
 
-    public function getCommandeId(): ?Commande
+    public function getCommande(): ?Commande
     {
-        return $this->commandeId;
+        return $this->commande;
     }
 
-    public function setCommandeId(Commande $commandeId): self
+    public function setCommande(Commande $commande): self
     {
-        $this->commandeId = $commandeId;
+        $this->commande = $commande;
 
         return $this;
     }

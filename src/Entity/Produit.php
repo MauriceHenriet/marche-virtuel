@@ -20,20 +20,9 @@ class Produit
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ProfilVendeur::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $VendeurId;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $categorie = [];
 
     /**
      * @ORM\Column(type="integer")
@@ -56,9 +45,25 @@ class Produit
     private $stock;
 
     /**
-     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="produitId")
+     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="produit")
      */
     private $ligneCommandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Boutique::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $boutique;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -70,18 +75,6 @@ class Produit
         return $this->id;
     }
 
-    public function getVendeurId(): ?ProfilVendeur
-    {
-        return $this->VendeurId;
-    }
-
-    public function setVendeurId(?ProfilVendeur $VendeurId): self
-    {
-        $this->VendeurId = $VendeurId;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -90,18 +83,6 @@ class Produit
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?array
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(array $categorie): self
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }
@@ -166,7 +147,7 @@ class Produit
     {
         if (!$this->ligneCommandes->contains($ligneCommande)) {
             $this->ligneCommandes[] = $ligneCommande;
-            $ligneCommande->setProduitId($this);
+            $ligneCommande->setProduit($this);
         }
 
         return $this;
@@ -176,11 +157,48 @@ class Produit
     {
         if ($this->ligneCommandes->removeElement($ligneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($ligneCommande->getProduitId() === $this) {
-                $ligneCommande->setProduitId(null);
+            if ($ligneCommande->getProduit() === $this) {
+                $ligneCommande->setProduit(null);
             }
         }
 
         return $this;
     }
+
+    public function getBoutique(): ?Boutique
+    {
+        return $this->boutique;
+    }
+
+    public function setBoutique(?Boutique $boutique): self
+    {
+        $this->boutique = $boutique;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,64 @@
+{% extends "vendeur/base_vendeur.html.twig" %}
+
+{% block body %}
+{% include "vendeur/shared/_header.html.twig" %}
+ 
+{% include "vendeur/shared/_sidebar.html.twig" %}
+
+        <setion class="col-10 mt-4">
+
+            <div class="section-up">
+                {% if boutiques | length > 1 %}
+                    <h1>Vos Boutiques</h1>
+                {% elseif boutiques | length == 1 %}
+                    <h1>Votre Boutique</h1>
+                {% else %}
+                    <h1>Vous n'avez pas encore créé de boutique</h1>   
+                {% endif %}
+                <a href="{{ path('create_boutique')}}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Créer une boutique
+                </a>
+            </div>
+            
+            <div class="section-down">
+                {% if boutiques | length > 0 %}
+                    <table class="table-hover col-11">
+                        <thead>
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <th class="col-4">image</th>
+                                <th class="col-3">Nom</th>
+                                <th class="col-3">Catégorie</th>
+                                <th class="col-1">action1</th>
+                            </tr>
+                        </thead>
+                        <tbody  >
+                            {% for boutique in boutiques %}
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <td class="col-4" >
+                                    {% if boutique.imageUrl is same as null %}
+                                        <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                    {% else %}
+                                        <img class="image-classe" src="{{ asset( boutique.imageUrl ) }}" alt="category.slug">
+                                    {% endif %}
+                                </td>
+                                <td class="col-3">
+                                    {{ boutique.nom}}
+                                </td>
+                                <td class="col-3">
+                                    {{ boutique.categorie}}
+                                </td>
+                                <td class="col-1">
+                                    <a class="btn btn-info" href="{{ path('show_boutique', { 'id' : boutique.id } ) }}"><i class="fas fa-pen"></i> Détail</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    
+                {% endif %}
+            </div>
+            
+        </section>
+{% include "vendeur/shared/_footer.html.twig" %}  
+{% endblock %}

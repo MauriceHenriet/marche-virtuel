@@ -1,0 +1,89 @@
+{% extends "vendeur/base_vendeur.html.twig" %}
+
+{% block body %}
+{% include "vendeur/shared/_header.html.twig" %}
+ 
+{% include "vendeur/shared/_sidebar.html.twig" %}
+
+    <setion class="col-10 mt-4">
+        <div class="section-up">
+            <h1>Boutique : {{ boutique.nom}}</h1>
+            <a href="{{ path('edit_boutique', { 'id' : boutique.id } )}}" class="btn btn-primary">
+                <i class="fas fa-pen"></i> Modifier la boutique
+            </a>
+        </div>
+        
+        <div class="section-mid container pt-3 pb-3">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div>
+                    {% if boutique.imageUrl is same as null %}
+                        <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
+                    {% else %}
+                        <img src="{{ boutique.imageUrl }}" alt="{{ boutique.slug }}" class="img-fluid image-classe">    
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2>Statut : {{ boutique.status }}</h2>
+                    <h2>Catégorie : {{ boutique.categorie }}</h2>
+                    <p>{{ boutique.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-down pt-3 pb-3">
+            <div class="sec-down-div">
+                <h2>Liste des produits de la boutique :</h2>
+                <a href="{{ path('create_produit', { 'id' : boutique.id } )}}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Ajouter Produit
+                </a>
+            </div>
+            
+            {% if produits | length > 0 %}
+                <table class="table-hover col-12">
+                    <thead>
+                        <tr class="d-flex align-items-center justify-content-around" >
+                            <th class="col-4">image</th>
+                            <th class="col-3">Nom</th>
+                            <th class="col-3">Catégorie</th>
+                            <th class="col-1">action1</th>
+                        </tr>
+                    </thead>
+                    <tbody  >
+                        {% for produit in produits %}
+                        <tr class="d-flex align-items-center justify-content-around" >
+                            <td class="col-4" >
+                                {% if produit.imageUrl is same as null %}
+                                    <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                {% else %}
+                                    <img class="image-classe" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
+                                {% endif %}
+                            </td>
+                            <td class="col-3">
+                                {{ produit.nom}}
+                            </td>
+                            <td class="col-3">
+                                 {{ produit.categorie}}
+                            </td>
+                            <td class="col-1">
+                                <a class="btn btn-info" href="{{ path('show_boutique', { 'id' : produit.id } ) }}"><i class="fas fa-pen"></i> Détail</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Vous n'avez pas encore ajouté de produits dans cette boutique</p>
+            {% endif %}
+        </div>
+        
+    </section>
+{% include "vendeur/shared/_footer.html.twig" %}  
+{% endblock %}
+{# <td class="col-1">
+                                <a class="btn btn-danger btn-sm" href="{{ path('remove_category', { 'id' : boutique.id } ) }}"><i class="far fa-times-circle"></i> Supprimer</a>
+                            </td>
+                            <td class="col-1">
+                                <a class="btn btn-danger btn-sm" href="{{ path('remove_category', { 'id' : boutique.id } ) }}"><i class="far fa-times-circle"></i> Supprimer</a>
+                            </td> #}

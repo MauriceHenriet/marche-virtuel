@@ -21,13 +21,13 @@ class LigneCommande
      * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="ligneCommandes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $commandeId;
+    private $commande;
 
     /**
      * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="ligneCommandes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $produitId;
+    private $produit;
 
     /**
      * @ORM\Column(type="integer")
@@ -39,26 +39,26 @@ class LigneCommande
         return $this->id;
     }
 
-    public function getCommandeId(): ?Commande
+    public function getCommande(): ?Commande
     {
-        return $this->commandeId;
+        return $this->commande;
     }
 
-    public function setCommandeId(?Commande $commandeId): self
+    public function setCommande(?Commande $commande): self
     {
-        $this->commandeId = $commandeId;
+        $this->commande = $commande;
 
         return $this;
     }
 
-    public function getProduitId(): ?Produit
+    public function getProduit(): ?Produit
     {
-        return $this->produitId;
+        return $this->produit;
     }
 
-    public function setProduitId(?Produit $produitId): self
+    public function setProduit(?Produit $produit): self
     {
-        $this->produitId = $produitId;
+        $this->produit = $produit;
 
         return $this;
     }

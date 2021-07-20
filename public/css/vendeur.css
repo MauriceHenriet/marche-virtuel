@@ -1,0 +1,96 @@
+/* ------------------header------------------- */
+.topVendeur {
+  background: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topVendeur h2 {
+  color: white;
+  margin-left: 10px;
+  text-align: center;
+}
+/* ------------------main------------------- */
+.mainVendeur {
+  height: 100vh;
+  border-top: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+}
+.section-up {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.section-up button {
+  width: 50%;
+}
+.section-mid,
+.section-down {
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+}
+
+.sec-down-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.boutique-up {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td,
+th {
+  text-align: center;
+}
+
+/* ---------------------------------------------- */
+.image-classe {
+  height: auto;
+  width: 60%;
+  object-fit: contain;
+}
+/*-----------------détail Boutique----------------------------------*/
+
+/*---------------------Responsive-------------------------*/
+.alert-success {
+  background-color: rgb(122, 233, 140);
+}
+tbody tr:not(:last-child) {
+  border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
+}
+select option {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.card-body nav:last-child {
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .vDesk {
+    display: none;
+  }
+}
+@media screen and (min-width: 800px) {
+  .vMobile {
+    display: none;
+  }
+}
+
+.user-card {
+  padding: 10px;
+}

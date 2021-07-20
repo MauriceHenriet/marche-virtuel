@@ -41,7 +41,7 @@ class Adresse
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="adresses")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $utilisateurId;
+    private $user;
 
     public function getId(): ?int
     {
@@ -96,14 +96,14 @@ class Adresse
         return $this;
     }
 
-    public function getUtilisateurId(): ?User
+    public function getUser(): ?User
     {
-        return $this->utilisateurId;
+        return $this->user;
     }
 
-    public function setUtilisateurId(?User $utilisateurId): self
+    public function setUser(?User $user): self
     {
-        $this->utilisateurId = $utilisateurId;
+        $this->user = $user;
 
         return $this;
     }

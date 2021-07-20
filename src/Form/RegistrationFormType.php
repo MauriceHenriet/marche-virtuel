@@ -19,24 +19,44 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            // ->add('rue', TextType::class, [
+            //     'required' => false,
+            //     'label' => 'Rue et numéro : ',
+            //     'attr' => ['placeholder' => 'entrez votre adresse ici']
+            // ])
+            // ->add('ville', TextType::class, [
+            //     'required' => false,
+            //     'label' => 'Ville : ',
+            //     'attr' => ['placeholder' => 'entrez votre ville ici']
+            // ])
+            // ->add('codePostal', TextType::class, [
+            //     'required' => false,
+            //     'label' => 'Code Postal : ',
+            //     'attr' => ['placeholder' => 'entrez votre code postal ici']
+            // ])
             ->add('email', EmailType::class, [
+                'required' => false,
                 'label' => 'Email : ',
                 'attr' => ['placeholder' => 'entrez votre Email ici']
             ])
             ->add('name', TextType::class, [
+                'required' => false,
                 'label' => 'Nom : ',
                 'attr' => ['placeholder' => 'entrez votre Nom ici']
             ])
             ->add('firstName', TextType::class, [
+                'required' => false,
                 'label' => 'Prénom : ',
                 'attr' => ['placeholder' => 'entrez votre Prénom ici']
             ])
             ->add('phone', TextType::class, [
+                'required' => false,
                 'label' => 'Numéro de téléphone : ',
                 'attr' => ['placeholder' => 'entrez votre numéro de téléphone ici']
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Accepter les conditions générales d\'utilisations du site : ',
+                'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -48,16 +68,21 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'required' => false,
+                'label' => 'Mot-de-passe : ',
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'entrez un mot-de-passe ici'
+                        ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Vous devez choisir un mot-de-passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 200,
                     ]),
                 ],
             ])

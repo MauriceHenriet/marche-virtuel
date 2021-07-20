@@ -23,12 +23,12 @@ class Commande
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $utilisateurId;
+    private $user;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $CreatedAt;
+    private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,12 +41,12 @@ class Commande
     private $total;
 
     /**
-     * @ORM\OneToOne(targetEntity=Facture::class, mappedBy="commandeId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Facture::class, mappedBy="commande", cascade={"persist", "remove"})
      */
     private $facture;
 
     /**
-     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="commandeId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="commande", orphanRemoval=true)
      */
     private $ligneCommandes;
 
@@ -60,26 +60,26 @@ class Commande
         return $this->id;
     }
 
-    public function getUtilisateurId(): ?User
+    public function getUser(): ?User
     {
-        return $this->utilisateurId;
+        return $this->user;
     }
 
-    public function setUtilisateurId(?User $utilisateurId): self
+    public function setUser(?User $user): self
     {
-        $this->utilisateurId = $utilisateurId;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->CreatedAt;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -116,8 +116,8 @@ class Commande
     public function setFacture(Facture $facture): self
     {
         // set the owning side of the relation if necessary
-        if ($facture->getCommandeId() !== $this) {
-            $facture->setCommandeId($this);
+        if ($facture->getCommande() !== $this) {
+            $facture->setCommande($this);
         }
 
         $this->facture = $facture;
@@ -137,7 +137,7 @@ class Commande
     {
         if (!$this->ligneCommandes->contains($ligneCommande)) {
             $this->ligneCommandes[] = $ligneCommande;
-            $ligneCommande->setCommandeId($this);
+            $ligneCommande->setCommande($this);
         }
 
         return $this;
@@ -147,8 +147,8 @@ class Commande
     {
         if ($this->ligneCommandes->removeElement($ligneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($ligneCommande->getCommandeId() === $this) {
-                $ligneCommande->setCommandeId(null);
+            if ($ligneCommande->getCommande() === $this) {
+                $ligneCommande->setCommande(null);
             }
         }
 

@@ -1,3 +1,7 @@
+{# {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset ('css/navbar.css') }}">
+{% endblock %} #}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ path('public_home')}}">Le Marché Virtuel</a>
@@ -9,17 +13,23 @@
       <ul class="navbar-nav me-auto">
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('public_home')}}">Accueil</a>
+          <a class="nav-link" href="{{ path('public_home')}}">Producteurs</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('public_home')}}">Produits</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
         {% if app.user %}
+        <li class="nav-item">
+          <span class="nav-link">{{ app.user.firstName }} {{ app.user.name }}</span>
+        </li>
           {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
         <li class="nav-item">
           <a class="nav-link" href="{{ path('vendeur_home')}}">Espace Vendeur</a>
         </li>
           {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Articles</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ path('app_logout')}}">Se deconnecter</a>
         </li>

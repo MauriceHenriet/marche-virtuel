@@ -9,13 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cet email est déjà utilisé")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    public const ROLE_VENDEUR = 'ROLE_VENDEUR';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,6 +28,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message= "votre Email est obligatoire.")
+     * @Assert\Email(message = "Cet email '{{ value }}' n\'est pas valide.")
      */
     private $email;
 
@@ -41,39 +46,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message= "votre Nom est obligatoire.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message= "votre Prénom est obligatoire.")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(message= "votre numéro de téléphone est obligatoire.")
      */
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="utilisateurId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="user", orphanRemoval=true)
      */
     private $adresses;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ProfilVendeur::class, mappedBy="userId", orphanRemoval=true)
-     */
-    private $profilVendeurs;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="utilisateurId")
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user")
      */
     private $commandes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Boutique::class, mappedBy="vendeur")
+     */
+    private $boutiques;
 
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
-        $this->profilVendeurs = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->boutiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -213,7 +222,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->adresses->contains($adress)) {
             $this->adresses[] = $adress;
-            $adress->setUtilisateurId($this);
+            $adress->setUser($this);
         }
 
         return $this;
@@ -223,43 +232,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->adresses->removeElement($adress)) {
             // set the owning side to null (unless already changed)
-            if ($adress->getUtilisateurId() === $this) {
-                $adress->setUtilisateurId(null);
+            if ($adress->getUser() === $this) {
+                $adress->setUser(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|ProfilVendeur[]
-     */
-    public function getProfilVendeurs(): Collection
-    {
-        return $this->profilVendeurs;
-    }
 
-    public function addProfilVendeur(ProfilVendeur $profilVendeur): self
-    {
-        if (!$this->profilVendeurs->contains($profilVendeur)) {
-            $this->profilVendeurs[] = $profilVendeur;
-            $profilVendeur->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProfilVendeur(ProfilVendeur $profilVendeur): self
-    {
-        if ($this->profilVendeurs->removeElement($profilVendeur)) {
-            // set the owning side to null (unless already changed)
-            if ($profilVendeur->getUserId() === $this) {
-                $profilVendeur->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Commande[]
@@ -273,7 +254,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes[] = $commande;
-            $commande->setUtilisateurId($this);
+            $commande->setUser($this);
         }
 
         return $this;
@@ -283,11 +264,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->commandes->removeElement($commande)) {
             // set the owning side to null (unless already changed)
-            if ($commande->getUtilisateurId() === $this) {
-                $commande->setUtilisateurId(null);
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
             }
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection|Boutique[]
+     */
+    public function getBoutiques(): Collection
+    {
+        return $this->boutiques;
+    }
+
+    public function addBoutique(Boutique $boutique): self
+    {
+        if (!$this->boutiques->contains($boutique)) {
+            $this->boutiques[] = $boutique;
+            $boutique->setVendeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoutique(Boutique $boutique): self
+    {
+        if ($this->boutiques->removeElement($boutique)) {
+            // set the owning side to null (unless already changed)
+            if ($boutique->getVendeur() === $this) {
+                $boutique->setVendeur(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
