@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+    <section id="sec1" class="section-producteurs">
+        <h2 style="color:red"> proposer liens vers autres producteurs de la région ET vers produits de même catégorie</h2>
+
+        <div class="section-produit col-11">
+            <div class="produit-top">
+                <h1>{{ produit.nom }}</h1>
+                <a href="{{ path('producteur', { 'id' : produit.boutique.id, 'producteurSlug' : produit.boutique.slug } ) }}"><h3>de la {{ produit.boutique.nom }}</h3></a>
+                
+            </div>
+            <div class="produit-main col-5">
+                <div class="produit-main-left">
+                    {% if produit.imageUrl is same as null %}
+                        <img class="" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                    {% else %}
+                        <img class="" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
+                    {% endif %}
+                </div>
+                <div class="produit-main-right col-6">
+                    <h4>{{ produit.description}}</h4>
+                    <h4>{{ produit.status}}</h4>
+                    <div class="produit-achat col-12">
+                        <h4>Prix : {{ produit.prix}} €</h4>
+                        <div>
+                            <a class="btn btn-info" href="#">
+                                <i class="fas fa-plus"></i> Ajouter au panier 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+    </section>
+
+    <section class="section-producteurs">
+        
+            
+            <h3>{{ produit.boutique.nom }} (Statut : {{ produit.boutique.status }})</h3>
+            <h5>{{ produit.boutique.description }}</h5>
+            <p>{{ produit.boutique.rue }} {{ produit.boutique.codePostal }} {{ produit.boutique.ville }}, {{ produit.boutique.region }}</p>
+            <div>
+                {% if produit.boutique.imageUrl is same as null %}
+                    <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
+                {% else %}
+                    <img src="{{ produit.boutique.imageUrl }}" alt="{{ produit.boutique.slug }}" class="img-fluid image-classe">    
+                {% endif %}
+            </div>
+            <h4>Catégorie : {{ produit.boutique.categorie }}</h4>
+    </section> 
+ 
+{% include "/public/shared/_carte.html.twig" %}
+{% include "/public/shared/_footer.html.twig" %}
+
+{% endblock %}

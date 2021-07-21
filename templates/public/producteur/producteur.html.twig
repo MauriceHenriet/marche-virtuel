@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+    <section id="sec1" class="section-producteurs">
+        <h1>{{ producteur.nom }}</h1>
+        <h2 style="color:red"> proposer liens vers autres producteurs de la région ET vers produits de même catégorie</h2>
+        <div class="section-mid container pt-3 pb-3">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div>
+                    {% if producteur.imageUrl is same as null %}
+                        <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
+                    {% else %}
+                        <img src="{{ producteur.imageUrl }}" alt="{{ producteur.slug }}" class="img-fluid image-classe">    
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2>Statut : {{ producteur.status }}</h2>
+                    <h2>Catégorie : {{ producteur.categorie }}</h2>
+                    <p>{{ producteur.description }}</p>
+                    <h4>{{ producteur.rue }} {{ producteur.codePostal }} {{ producteur.ville }} {{ producteur.region }}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-down col-11">
+                {% if producteur.produits | length > 0 %}
+                    <table class="table-hover col-12">
+                        <thead>
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <th class="col-1"></th>
+                                <th class="col-2">Produit</th>
+                                <th class="col-1">Prix</th>
+                                <th class="col-2">Description</th>
+                                <th class="col-1">Status</th>
+                                <th class="col-4">action1</th>
+                            </tr>
+                        </thead>
+                        <tbody  >
+                            {% for produit in producteur.produits %}
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <td class="col-1" >
+                                    {% if produit.imageUrl is same as null %}
+                                        <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                    {% else %}
+                                        <img class="image-classe" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
+                                    {% endif %}
+                                </td>
+                                <td class="col-2">
+                                    {{ produit.nom}}
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.prix}}
+                                </td>
+                                <td class="col-2">
+                                    {{ produit.description}}
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.status}}
+                                </td>
+                                <td class="col-4">
+                                    <a class="btn btn-info" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Détail </a>
+                                    <a class="btn btn-info" href="#"><i class="fas fa-plus"></i> Ajouter au panier </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>Ce producteur n'a pas de produits en ce moment</p>
+                {% endif %}
+            </div>
+
+    </section>
+
+    <section id="sec2">  
+    </section>
+ 
+{% include "/public/shared/_carte.html.twig" %}
+{% include "/public/shared/_footer.html.twig" %}
+
+{% endblock %}

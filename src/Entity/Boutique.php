@@ -12,13 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Boutique
 {
-    // public const LAIT = 'Fromages & Laitages';
+    // public const LAIT = 'Fromages et Laitages';
     // public const VEGE = 'Fruits et Légumes';
     // public const CHAR = 'Charcuteries';
     // public const CONS = 'Conserves';
-    // public const CERE = 'Céréales & Graines';
-    // public const ALCO = 'Vins & Alcools';
-    // public const SUCR = 'Miels & Confiseries';
+    // public const CERE = 'Céréales et Graines';
+    // public const ALCO = 'Vins et Alcools';
+    // public const SUCR = 'Miels et Confiseries';
     // public const H2O = 'Eaux et Boissons sans alcool';
     // public const EPIC = 'Huiles et Assaisonnements';
     // public const OBJE = 'Objets, Outils';

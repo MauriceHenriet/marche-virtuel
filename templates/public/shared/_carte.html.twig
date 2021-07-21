@@ -1,181 +1,3 @@
-{% extends "base.html.twig" %}
-
-
-
-{% block body %}
-    
-
-    <section id="sec1">
-        <h1> Bienvenue sur le marché virtuel</h1>
-        
-        <div id="descri">
-        {% if app.user %}
-        {% else %}
-          <p>
-            Pour une vente directe au consommateur : inscrivez-vous et créez
-            votre stand virtuel gratuitement.
-          </p>
-          <p>
-            Pour acheter un produit : séléctionnez-le et passez la commande.
-          </p>
-        {% endif %}
-        </div>
-        
-    </section>
-
-    <section id="sec2">
-    
-        {% if app.user %}
-          {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
-            <div class="container">
-                <a class="btn" href="{{ path('vendeur_home')}}">
-                  <h2>Gérer mon espace vendeur et mes produits</h2>
-                </a>
-            </div>
-          {% endif %}
-        {% else %}
-         <div class="log">
-            <a href="{{ path('app_register')}}?vendeur=true">
-                <h2>Vous êtes producteur ?</h2>
-                <img src="{{ asset( 'images/producteur.jpg' )}}" alt="producteur" />
-                <a id="a-pro" href="{{ path('app_register')}}?vendeur=true">S'inscrire</a>
-            </a>
-          </div>
-          <div class="log">
-            <a href="{{ path('app_register')}}?vendeur=false">
-              <h2>Vous voulez acheter ?</h2>
-              <img src="{{ asset( 'images/consommatrice.jpg' )}}" alt="consommatrice" />
-              <a id="a-conso" href="{{ path('app_register')}}?vendeur=false">S'inscrire</a>
-            </a>
-          </div>
-        {% endif %}
-        
-    </section>
-      <!-- <section class="sec3">
-        <h2>Produits du moments</h2>
-        <div class="sec33">
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Reblochon</h3>
-              <img src="/assets/reblochon.jpg" alt="reblochon" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Chèvre</h3>
-              <img src="/assets/chevre.jpg" alt="chevre" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Camembert</h3>
-              <img src="/assets/camembert.jpg" alt="camembert" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-      </section> -->
-
-    {# <section class="sec3">
-        <h2>Produits du moments</h2>
-        <div
-          id="carouselProd"
-          class="carousel slide"
-          data-bs-touch="false"
-          data-bs-interval="false"
-        >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                </div>
-                <div class="carousel-item">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                </div>
-                <div class="carousel-item">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                </div>
-            </div>
-            <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselProd"
-                data-bs-slide="prev"
-            >
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselProd"
-                data-bs-slide="next"
-            >
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </section> #}
     <section id="sec4">
         <div class="interactive-map">
           <div class="map">
@@ -187,7 +9,7 @@
               viewBox="0 -14 844 1198"
               xml:space="preserve"
             >
-              <a href="region.html?reg=corse">
+              <a href="region.html?reg=Corse">
                 <path
                   class="region"
                   id="corse"
@@ -198,7 +20,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=centre-val-de-loire">
+              <a href="region.html?reg=Centre-Val">
                 <path
                   class="region"
                   id="centre-val-de-loire"
@@ -209,7 +31,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=bretagne">
+              <a href="region.html?reg=Bretagne">
                 <path
                   class="region"
                   id="bretagne"
@@ -220,7 +42,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=bourgogne-franche-comte">
+              <a href="region.html?reg=Bourgogne-Franche">
                 <path
                   class="region"
                   id="bourgogne-franche-comte"
@@ -231,7 +53,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=grand-est">
+              <a href="region.html?reg=Grand">
                 <path
                   class="region"
                   id="grand-est"
@@ -242,7 +64,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=occitanie">
+              <a href="region.html?reg=Occitanie">
                 <path
                   class="region"
                   id="occitanie"
@@ -253,7 +75,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=hauts-de-france">
+              <a href="region.html?reg=Hauts-de-France">
                 <path
                   class="region"
                   id="hauts-de-france"
@@ -265,7 +87,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=auvergne-rhone-alpes">
+              <a href="region.html?reg=Auvergne">
                 <path
                   class="region"
                   id="auvergne-rhone-alpes"
@@ -276,7 +98,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=normandie">
+              <a href="region.html?reg=Normandie">
                 <path
                   class="region"
                   id="normandie"
@@ -288,7 +110,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=pays-de-la-loire">
+              <a href="region.html?reg=Pays">
                 <path
                   class="region"
                   id="pays-de-la-loire"
@@ -299,7 +121,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=PACA">
+              <a href="region.html?reg=Provence-Alpes">
                 <path
                   class="region"
                   id="PACA"
@@ -310,7 +132,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=ile-de-france">
+              <a href="region.html?reg=Ile-de-France">
                 <path
                   class="region"
                   id="ile-de-france"
@@ -322,7 +144,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=nouvelle-aquitaine">
+              <a href="region.html?reg=Nouvelle-Aquitaine">
                 <path
                   class="region"
                   id="nouvelle-aquitaine"
@@ -333,7 +155,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=guyane">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="guyane"
@@ -344,7 +166,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=martinique">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="martinique"
@@ -355,7 +177,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=mayotte">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="mayotte"
@@ -366,7 +188,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=guadeloupe">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="guadeloupe"
@@ -377,7 +199,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=reunion">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="reunion"
@@ -388,7 +210,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=wallis-et-futuna">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="wallis-et-futuna"
@@ -399,7 +221,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=saint-pierre-et-miquelon">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="saint-pierre-et-miquelon"
@@ -410,7 +232,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=polynesie-francaise">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="polynesie-francaise"
@@ -421,7 +243,7 @@
                 ></path>
               </a>
 
-              <a href="region.html?reg=nouvelle-caledonie">
+              <a href="region.html?reg=DOM-TOM">
                 <path
                   class="region"
                   id="nouvelle-caledonie"
@@ -434,6 +256,4 @@
             </svg>
           </div>
         </div>
-      </section>
-      <footer></footer>
-{% endblock %}
+    </section>

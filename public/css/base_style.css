@@ -99,7 +99,75 @@ main a {
 .container h2 {
   color: red;
 }
-
+/*------------------------liste Producteurs--------------------------------*/
+.image-classe {
+  height: 108px;
+  width: 192px;
+  object-fit: contain;
+}
+td,
+th {
+  text-align: center;
+}
+.section-down {
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 100px;
+}
+.section-producteurs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*-----------------------Page Produit Publique--------------------------*/
+.section-produit {
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.produit-top {
+  text-align: center;
+}
+.produit-main {
+  width: 100%;
+  background: red;
+  display: flex;
+  flex-direction: row;
+}
+.produit-main-left {
+  text-align: center;
+  width: 40%;
+  background: chartreuse;
+  padding: 25px 25px 25px 25px;
+}
+.produit-main-left img {
+  height: auto;
+  width: 100%;
+  /* object-fit: contain; */
+}
+.produit-main-right {
+  padding: 25px 25px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.produit-achat {
+  padding: 15px 15px 15px 15px;
+  background: coral;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 /*------------------------section 3--------------------------------------*/
 .sec3 {
   padding: 20px 20px 20px 20px;
@@ -153,7 +221,7 @@ main a {
     display: flex;
     flex-direction: row;
   } */
-/*------------------------section 4--------------------------------------*/
+/*------------------------section 4 carte de France-----------------------*/
 .map {
   display: flex;
   flex-direction: row;

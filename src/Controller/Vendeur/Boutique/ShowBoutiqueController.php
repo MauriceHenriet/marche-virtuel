@@ -16,7 +16,6 @@ class ShowBoutiqueController extends AbstractController
     public function show(int $id, BoutiqueRepository $boutiqueRepository): Response
     {
         $boutique = $boutiqueRepository->find($id);
-        $produits = $boutique->getProduits();
 
         if(!$boutique)
         {
@@ -25,8 +24,7 @@ class ShowBoutiqueController extends AbstractController
         }
 
         return $this->render('vendeur/boutique/show.html.twig', [
-            'boutique' => $boutique,
-            'produits' => $produits
+            'boutique' => $boutique
         ]);
     }
 

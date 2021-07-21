@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+    <section id="sec1" class="section-producteurs">
+        <h1> Liste des producteurs :</h1>
+        <h2 style="color:red"> ajouter filtres par catégorie et par région</h2>
+
+        <div class="section-down col-11">
+                {% if producteurs | length > 0 %}
+                    <table class="table-hover col-12">
+                        <thead>
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <th class="col-1"></th>
+                                <th class="col-2">Producteur</th>
+                                <th class="col-2">Région</th>
+                                <th class="col-1">Catégorie</th>
+                                <th class="col-2">action1</th>
+                            </tr>
+                        </thead>
+                        <tbody  >
+                            {% for producteur in producteurs %}
+                            <tr class="d-flex align-items-center justify-content-around" >
+                                <td class="col-1" >
+                                    {% if producteur.imageUrl is same as null %}
+                                        <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                    {% else %}
+                                        <img class="image-classe" src="{{ asset( producteur.imageUrl ) }}" alt="category.slug">
+                                    {% endif %}
+                                </td>
+                                <td class="col-2">
+                                    {{ producteur.nom}}
+                                </td>
+                                <td class="col-2">
+                                    {{ producteur.region}}
+                                </td>
+                                <td class="col-1">
+                                    {{ producteur.categorie}}
+                                </td>
+                                <td class="col-2">
+                                    <a class="btn btn-info" href="{{ path('producteur', { 'id' : producteur.id, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Voir les produits </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    
+                {% endif %}
+            </div>
+
+    </section>
+
+    <section id="sec2">  
+    </section>
+ 
+{% include "/public/shared/_carte.html.twig" %}
+{% include "/public/shared/_footer.html.twig" %}
+
+{% endblock %}

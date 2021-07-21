@@ -28,6 +28,7 @@
                     <h2>Statut : {{ boutique.status }}</h2>
                     <h2>Catégorie : {{ boutique.categorie }}</h2>
                     <p>{{ boutique.description }}</p>
+                    <h4>{{ boutique.rue }} {{ boutique.codePostal }} {{ boutique.ville }} {{ boutique.region }}</h4>
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@
                 </a>
             </div>
             
-            {% if produits | length > 0 %}
+            {% if boutique.produits | length > 0 %}
                 <table class="table-hover col-12">
                     <thead>
                         <tr class="d-flex align-items-center justify-content-around" >
@@ -53,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody  >
-                        {% for produit in produits %}
+                        {% for produit in boutique.produits %}
                         <tr class="d-flex align-items-center justify-content-around" >
                             <td class="col-3" >
                                 {% if produit.imageUrl is same as null %}

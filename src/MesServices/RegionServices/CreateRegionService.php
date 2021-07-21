@@ -28,6 +28,11 @@ class CreateRegionService
         {
             $boutique->setRegion('Bretagne');
         }
+        elseif($dpt == '18' || $dpt == '28' || $dpt == '36' || 
+                $dpt == '37' || $dpt == '41' || $dpt == '45' )
+        {
+            $boutique->setRegion('Centre-Val de Loire');
+        }
         elseif($dpt == '20' )
         {
             $boutique->setRegion('Corse');
