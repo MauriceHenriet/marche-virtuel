@@ -14,29 +14,29 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Producteurs</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ path('liste_producteur')}}">Tous les Producteurs</a>
+            <a class="dropdown-item" href="{{ path('liste_producteur') }}">Tous les Producteurs</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Fromages et Laitages</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat') }}?cat=LAIT">Fromages et Laitages</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Fruits et Légumes</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=VEGE">Fruits et Légumes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Charcuteries</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CHAR">Charcuteries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Conserves</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CONS">Conserves</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Céréales et Graines</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CERE">Céréales et Graines</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Vins et Alcools</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=ALCO">Vins et Alcools</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Miels et Confiseries</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=SUCR">Miels et Confiseries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Eaux et Boissons sans alcool</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=H2O">Eaux et Boissons sans alcool</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Huiles et Assaisonnements</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=EPIC">Huiles et Assaisonnements</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Objets, Outils</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=OBJE">Objets, Outils</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Habits et Autres</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=HABI">Habits et Autres</a>
           </div>
         </li>
         <li class="nav-item">
@@ -68,7 +68,6 @@
             <a class="dropdown-item" href="{{ path('public_home')}}">Habits et Autres</a>
           </div>
         </li>
-        
       </ul>
 
       <ul class="navbar-nav ms-auto">

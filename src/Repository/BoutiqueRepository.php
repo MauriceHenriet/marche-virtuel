@@ -19,6 +19,21 @@ class BoutiqueRepository extends ServiceEntityRepository
         parent::__construct($registry, Boutique::class);
     }
 
+    /**
+     * @return Boutique[] Returns an array of Boutique objects
+     */
+    public function findByRegion($region)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.region LIKE :region')
+            ->setParameter('region', $region)
+            ->orderBy('b.region', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+        
+
     // /**
     //  * @return Boutique[] Returns an array of Boutique objects
     //  */

@@ -36,7 +36,7 @@ class BoutiqueType extends AbstractType
                     'Eaux et Boissons sans alcool' => 'H2O',
                     'Huiles et Assaisonnements' => 'EPIC',
                     'Objets, Outils' => 'OBJE',
-                    'habits et Autres' => 'HABI',
+                    'Habits et Autres' => 'HABI',
                 ],
             ])
             ->add('status', ChoiceType::class, [
