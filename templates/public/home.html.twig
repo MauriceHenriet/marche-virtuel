@@ -6,7 +6,7 @@
     
 
     <section id="sec1">
-        <h1> Bienvenue sur le marché virtuel<a href="{{ path('producteur_region') }}?region=Corse">corse</a></h1>
+        <h1> Bienvenue sur le marché virtuel</h1>
         
         
         <div id="descri">
@@ -39,14 +39,14 @@
             <a href="{{ path('app_register')}}?vendeur=true">
                 <h2>Vous êtes producteur ?</h2>
                 <img src="{{ asset( 'images/producteur.jpg' )}}" alt="producteur" />
-                <a id="a-pro" href="{{ path('app_register')}}?vendeur=true">S'inscrire</a>
+                <a id="a-pro" href="{{ path('app_register')}}?vendeur=yes">S'inscrire</a>
             </a>
           </div>
           <div class="log">
             <a href="{{ path('app_register')}}?vendeur=false">
               <h2>Vous voulez acheter ?</h2>
               <img src="{{ asset( 'images/consommatrice.jpg' )}}" alt="consommatrice" />
-              <a id="a-conso" href="{{ path('app_register')}}?vendeur=false">S'inscrire</a>
+              <a id="a-conso" href="{{ path('app_register')}}?vendeur=no">S'inscrire</a>
             </a>
           </div>
         {% endif %}

@@ -11,15 +11,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProducteurCategorieController extends AbstractController
 {
     /**
-     * @Route("/producteurs", name="producteur_cat")
+     * @Route("/categorie/producteurs", name="producteur_cat")
      */
-    public function listeCategorieProducteur(Request $request, BoutiqueRepository $boutiqueRepository):Response
+    public function liste(Request $request, 
+        BoutiqueRepository $boutiqueRepository):Response
     {
         $categorie = $request->query->get('cat');
         
-        $producteurs = $boutiqueRepository->findBy(
-            ['categorie' => $categorie ]
-        );
+        $producteurs = $boutiqueRepository->findBy( ['categorie' => $categorie ] );
 
         if(!$producteurs)
         {
@@ -30,7 +29,7 @@ class ProducteurCategorieController extends AbstractController
         // Filtrer :
         // ne pas afficher les producteurs en status : CLOSED
 
-        return $this->render('public/producteur/categorie_producteur.html.twig', [
+        return $this->render('public/producteur/liste_producteur.html.twig', [
             'producteurs' => $producteurs
         ]);
     }

@@ -1,0 +1,71 @@
+/* ------------------header------------------- */
+.top {
+  background: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top h2 {
+  color: white;
+  margin-left: 10px;
+  text-align: center;
+}
+/* ------------------main------------------- */
+.main {
+  height: 100vh;
+  border-top: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+}
+.section-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+}
+.section-up button {
+  width: 50%;
+}
+.section-mid,
+.section-down {
+}
+.section-down {
+  margin-bottom: 100px;
+}
+/*---------------------Responsive-------------------------*/
+.alert-success {
+  background-color: rgb(122, 233, 140);
+}
+tbody tr:not(:last-child) {
+  border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
+}
+select option {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.card-body nav:last-child {
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .vDesk {
+    display: none;
+  }
+}
+@media screen and (min-width: 800px) {
+  .vMobile {
+    display: none;
+  }
+}
+
+.user-card {
+  padding: 10px;
+}

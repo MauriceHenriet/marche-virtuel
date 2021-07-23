@@ -26,7 +26,7 @@ class BoutiqueRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.region LIKE :region')
-            ->setParameter('region', $region)
+            ->setParameter('region', '%'.$region.'%')
             ->orderBy('b.region', 'ASC')
             ->getQuery()
             ->getResult()

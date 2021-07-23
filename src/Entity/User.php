@@ -19,6 +19,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     public const ROLE_VENDEUR = 'ROLE_VENDEUR';
+    public const ROLE_ACHETEUR = 'ROLE_ACHETEUR';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

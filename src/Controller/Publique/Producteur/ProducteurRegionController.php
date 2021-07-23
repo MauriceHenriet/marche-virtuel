@@ -11,26 +11,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProducteurRegionController extends AbstractController
 {
     /**
-     * @Route("/producteurs", name="producteur_region")
+     * @Route("/region/producteurs", name="producteur_region")
      */
-    public function listeRegionProducteur(Request $request ,string $region, BoutiqueRepository $boutiqueRepository):Response
+    public function liste(Request $request,
+            BoutiqueRepository $boutiqueRepository):Response
     {
         $region = $request->query->get('region');
 
-        dd($region);
-        
         $producteurs = $boutiqueRepository->findByRegion($region);
 
         if(!$producteurs)
         {
-            $this->addFlash('warning', 'Cette région n\'existe pas.');
-            return $this->redirectToRoute("public_home");
+            $this->addFlash('warning', 'Il n\'y a pas de producteurs sur cette région.');
+
+            return $this->redirectToRoute('public_home');
         }
 
         // Filtrer :
         // ne pas afficher les producteurs en status : CLOSED
 
-        return $this->render('public/producteur/region_producteur.html.twig', [
+        return $this->render('public/producteur/liste_producteur.html.twig', [
             'producteurs' => $producteurs
         ]);
     }

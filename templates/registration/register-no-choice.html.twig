@@ -17,14 +17,8 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
         {# {{ form_row(registrationForm.agreeTerms) }} #}
-        
-        <label for="choice">Votre type de profil Utilisateur* : </label>
-        <select name="choice" id="choice">
-          <option value="no">Acheteur</option>
-          <option value="yes">Vendeur</option>
-        </select>
-        <br>
-        <button type="submit" class="btn">S'inscrire</button> 
+
+        <button type="submit" class="btn">S'inscrire</button>
     {{ form_end(registrationForm) }}
 
     <br><br>
@@ -34,5 +28,4 @@
       <br>
       Si vous vous inscrivez en tant que Acheteur, 
       vous aurez la possibilité de devenir Vendeur depuis votre espace personnel.</p>
-
 {% endblock %}

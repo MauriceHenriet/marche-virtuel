@@ -1,0 +1,41 @@
+
+{% extends "acheteur/base_acheteur.html.twig" %}
+
+{% block body %}
+{% include "acheteur/shared/_header.html.twig" %}
+ 
+{% include "acheteur/shared/_sidebar.html.twig" %}
+
+        <setion class="col-10 mt-4">
+            <h2 style="color:red"> ajouter lien sibebar vers espace vendeur</h2>
+            <h2 style="color:red"> edit/remove adresse et edit telephone</h2>
+            <h2 style="color:red"> edit telephone</h2>
+            <h1>Bienvenue, {{ app.user.firstName }} {{ app.user.name }}</h1>
+            <P>Cet espace est fait pour gérer votre profil personnel d'acheteur (suivi de commandes, adresses et téléphone).</P>
+            <div class="section-up">
+                <h3>Votre Email : {{ app.user.email }}</h3>
+                <h3>Votre Téléphone : {{ app.user.phone }}</h3>
+
+                {% if app.user.adresses is empty  %}
+                    <h3>Vous n'avez pas encore saisi votre adresse</h3>
+                    <a href="{{ path('create_adresse') }}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Créer une adresse
+                    </a>
+                {% else %}
+                    {% for adresse in app.user.adresses %}
+                        <h2>Adresse {{ loop.index }} : {{ adresse.rue}} {{ adresse.ville}} {{ adresse.codePostal}}, {{ adresse.region}}</h2>
+                        <a href="{{ path('create_adresse') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Ajouter une adresse
+                        </a>    
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+            
+            <div class="section-down">
+
+            </div>
+            
+        </section>
+{% include "acheteur/shared/_footer.html.twig" %}  
+{% endblock %}

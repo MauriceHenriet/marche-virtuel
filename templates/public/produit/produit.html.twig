@@ -8,7 +8,11 @@
         <div class="section-produit col-11">
             <div class="produit-top">
                 <h1>{{ produit.nom }}</h1>
-                <a href="{{ path('producteur', { 'id' : produit.boutique.id, 'producteurSlug' : produit.boutique.slug } ) }}"><h3>de la {{ produit.boutique.nom }}</h3></a>
+                <span> </span>
+                <a href="{{ path('producteur', { 'id' : produit.boutique.id, 'producteurSlug' : produit.boutique.slug } ) }}">
+                    <h3>de la {{ produit.boutique.nom }} <a class="btn btn-info btn-sm"><i class="fas fa-arrow-left"></i> Retour</a></h3>
+                    
+                </a>
                 
             </div>
             <div class="produit-main col-5">
@@ -23,9 +27,9 @@
                     <h4>{{ produit.description}}</h4>
                     <h4>{{ produit.status}}</h4>
                     <div class="produit-achat col-12">
-                        <h4>Prix : {{ produit.prix}} €</h4>
+                        <h4>Prix : {{ produit.prix | amount }}</h4>
                         <div>
-                            <a class="btn btn-info" href="#">
+                            <a class="btn btn-info" href="{{ path('cart_add', { 'id' : produit.id } ) }}?produit=ok">
                                 <i class="fas fa-plus"></i> Ajouter au panier 
                             </a>
                         </div>

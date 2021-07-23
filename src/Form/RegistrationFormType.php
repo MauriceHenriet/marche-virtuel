@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -19,21 +20,6 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('rue', TextType::class, [
-            //     'required' => false,
-            //     'label' => 'Rue et numéro : ',
-            //     'attr' => ['placeholder' => 'entrez votre adresse ici']
-            // ])
-            // ->add('ville', TextType::class, [
-            //     'required' => false,
-            //     'label' => 'Ville : ',
-            //     'attr' => ['placeholder' => 'entrez votre ville ici']
-            // ])
-            // ->add('codePostal', TextType::class, [
-            //     'required' => false,
-            //     'label' => 'Code Postal : ',
-            //     'attr' => ['placeholder' => 'entrez votre code postal ici']
-            // ])
             ->add('email', EmailType::class, [
                 'required' => false,
                 'label' => 'Email : ',
@@ -54,16 +40,25 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Numéro de téléphone : ',
                 'attr' => ['placeholder' => 'entrez votre numéro de téléphone ici']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Accepter les conditions générales d\'utilisations du site : ',
-                'required' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter les conditions générales d\'utilisations.',
-                    ]),
-                ],
-            ])
+            // ->add('roles', ChoiceType::class, [
+            //     'label' => 'Type de profile* :',
+            //     'multiple' => true,
+            //     'choices' => [
+            //         'Acheteur' =>null,  
+            //         'Vendeur' => 'ROLE_VENDEUR'
+            //         ]
+            // ])
+            
+            // ->add('agreeTerms', CheckboxType::class, [
+            //     'label' => 'Accepter les conditions générales d\'utilisations du site : ',
+            //     'required' => false,
+            //     'mapped' => false,
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'Vous devez accepter les conditions générales d\'utilisations.',
+            //         ]),
+            //     ],
+            // ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

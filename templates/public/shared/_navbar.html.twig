@@ -18,25 +18,25 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ path('producteur_cat') }}?cat=LAIT">Fromages et Laitages</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=VEGE">Fruits et Légumes</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=VEGE">Fruits et Légumes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CHAR">Charcuteries</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=CHAR">Charcuteries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CONS">Conserves</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=CONS">Conserves</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=CERE">Céréales et Graines</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=CERE">Céréales et Graines</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=ALCO">Vins et Alcools</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=ALCO">Vins et Alcools</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=SUCR">Miels et Confiseries</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=SUCR">Miels et Confiseries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=H2O">Eaux et Boissons sans alcool</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=H2O">Eaux et Boissons sans alcool</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=EPIC">Huiles et Assaisonnements</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=EPIC">Huiles et Assaisonnements</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=OBJE">Objets, Outils</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=OBJE">Objets, Outils</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('producteur_cat' )}}?cat=HABI">Habits et Autres</a>
+            <a class="dropdown-item" href="{{ path('producteur_cat' ) }}?cat=HABI">Habits et Autres</a>
           </div>
         </li>
         <li class="nav-item">
@@ -45,6 +45,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Produits</a>
           <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ path('public_home') }}">Tous les Produits</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ path('public_home')}}">Fromages et Laitages</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ path('public_home')}}">Fruits et Légumes</a>
@@ -71,15 +73,12 @@
       </ul>
 
       <ul class="navbar-nav ms-auto">
-        {% if app.user %}
-        {# <li class="nav-item">
-          <span class="nav-link">{{ app.user.firstName }} {{ app.user.name }}</span>
-        </li> #}
         <li class="nav-item">
-          <a class="nav-link">Panier</a>
+          <a class="nav-link" href="{{ path('cart_show')}}">Panier</a>
         </li>
+        {% if app.user %}
         <li class="nav-item">
-          <a class="nav-link">Espace Acheteur</a>
+          <a class="nav-link" href="{{ path('profile_personnel') }}">Espace Acheteur</a>
         </li>
           {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
         <li class="nav-item">
@@ -95,7 +94,7 @@
           <a class="nav-link" href="{{ path('app_login')}}">Se connecter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_register')}}">S'inscrire</a>
+          <a class="nav-link" href="{{ path('app_register')}}?vendeur=choice">S'inscrire</a>
         </li>
         {% endif %}
 

@@ -52,7 +52,7 @@
                                     {{ produit.nom}}
                                 </td>
                                 <td class="col-1">
-                                    {{ produit.prix}}
+                                    {{ produit.prix | amount}}
                                 </td>
                                 <td class="col-2">
                                     {{ produit.description}}
@@ -61,8 +61,8 @@
                                     {{ produit.status}}
                                 </td>
                                 <td class="col-4">
-                                    <a class="btn btn-info" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Détail </a>
-                                    <a class="btn btn-info" href="#"><i class="fas fa-plus"></i> Ajouter au panier </a>
+                                    <a class="btn btn-info" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Voir Produit </a>
+                                    <a class="btn btn-info" href="{{ path('cart_add', { 'id' : produit.id } ) }}?producteur=ok"><i class="fas fa-plus"></i> Ajouter au panier </a>
                                 </td>
                             </tr>
                             {% endfor %}

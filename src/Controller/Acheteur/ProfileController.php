@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile/", name="")
+     * @Route("/profile/", name="profile_personnel")
      */
     public function home()
     {
-        # code...
+        return $this->render('acheteur/home.html.twig');
     }
 }

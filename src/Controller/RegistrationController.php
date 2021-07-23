@@ -22,7 +22,11 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        // depuis l'inscription Producteur ou l'inscription Consommateur
+        $isVendeur = $request->query->get('vendeur');
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -30,8 +34,10 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
-            if($request->query->get('vendeur') === 'true'){
+            
+            // depuis l'inscription Producteur ou l'inscription Consommateur
+            // et depuis l'inscription générale avec choix
+            if( $isVendeur === 'yes' || $_POST['choice'] == 'yes' ){
                 $user->setRoles([User::ROLE_VENDEUR]);
             }
 
@@ -40,6 +46,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('app_login');
+        }
+
+        if($isVendeur === "yes" || $isVendeur === "no")
+        {
+            return $this->render('registration/register-no-choice.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]);
         }
 
         return $this->render('registration/register.html.twig', [
