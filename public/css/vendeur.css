@@ -8,6 +8,10 @@
   justify-content: space-between;
 }
 
+.topVendeur a {
+  text-decoration: none;
+}
+
 .topVendeur h2 {
   color: white;
   margin-left: 10px;

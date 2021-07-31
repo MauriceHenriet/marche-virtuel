@@ -13,6 +13,9 @@
   margin-left: 10px;
   text-align: center;
 }
+.top a {
+  text-decoration: none;
+}
 /* ------------------main------------------- */
 .main {
   height: 100vh;
@@ -40,6 +43,24 @@
 .section-down {
   margin-bottom: 100px;
 }
+/*------------------------commande--------------------------------*/
+.tr-top {
+  border-top: 1px black solid !important;
+}
+
+.image-panier {
+  height: 72px;
+  width: 128px;
+  object-fit: contain;
+}
+.commander {
+  display: flex;
+  flex-direction: row;
+}
+.add-adresse {
+  color: red;
+}
+
 /*---------------------Responsive-------------------------*/
 .alert-success {
   background-color: rgb(122, 233, 140);

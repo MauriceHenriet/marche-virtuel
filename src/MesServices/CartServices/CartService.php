@@ -16,10 +16,29 @@ class CartService
         $this->produitRepository = $produitRepository;
     }
 
+    public function getFdp()
+    {
+        $panier = $this->getCart();
+
+        if(empty($panier))
+        {
+            return 0;
+        }
+        
+        $produitId = array_keys($panier)[0];
+        $produit = $this->produitRepository->find($produitId);
+        
+        return $produit->getBoutique()->getFdp();
+    }
+
     public function getTotal():int
     {
-        $total = 0;
+
+        $total=0;
         $cart = $this->getCart();
+
+        $total += $this->getFdp();
+        
 
         foreach ($cart as $id => $qty)
         {
@@ -127,6 +146,19 @@ class CartService
         $cart = $this->getCart();
 
         $this->saveCart([]);
+    }
+
+    public function countArticles()
+    {
+        $cart = $this->getCart();
+        $nbArticles = 0;
+
+        foreach ($cart as $idArticle => $qty) 
+        {
+            $nbArticles += $qty;
+        }
+
+        return $nbArticles;
     }
 
 }

@@ -15,11 +15,15 @@ class CartShowController extends AbstractController
     {
         $panier = $cartService->show();
 
+        $fdp = $cartService->getFdp();
+
         $total = $cartService->getTotal();
 
         return $this->render('public/cart/panier.html.twig', [
             'panier' => $panier,
+            'fdp' => $fdp,
             'total' => $total
+            
         ]);
     }
 }

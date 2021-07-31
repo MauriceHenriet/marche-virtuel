@@ -19,6 +19,7 @@
                 <div class="col-12 col-md-6">
                     <h2>Statut : {{ producteur.status }}</h2>
                     <h2>Catégorie : {{ producteur.categorie }}</h2>
+                    <h3>Frais de port par commande : {{ producteur.fdp | amount }}</h3>
                     <p>{{ producteur.description }}</p>
                     <h4>{{ producteur.rue }} {{ producteur.codePostal }} {{ producteur.ville }} {{ producteur.region }}</h4>
                 </div>

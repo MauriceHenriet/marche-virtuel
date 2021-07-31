@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class BoutiqueType extends AbstractType
@@ -44,6 +45,12 @@ class BoutiqueType extends AbstractType
                     'Ouverte (les produits de la boutique seront accessibles à la vente)' => 'OPEN',
                     'Fermée (les produits ne seront pas accessibles à la vente)' => 'CLOSED',
                 ],
+            ])
+            ->add('fdp', MoneyType::class, [
+                'label' => "Frais de port",
+                'currency' =>'EUR',
+                'attr' => ['placeholder' => 'Frais de port en € (EUR).'],
+                'divisor' => 100
             ])
             ->add('rue', TextType::class, [
                 'label' => 'Adresse : ',

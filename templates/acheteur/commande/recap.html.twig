@@ -1,0 +1,109 @@
+{% extends "acheteur/base_acheteur.html.twig" %}
+
+{% block title %}Validez votre commande{% endblock %}
+
+{% block body %}
+{% include "acheteur/shared/_header.html.twig" %}
+
+<div class="row commander">
+
+    {% include "acheteur/shared/_sidebar.html.twig" %}
+
+    <section class="col-8 mt-4">
+        <h2 style="color:red">intercaler le contrôleur de paiement intermédiaire avant</h2>
+        <h1>Vérification et validation de votre commande</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="d-flex align-items-center justify-content-around">
+                        <th class="col-1"></th>
+                        <th class="col-2">Produit</th>
+                        <th class="col-2">Prix</th>
+                        <th class="col-2">Quantité</th>
+                        <th class="col-2">sous-total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for item in panier %}
+                    <tr class="d-flex align-items-center justify-content-around">
+                        <td class="col-1">
+                            {% if item.produit.imageUrl is same as null %}
+                                <img class="image-panier" src="{{ asset('images/image_defaut.jpg')}}" alt="{{item.produit.slug}}">
+                            {% else %}
+                                <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}">                                
+                            {% endif %}
+                        </td>
+                        <td class="col-2">
+                            <p>{{item.produit.nom}}</p>
+                        </td>
+                        <td class="col-2">
+                            {{ item.produit.prix | amount }}
+                        </td>
+                        <td class="col-2">
+                            <div class="d-flex align-items justify-content-between">
+                                <button class="btn btn-secondary">{{ item.qte}}</button>
+                            </div>
+                        </td>
+                        <td class="col-2">
+                            {{ (item.produit.prix * item.qte) | amount }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr class="d-flex align-items-center justify-content-around">
+                        <td class="col-1"></td>
+                        <td class="col-2"></td>
+                        <td class="col-2"></td>
+                        <td class="col-2"><p>Frais de Livraison : </p></td>
+                        <td class="col-2"><p> 10, 00 € </p></td>
+                    </tr>
+                    <tr class="d-flex align-items-center justify-content-around tr-top">
+                        <td class="col-1"></td>
+                        <td class="col-2">
+                            <a class="btn btn-primary" href="{{ path('cart_show')}}">modifier</a>
+                        </td>
+                        <td class="col-2">
+                            {% if adresse is same as null %}
+                                 <p class="add-adresse">Vous n'avez pas d'adresse de livraison</p>
+                            {% else %}
+                                {# <a href="{{ path('purchase_confirm') }}">Finaliser et générer ma facture</a> #}
+                                <a href="{{ path('profile_commande_validate') }}" class="btn btn-primary">commander</a>
+                            {% endif %}
+                        </td>
+                        <td class="col-2"><p><strong>TOTAL : </strong></p></td>
+                        <td class="col-2"><p><strong>{{ total | amount }}</strong></p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="col-2 mt-4">
+        
+        <div class="card">
+        <div class="card-header">
+            <h5>Vos coordonnées :</h5>
+        </div>
+            <div class="card-body">
+                <p>{{ app.user.firstname}} {{ app.user.name}}</p>
+                <p><u> téléphone</u> <br>{{ app.user.phone}}</p>
+                {% if adresse is same as null %}
+                <p class="add-adresse"><strong>Vous n'avez pas d'adresse de livraison</strong></p>
+                <a href="{{ path('create_adresse') }}?adresselivraison=true" class="btn btn-primary btn-sm add-adresse">renseigner l'adresse</a>
+                {% else %}
+                    <p><u>Adresse de livraison : </u><br>
+                    {{ adresse.rue}}, <br>
+                    {{ adresse.codePostal}} <br>
+                    {{ adresse.ville}}, <br>
+                    {{ adresse.region}}</p>
+                    <a href="{{ path('profile_personnel') }}" class="btn btn-primary btn-sm">modifier l'adresse de livraison</a>
+                {% endif %}
+                
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock %}

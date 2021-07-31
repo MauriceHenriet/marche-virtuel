@@ -43,6 +43,11 @@ class Adresse
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $livraison;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Adresse
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLivraison(): ?bool
+    {
+        return $this->livraison;
+    }
+
+    public function setLivraison(?bool $livraison): self
+    {
+        $this->livraison = $livraison;
 
         return $this;
     }

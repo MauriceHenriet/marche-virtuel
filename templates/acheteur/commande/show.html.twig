@@ -1,0 +1,244 @@
+{% extends "acheteur/base_acheteur.html.twig" %}
+
+{% block body %}
+{% include "acheteur/shared/_header.html.twig" %}
+ 
+{% include "acheteur/shared/_sidebar.html.twig" %}
+
+<setion class="col-10 mt-4">
+    <h1>Vos commandes : </h1>
+        
+    <div class="section-mid pt-3 pb-3">
+        {% if commandesAFacturer | length > 0 %}
+        <h2>Commandes en attente de facturation :</h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesAFacturer %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount}}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>                    
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {% endif %}
+        {% if commandesAttentePaiement | length > 0 %}
+        <h2><strong style="color:red">Commandes en attente de paiement :</strong></h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesAttentePaiement %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>             
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% endif %}
+        {% if commandesPayees | length > 0 %}     
+        <h2>Commandes en attente d'expédition :</h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesPayees %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount  }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>         
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% endif %}
+        {% if commandesLivraison | length > 0 %}
+        <h2>Commandes en cours de livraison :</h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesLivraison %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>        
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% endif %}
+        {% if commandesLivree | length > 0 %}
+        <h2>Commandes livrees :</h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesLivree %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>        
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% endif %}
+        {% if ( commandesAnnulee | length > 0 or commandesRefusee | length > 0 ) %}
+        <h2>Commandes annulées de votre part ou refusées par le vendeur :</h2>
+        <table class="table-hover col-10">
+            <thead>
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <th class="col-2">N° commande</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">action</th>
+                </tr>
+            </thead>
+            <tbody  >
+
+                {% for item in commandesAnnulee %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>          
+                {% endfor %}
+                {% for item in commandesRefusee %}
+                <tr class="d-flex align-items-center justify-content-around" >
+                    <td class="col-2" >
+                        {{ item.id }}
+                    </td>
+                    <td class="col-2">
+                        {{ item.total | amount }}  
+                    </td>
+                    <td class="col-2">
+                       {{ item.createdAt | date("d/m/Y") }}
+                    </td>
+                    <td class="col-2">
+                        <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                            <i class="fas fa-eye"></i> détail
+                        </a>
+                    </td>
+                </tr>        
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% endif %}      
+    </div>
+        
+</section>
+{% include "acheteur/shared/_footer.html.twig" %}  
+{% endblock %}

@@ -4,28 +4,28 @@
 
 <div class="col-2 ml-4 sideBarAdmin vDesk">
     <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-success mt-3">
-            <i class="fas fa-store"></i> Modifier Adresse
+        <a href="{{ path('profile_personnel') }}" class="col-12 btn btn-success mt-3">
+            <i class="fas fa-store"></i> Espace Acheteur
         </a>
     </div>
     <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-success mt-3">
-            <i class="fas fa-store"></i> Modifier Téléphone
-        </a>
-    </div>
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3">
+        <a href="{{ path('profile_commandes_show') }}" class="col-12 btn btn-primary mt-3">
             <i class="fas fa-users"></i> Commandes
         </a>
     </div>
     <div>
-        <a href="{{ path('public_home') }}" class="col-12 btn btn-primary mt-3"> Retour au site </a>
+        <a href="{{ path('cart_show')}}" class="col-12 btn btn-primary mt-3">
+            Panier
+        </a>
     </div>
     {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
     <div>
         <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3"> Espace Vendeur </a>
     </div>
     {% endif %}
+    <div>
+        <a href="{{ path('public_home') }}" class="col-12 btn btn-primary mt-3"> Retour au site </a>
+    </div>
     <div>
         <a href="{{ path('app_logout') }}" class="col-12 btn btn-danger mt-3"> Déconnexion </a>
     </div>

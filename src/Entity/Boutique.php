@@ -93,6 +93,11 @@ class Boutique
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $fdp;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -261,6 +266,18 @@ class Boutique
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getFdp(): ?int
+    {
+        return $this->fdp;
+    }
+
+    public function setFdp(int $fdp): self
+    {
+        $this->fdp = $fdp;
 
         return $this;
     }

@@ -34,6 +34,11 @@ class LigneCommande
      */
     private $quantite;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $sousTotal;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class LigneCommande
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getSousTotal(): ?int
+    {
+        return $this->sousTotal;
+    }
+
+    public function setSousTotal(int $sousTotal): self
+    {
+        $this->sousTotal = $sousTotal;
 
         return $this;
     }

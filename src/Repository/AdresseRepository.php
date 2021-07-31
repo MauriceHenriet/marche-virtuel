@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Adresse;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Adresse|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,20 @@ class AdresseRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Adresse::class);
     }
+
+
+    public function getAdresseLivraison(User $user): ?Adresse
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.user = :user_id')
+            ->setParameter('user_id', $user)
+            ->andWhere('a.livraison = :livraison')
+            ->setParameter('livraison', true)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 
     // /**
     //  * @return Adresse[] Returns an array of Adresse objects

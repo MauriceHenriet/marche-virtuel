@@ -6,36 +6,51 @@
  
 {% include "acheteur/shared/_sidebar.html.twig" %}
 
-        <setion class="col-10 mt-4">
-            <h2 style="color:red"> ajouter lien sibebar vers espace vendeur</h2>
-            <h2 style="color:red"> edit/remove adresse et edit telephone</h2>
-            <h2 style="color:red"> edit telephone</h2>
-            <h1>Bienvenue, {{ app.user.firstName }} {{ app.user.name }}</h1>
-            <P>Cet espace est fait pour gérer votre profil personnel d'acheteur (suivi de commandes, adresses et téléphone).</P>
-            <div class="section-up">
-                <h3>Votre Email : {{ app.user.email }}</h3>
-                <h3>Votre Téléphone : {{ app.user.phone }}</h3>
+<setion class="col-10 mt-4">
+    <h2 style="color:red"> modale de validation remove adresse</h2>
+    <h2 style="color:red"> edit telephone</h2>
+    <h1>Bienvenue, {{ app.user.firstName }} {{ app.user.name }}</h1>
+    <P>Cet espace est fait pour gérer votre profil personnel d'acheteur (suivi de commandes, adresses et téléphone).</P>
+    <div class="section-up">
+        <h3>Votre Email : {{ app.user.email }}</h3>
+        <h3>Votre Téléphone : {{ app.user.phone }}</h3>
 
-                {% if app.user.adresses is empty  %}
-                    <h3>Vous n'avez pas encore saisi votre adresse</h3>
-                    <a href="{{ path('create_adresse') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Créer une adresse
-                    </a>
+    {% if app.user.adresses is empty  %}
+        <h3>Vous n'avez pas encore saisi votre adresse</h3>
+            <a href="{{ path('create_adresse') }}?adresselivraison=true" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Créer une adresse
+            </a>
+    {% else %}
+        {% for adresse in app.user.adresses %}
+            
+                {% if adresse.livraison is same as true %}
+                    <p>Adresse {{ loop.index }} 
+                        <span style="color:red">(adresse de livraison)</span> : {{ adresse.rue}}
+                            , {{ adresse.codePostal}} {{ adresse.ville}}
+                            , {{ adresse.region}}
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">modifier l'adresse</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">supprimer l'adresse</a></p>
                 {% else %}
-                    {% for adresse in app.user.adresses %}
-                        <h2>Adresse {{ loop.index }} : {{ adresse.rue}} {{ adresse.ville}} {{ adresse.codePostal}}, {{ adresse.region}}</h2>
-                        <a href="{{ path('create_adresse') }}" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Ajouter une adresse
-                        </a>    
-                    {% endfor %}
+                    <p>Adresse {{ loop.index }} : {{ adresse.rue}}
+                        , {{ adresse.codePostal}} {{ adresse.ville}}
+                        , {{ adresse.region}}
+                    <a href="{{ path('livraison_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">choisir comme adresse de livraison</a>
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">modifier l'adresse</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">supprimer l'adresse</a></p>
                 {% endif %}
-
-            </div>
             
-            <div class="section-down">
-
-            </div>
+        {% endfor %}
+        <a href="{{ path('create_adresse') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Ajouter une adresse
+        </a> 
+    {% endif %}
+        
+    </div>
             
-        </section>
+    <div class="section-down">
+
+    </div>
+            
+</section>
 {% include "acheteur/shared/_footer.html.twig" %}  
 {% endblock %}

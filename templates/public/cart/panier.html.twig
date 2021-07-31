@@ -56,26 +56,18 @@
                         <td class="col-1"></td>
                         <td class="col-2"></td>
                         <td class="col-1"></td>
-                        <td class="col-2"><p>sous-total : </p></td>
-                        <td class="col-2"><p>{{ total | amount}}</p></td>
-                        <td class="col-1"></td>
-                    </tr>
-                    <tr class="d-flex align-items-center justify-content-around">
-                        <td class="col-1"></td>
-                        <td class="col-2"></td>
-                        <td class="col-1"></td>
                         <td class="col-2"><p>Frais de Livraison : </p></td>
-                        <td class="col-2"><p> 10, 00 € </p></td>
+                        <td class="col-2"><p> {{ fdp | amount}} </p></td>
                         <td class="col-1"></td>
                     </tr>
                     <tr class="d-flex align-items-center justify-content-around">
                         <td class="col-1"></td>
                         <td class="col-2">
-                            <a href="{{ path('profile_commande') }}" class="btn btn-primary btn-lg"> Passer la Commander</a>
+                            <a href="{{ path('profile_commande_create') }}" class="btn btn-primary btn-lg"> Passer la Commander</a>
                         </td>
                         <td class="col-1"></td>
                         <td class="col-2"><p>TOTAL : </p></td>
-                        <td class="col-2"><p>{{ total | shippingCost | amount }}</p></td>
+                        <td class="col-2"><p>{{ total | amount }}</p></td>
                         <td class="col-1"></td>
                     </tr>
                 </tbody>

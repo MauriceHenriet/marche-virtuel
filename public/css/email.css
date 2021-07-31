@@ -1,0 +1,84 @@
+.kirakiraBrand {
+  background: pink;
+  color: black;
+  padding: 10px;
+}
+
+.PDFTableP img {
+  height: 70px;
+  object-fit: contain;
+  margin-right: 5px;
+}
+
+.PDFTableP {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 580px) {
+  .PDFTableP {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-striped-color: #55595c;
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+  --bs-table-active-color: #55595c;
+  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+  --bs-table-hover-color: #55595c;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #55595c;
+  vertical-align: top;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+tr {
+  border: 1px solid black;
+}
+
+td {
+  border-bottom: 1px solid black;
+}
+
+.tableP {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}
+
+body {
+  padding: 20px 20px 20px 20px;
+}
+
+.imageRecap {
+  height: 70px !important;
+  object-fit: contain;
+}
+
+.recapDivImageProductInfo {
+  display: flex;
+  align-items: center;
+}
+
+.recapDivItemNameAttribute {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.recapDivItemNameAttribute p {
+  margin: 0;
+}
+
+.PDFMontantTotal {
+  font-weight: bold;
+  font-size: 20px;
+}

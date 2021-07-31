@@ -23,4 +23,9 @@ class ShippingCostExtension extends AbstractExtension
 
         return $total;
     }
+
+    public function getShippingCost()
+    {
+        return self::SHIPPING_COST;
+    }
 }
