@@ -71,6 +71,11 @@ th {
   width: 60%;
   object-fit: contain;
 }
+.image-panier {
+  height: 72px;
+  width: 128px;
+  object-fit: contain;
+}
 /*-----------------détail Boutique----------------------------------*/
 
 /*---------------------Responsive-------------------------*/

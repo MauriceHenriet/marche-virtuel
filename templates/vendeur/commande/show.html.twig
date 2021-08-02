@@ -44,6 +44,9 @@
                         <a class="btn btn-info" href="{{ path('vendeur_commande_facturer', { 'id' : item.id } ) }}">
                             <i class="fas fa-file-invoice"></i> facturer
                         </a>
+                        <a class="btn btn-info" href="{{ path('vendeur_commande_refuser', { 'id' : item.id } ) }}">
+                            <i class="fas fa-times"></i> refuser
+                        </a>
                     </td>
                 </tr>                    
                 {% endfor %}
@@ -123,7 +126,7 @@
                             <i class="fas fa-eye"></i> détail
                         </a>
                         <a class="btn btn-info" href="{{ path('vendeur_commande_expedier', { 'id' : item.id } ) }}">
-                            <i class="fas fa-shipping-fast"></i> expédier
+                            <i class="fas fa-shipping-fast"></i> expédiée
                         </a>
                     </td>
                 </tr>         

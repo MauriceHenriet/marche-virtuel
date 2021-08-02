@@ -17,7 +17,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -33,9 +33,12 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
+                        </a>
+                        <a class="btn btn-info" href="{{ path('profile_commande_annuler', { 'id' : item.id } ) }}">
+                            <i class="fas fa-times"></i> annuler
                         </a>
                     </td>
                 </tr>                    
@@ -52,7 +55,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -68,9 +71,15 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
+                        </a>
+                        <a class="btn btn-info" href="{{ path('profile_commande_payer', { 'id' : item.id } ) }}">
+                            <i class="fab fa-cc-paypal"></i> payer <i class="fab fa-cc-visa"></i>
+                        </a>
+                        <a class="btn btn-info" href="{{ path('profile_commande_annuler', { 'id' : item.id } ) }}">
+                            <i class="fas fa-times"></i> annuler
                         </a>
                     </td>
                 </tr>             
@@ -87,7 +96,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -103,7 +112,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -122,7 +131,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -138,9 +147,12 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
+                        </a>
+                        <a class="btn btn-info" href="{{ path('profile_commande_livree', { 'id' : item.id } ) }}">
+                            <i class="fas fa-truck-loading"></i> livrée ! <i class="fas fa-thumbs-up"></i>
                         </a>
                     </td>
                 </tr>        
@@ -157,7 +169,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -173,7 +185,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -192,7 +204,7 @@
                     <th class="col-2">N° commande</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-2">action</th>
+                    <th class="col-4">action</th>
                 </tr>
             </thead>
             <tbody  >
@@ -208,7 +220,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -226,7 +238,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-2">
+                    <td class="col-4">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>

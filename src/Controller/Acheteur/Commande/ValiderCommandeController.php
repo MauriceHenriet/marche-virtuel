@@ -80,10 +80,9 @@ class ValiderCommandeController extends AbstractController
 
         $emailVendeur->to( $panierBoutique['produits'][0]['produit']->getBoutique()->getVendeur()->getEmail() )
         ->addTo($user->getEmail())
-        ->cc('maurice.henriet@yahoo.fr')
-        ->from($user->getEmail())
+        ->from('maurice.henriet@yahoo.fr')
         ->subject(
-            'nouvelle commande sur le marché virtuel - boutique '.
+            'Nouvelle commande sur le marché virtuel - boutique '.
             $panierBoutique['produits'][0]['produit']->getBoutique()->getNom().
             ' par l\'acheteur '.$user->getFirstName().' '.
             $user->getName().'.')

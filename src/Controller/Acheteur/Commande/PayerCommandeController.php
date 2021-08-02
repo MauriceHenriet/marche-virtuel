@@ -12,8 +12,18 @@ class PayerCommandeController extends AbstractController
     /**
      * @Route("/profile/commande/payer/{id}", name="profile_commande_payer")
      */
-    public function payerCommande(int $id, CommandeRepository $commandeRepository, ShippingCostExtension $shippingCost)
+    public function payerCommande(int $id, CommandeRepository $commandeRepository)
     {
-        dd($shippingCost->getShippingCost());
+        $commande = $commandeRepository->find($id);
+        
+        if($commande->getStatus() == 'attente-paiement')
+        {
+
+            // faire la vue codepen credit avec formulaire 
+            //et if submited  $commande->setStatus('a-expedier');
+        }
+
+        return $this->redirectToRoute('profile_commandes_show');
     }
 }
+

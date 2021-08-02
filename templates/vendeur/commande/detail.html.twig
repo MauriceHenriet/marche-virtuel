@@ -1,9 +1,9 @@
-{% extends "acheteur/base_acheteur.html.twig" %}
+{% extends "vendeur/base_vendeur.html.twig" %}
 
 {% block body %}
-{% include "acheteur/shared/_header.html.twig" %}
+{% include "vendeur/shared/_header.html.twig" %}
  
-{% include "acheteur/shared/_sidebar.html.twig" %}
+{% include "vendeur/shared/_sidebar.html.twig" %}
 
 <setion class="col-10 mt-4">
     <h1>Détail de votre commande, numéro: {{ commande.id }} </h1>
@@ -60,36 +60,27 @@
                     <td class="col-2"><p>{{ fdp | amount }}</p></td>
                 </tr>
                 <tr class="d-flex align-items-center justify-content-around tr-top">
+
                     {% if commande.status is same as 'a-facturer' %}
                         <td class="col-2"></td>
-                        <td class="col-2"></td>
                         <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('profile_commande_annuler', { 'id' : commande.id } ) }}">
-                                <i class="fas fa-times"></i> annuler
-                            </a>
-                        </td>
-                    {% endif %}
-                    
-                    {% if commande.status is same as 'paiement-attente' %}
-                        <td class="col-2"></td>
-                        <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('profile_commande_annuler', { 'id' : commande.id } ) }}">
-                                <i class="fas fa-times"></i> annuler
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_facturer', { 'id' : commande.id } ) }}">
+                                <i class="fas fa-file-invoice"></i> facturer
                             </a>
                         </td>
                         <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('profile_commande_payer', { 'id' : commande.id } ) }}">
-                                Payer
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_refuser', { 'id' : commande.id } ) }}">
+                                <i class="fas fa-times"></i> refuser
                             </a>
                         </td>
                     {% endif %}
 
-                    {% if commande.status is same as 'en-livraison' %}
+                    {% if commande.status is same as 'a-expedier' %}
                         <td class="col-2"></td>
                         <td class="col-2"></td>
                         <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('profile_commande_livree', { 'id' : commande.id } ) }}">
-                                <i class="fas fa-truck-loading"></i> livrée ! <i class="fas fa-thumbs-up"></i>
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_expedier', { 'id' : commande.id } ) }}">
+                                <i class="fas fa-shipping-fast"></i> expédiée
                             </a>
                         </td>
                     {% endif %}
@@ -102,5 +93,5 @@
     </div>
         
 </section>
-{% include "acheteur/shared/_footer.html.twig" %}  
+{% include "vendeur/shared/_footer.html.twig" %}  
 {% endblock %}
