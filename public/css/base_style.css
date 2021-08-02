@@ -142,7 +142,9 @@ th {
   text-align: right;
   padding-right: 10%;
 }
-
+.tr-bottom {
+  border-bottom: 1px black solid;
+}
 /*-----------------------Page Produit Publique--------------------------*/
 .section-produit {
   border: black 1px solid;

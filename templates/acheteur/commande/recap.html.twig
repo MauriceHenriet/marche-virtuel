@@ -25,11 +25,11 @@
                 </thead>
 
                 <tbody>
-                {% for item in panier %}
+                {% for item in panierBoutique.produits %}
                     <tr class="d-flex align-items-center justify-content-around">
                         <td class="col-1">
                             {% if item.produit.imageUrl is same as null %}
-                                <img class="image-panier" src="{{ asset('images/image_defaut.jpg')}}" alt="{{item.produit.slug}}">
+                                <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
                             {% else %}
                                 <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}">                                
                             {% endif %}
@@ -55,7 +55,7 @@
                         <td class="col-2"></td>
                         <td class="col-2"></td>
                         <td class="col-2"><p>Frais de Livraison : </p></td>
-                        <td class="col-2"><p> 10, 00 € </p></td>
+                        <td class="col-2"><p> {{ panierBoutique.fdp | amount}} </p></td>
                     </tr>
                     <tr class="d-flex align-items-center justify-content-around tr-top">
                         <td class="col-1"></td>
@@ -66,12 +66,11 @@
                             {% if adresse is same as null %}
                                  <p class="add-adresse">Vous n'avez pas d'adresse de livraison</p>
                             {% else %}
-                                {# <a href="{{ path('purchase_confirm') }}">Finaliser et générer ma facture</a> #}
-                                <a href="{{ path('profile_commande_validate') }}" class="btn btn-primary">commander</a>
+                                <a href="{{ path('profile_commande_validate', { 'id' : panierBoutique.produits[0].produit.boutique.id }) }}" class="btn btn-primary">commander</a>
                             {% endif %}
                         </td>
                         <td class="col-2"><p><strong>TOTAL : </strong></p></td>
-                        <td class="col-2"><p><strong>{{ total | amount }}</strong></p></td>
+                        <td class="col-2"><p><strong>{{ panierBoutique.total | amount }}</strong></p></td>
                     </tr>
                 </tbody>
             </table>

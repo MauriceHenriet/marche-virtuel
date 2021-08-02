@@ -98,9 +98,15 @@ class Boutique
      */
     private $fdp;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="boutique")
+     */
+    private $commandes;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -278,6 +284,36 @@ class Boutique
     public function setFdp(int $fdp): self
     {
         $this->fdp = $fdp;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setBoutique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getBoutique() === $this) {
+                $commande->setBoutique(null);
+            }
+        }
 
         return $this;
     }

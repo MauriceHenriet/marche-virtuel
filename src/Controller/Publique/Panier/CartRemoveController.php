@@ -16,6 +16,7 @@ class CartRemoveController extends AbstractController
     public function remove(CartService $cartService, int $id, 
             ProduitRepository $productRepository, Request $request)
     {
+        $boutiqueId = $request->query->get('boutique');
         $produit = $productRepository->find($id);
 
         if(!$produit)
@@ -24,7 +25,7 @@ class CartRemoveController extends AbstractController
             return $this->redirectToRoute('public_home');
         }
 
-        $cartService->remove($id);
+        $cartService->remove($id, $boutiqueId);
 
         $this->addFlash('success', 'le produit '. $produit->getNom() .' a bien été supprimé du panier.');
 

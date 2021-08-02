@@ -10,7 +10,7 @@
         <div class="section-panier col-10">
             <table class="table table-hover">
                 <thead>
-                    <tr class="d-flex align-items-center justify-content-around">
+                    <tr class="d-flex align-items-center justify-content-around tr-bottom">
                         <th class="col-1"></th>
                         <th class="col-2">Produit</th>
                         <th class="col-1">Prix</th>
@@ -20,12 +20,13 @@
                     </tr>
                 </thead>
 
+        {% for idBoutique, boutique in panier %}
                 <tbody>
-                {% for item in panier %}
+                {% for item in boutique.produits %}
                     <tr class="d-flex align-items-center justify-content-around">
                         <td class="col-1">
                             {% if item.produit.imageUrl is same as null %}
-                                <img class="image-panier" src="{{ asset('images/image_defaut.jpg')}}" alt="{{item.produit.slug}}">
+                                <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
                             {% else %}
                                 <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}">                                
                             {% endif %}
@@ -38,7 +39,7 @@
                         </td>
                         <td class="col-2">
                             <div class="d-flex align-items justify-content-between">
-                                <a class="btn btn-sm btn-primary" href="{{ path('cart_decrement', { 'id' : item.produit.id } ) }}"><i class="fas fa-minus"></i></a>
+                                <a class="btn btn-sm btn-primary" href="{{ path('cart_decrement', { 'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}"><i class="fas fa-minus"></i></a>
                                 <button class="btn btn-secondary btn-sm">{{ item.qte }}</button>
                                 <a class="btn btn-sm btn-primary" href="{{ path('cart_add', { 'id' : item.produit.id } ) }}"><i class="fas fa-plus"></i></a>
                             </div>
@@ -47,7 +48,7 @@
                             {{ (item.produit.prix * item.qte) | amount }}
                         </td>
                         <td class="col-1">
-                            <a href="{{ path('cart_remove', {'id' : item.produit.id } ) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                            <a href="{{ path('cart_remove', {'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}" class="btn btn-danger btn-sm">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -57,20 +58,22 @@
                         <td class="col-2"></td>
                         <td class="col-1"></td>
                         <td class="col-2"><p>Frais de Livraison : </p></td>
-                        <td class="col-2"><p> {{ fdp | amount}} </p></td>
+                        <td class="col-2"><p> {{ boutique.fdp | amount}} </p></td>
                         <td class="col-1"></td>
                     </tr>
-                    <tr class="d-flex align-items-center justify-content-around">
+                    <tr class="d-flex align-items-center justify-content-around tr-bottom">
                         <td class="col-1"></td>
                         <td class="col-2">
-                            <a href="{{ path('profile_commande_create') }}" class="btn btn-primary btn-lg"> Passer la Commander</a>
+                            <a href="{{ path('profile_commande_create', { 'id' : idBoutique } ) }}" class="btn btn-primary btn-lg"> commander </a>
                         </td>
                         <td class="col-1"></td>
                         <td class="col-2"><p>TOTAL : </p></td>
-                        <td class="col-2"><p>{{ total | amount }}</p></td>
+                        <td class="col-2"><p>{{ boutique.total | amount }}</p></td>
                         <td class="col-1"></td>
                     </tr>
-                </tbody>
+                </tbody>                    
+        {% endfor %}
+                
 
             </table>
         </div>

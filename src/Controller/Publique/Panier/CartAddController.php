@@ -17,6 +17,7 @@ class CartAddController extends AbstractController
             ProduitRepository $productRepository, Request $request)
     {
         $produit = $productRepository->find($id);
+        $boutiqueId = $produit->getBoutique()->getId();
 
         if(!$produit)
         {
@@ -24,7 +25,7 @@ class CartAddController extends AbstractController
             return $this->redirectToRoute('public_home');
         }
 
-        $cartService->add($id);
+        $cartService->add($id, $boutiqueId);
 
         $this->addFlash('success', 'le produit '. $produit->getNom() .' a bien été ajouté au panier AJOUTER LA QUANTITE d\'ARTICLES et TOTAL PANIER.');
 

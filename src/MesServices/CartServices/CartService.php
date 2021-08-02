@@ -2,6 +2,7 @@
 
 namespace App\MesServices\CartServices;
 
+use App\Repository\BoutiqueRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -9,99 +10,85 @@ class CartService
 {
     protected $session;
     protected $produitRepository;
+    protected $boutiqueRepository;
 
-    public function __construct(SessionInterface $session, ProduitRepository $produitRepository)
+    public function __construct(SessionInterface $session,
+                        BoutiqueRepository $boutiqueRepository,
+                        ProduitRepository $produitRepository)
     {
         $this->session = $session;
         $this->produitRepository = $produitRepository;
+        $this->boutiqueRepository = $boutiqueRepository;
     }
 
-    public function getFdp()
-    {
-        $panier = $this->getCart();
-
-        if(empty($panier))
-        {
-            return 0;
-        }
-        
-        $produitId = array_keys($panier)[0];
-        $produit = $this->produitRepository->find($produitId);
-        
-        return $produit->getBoutique()->getFdp();
+    public function getFdp(int $boutiqueId)
+    {        
+        return $this->boutiqueRepository->find($boutiqueId)->getFdp();
     }
 
-    public function getTotal():int
+    public function add(int $id, int $boutiqueId)
     {
-
-        $total=0;
         $cart = $this->getCart();
-
-        $total += $this->getFdp();
         
-
-        foreach ($cart as $id => $qty)
+        // si la boutique n'est pas dans le panier
+        if ( !array_key_exists($boutiqueId, $cart) )
         {
-            $produit = $this->produitRepository->find($id);
-
-            if(!$produit)
-            {
-                continue;
-            }
-
-            $total += $produit->getPrix() * $qty;
+            // alors on crée la clé boutique avec un tableau dont l'index 0 contient les fdp
+            $cart[$boutiqueId][0] = $this->getFdp($boutiqueId);
         }
 
-        return $total;
-    }
-
-    public function add(int $id)
-    {
-        // crée ou récupère le tableau cart[] dans la session
-        $cart = $this->getCart();
-
-        // si le produit n'est pas dans le cart 
-        if(!array_key_exists($id, $cart))
+        // si le produit n'existe pas dans la boutique du panier
+        if( !array_key_exists($id, $cart[$boutiqueId]) )
         {
-            // alors on crée la clé avec une quantité 0
-            $cart[$id] = 0;
+            // alors on le rajoute dans le panier
+            $cart[$boutiqueId][$id] = 0;
         }
 
         // on incrémente la quantité
-        $cart[$id]++;
-        
-        //// pour vider le panier
-        // $cart = $session->set('cart', []);
-
-        $this->saveCart($cart);
-
-    }
-
-    public function decrement(int $id)
-    {
-        $cart = $this->getCart();
-
-        if(!array_key_exists($id, $cart))
-        {
-            return;
-        }
-
-        if($cart[$id] === 1)
-        {
-            $this->remove($id);
-            return;
-        }
-        
-        $cart[$id]--;
+        $cart[$boutiqueId][$id]++;
 
         $this->saveCart($cart);
     }
 
-    public function remove(int $id)
+    public function decrement(int $id, int $boutiqueId)
     {
         $cart = $this->getCart();
 
-        unset($cart[$id]);
+        if (!array_key_exists($boutiqueId, $cart) || !array_key_exists($id, $cart[$boutiqueId]) )
+        {
+            return;
+        }
+
+        if($cart[$boutiqueId][$id] === 1)
+        {
+            $this->remove($id, $boutiqueId);
+            return;
+        }
+        
+        $cart[$boutiqueId][$id]--;
+
+        $this->saveCart($cart);
+    }
+
+    public function remove(int $id, int $boutiqueId)
+    {
+        $cart = $this->getCart();
+
+        unset($cart[$boutiqueId][$id]);
+
+        if( count($cart[$boutiqueId]) == 1 )
+        {
+            unset($cart[$boutiqueId]);
+        }
+
+        $this->saveCart($cart);
+    }
+
+    public function removePanierBoutique(int $boutiqueId)
+    {
+        $cart = $this->getCart();
+
+        unset($cart[$boutiqueId]);
 
         $this->saveCart($cart);
     }
@@ -109,27 +96,56 @@ class CartService
     public function show():array
     {
         $detailedCart = [];
-
         $cart = $this->getCart();
 
-        foreach($cart as $id => $qty)
+        foreach($cart as $boutiqueId => $tab)
         {
-            $produit = $this->produitRepository->find($id);
+            $detailedCart[$boutiqueId]['total'] = 0;
+            $detailedCart[$boutiqueId]['produits'] = [];
 
-            if(!$produit)
+            foreach ($tab as $id => $nb)
             {
-                continue;
+                if($id == 0)
+                {
+                    $detailedCart[$boutiqueId]['fdp'] = $nb;
+                    $detailedCart[$boutiqueId]['total'] += $nb;
+                }
+                else
+                {
+                    $produit = $this->produitRepository->find($id);
+
+                    if(!$produit)  continue;
+
+                    $detailedCart[$boutiqueId]['total'] += $produit->getPrix() * $nb;
+                    $detailedCart[$boutiqueId]['produits'][] = [
+                        'produit' => $produit, 
+                        'qte' => $nb
+                    ];
+                }
             }
-
-            $detailedCart[] = [
-                'produit' => $produit, 
-                'qte' => $qty
-            ];
-
         }
-
         return $detailedCart;
     }
+
+    public function countArticles()
+    {
+        $cart = $this->getCart();
+        $nbArticles = 0;
+
+        foreach($cart as $boutiqueId => $tab)
+        {
+            foreach($tab as $idArticle => $qty) 
+            {
+                if($idArticle != 0)
+                {
+                    $nbArticles += $qty;
+                }
+                
+            }
+        }
+
+        return $nbArticles;
+    }    
 
     public function getCart()
     {
@@ -146,19 +162,6 @@ class CartService
         $cart = $this->getCart();
 
         $this->saveCart([]);
-    }
-
-    public function countArticles()
-    {
-        $cart = $this->getCart();
-        $nbArticles = 0;
-
-        foreach ($cart as $idArticle => $qty) 
-        {
-            $nbArticles += $qty;
-        }
-
-        return $nbArticles;
     }
 
 }

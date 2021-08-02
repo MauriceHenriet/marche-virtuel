@@ -17,6 +17,7 @@ class CartDecrementController extends AbstractController
             ProduitRepository $productRepository, Request $request)
     {
         $produit = $productRepository->find($id);
+        $boutiqueId = $produit->getBoutique()->getId();
 
         if(!$produit)
         {
@@ -24,7 +25,7 @@ class CartDecrementController extends AbstractController
             return $this->redirectToRoute('public_home');
         }
 
-        $cartService->decrement($id);
+        $cartService->decrement($id, $boutiqueId);
 
         $this->addFlash('success', 'le produit '. $produit->getNom() .' a bien été soustrait du panier.');
 

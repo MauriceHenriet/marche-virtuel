@@ -12,6 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commande
 {
+
+    // status que peut prendre la commande :
+    public const A_FACT = 'a-facturer';
+    public const ATT_PAIE = 'attente-paiement';
+    public const A_EXPE = 'a-expedier';
+    public const EN_LIV = 'en-livraison';
+    public const LIVR = 'livree';
+    public const ANNUL = 'annulee';
+    public const REFU = 'refusee';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -49,6 +60,12 @@ class Commande
      * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="commande", orphanRemoval=true)
      */
     private $ligneCommandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Boutique::class, inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $boutique;
 
     public function __construct()
     {
@@ -151,6 +168,18 @@ class Commande
                 $ligneCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBoutique(): ?Boutique
+    {
+        return $this->boutique;
+    }
+
+    public function setBoutique(?Boutique $boutique): self
+    {
+        $this->boutique = $boutique;
 
         return $this;
     }
