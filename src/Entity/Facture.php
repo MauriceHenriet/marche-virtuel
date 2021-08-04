@@ -33,6 +33,16 @@ class Facture
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $numero;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $paidAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +80,30 @@ class Facture
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getNumero(): ?string
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(string $numero): self
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    public function getPaidAt(): ?\DateTimeInterface
+    {
+        return $this->paidAt;
+    }
+
+    public function setPaidAt(\DateTimeInterface $paidAt): self
+    {
+        $this->paidAt = $paidAt;
 
         return $this;
     }

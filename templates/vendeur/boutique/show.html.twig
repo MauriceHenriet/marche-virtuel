@@ -1,11 +1,8 @@
 {% extends "vendeur/base_vendeur.html.twig" %}
 
 {% block body %}
-{% include "vendeur/shared/_header.html.twig" %}
- 
-{% include "vendeur/shared/_sidebar.html.twig" %}
 
-    <setion class="col-10 mt-4">
+    <section class="col-10 mt-4">
         <div class="section-up">
             <h1>Boutique : {{ boutique.nom}}</h1>
             <a href="{{ path('edit_boutique', { 'id' : boutique.id } )}}" class="btn btn-primary">
@@ -89,11 +86,5 @@
         </div>
         
     </section>
-{% include "vendeur/shared/_footer.html.twig" %}  
+
 {% endblock %}
-{# <td class="col-1">
-                                <a class="btn btn-danger btn-sm" href="{{ path('remove_category', { 'id' : boutique.id } ) }}"><i class="far fa-times-circle"></i> Supprimer</a>
-                            </td>
-                            <td class="col-1">
-                                <a class="btn btn-danger btn-sm" href="{{ path('remove_category', { 'id' : boutique.id } ) }}"><i class="far fa-times-circle"></i> Supprimer</a>
-                            </td> #}

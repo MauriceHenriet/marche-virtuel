@@ -145,6 +145,9 @@ th {
 .tr-bottom {
   border-bottom: 1px black solid;
 }
+.fa-shopping-cart {
+  font-size: 20px;
+}
 /*-----------------------Page Produit Publique--------------------------*/
 .section-produit {
   border: black 1px solid;

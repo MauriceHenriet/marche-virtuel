@@ -42,7 +42,8 @@
         {% endblock %}
     </head>
     <body>
-        {% include "/public/shared/_navbar.html.twig" %}
+        {{ render( path('cart_navbar')  ) }}
+        {# {% include "/public/shared/_navbar.html.twig" %} #}
         {% include "/public/shared/_messages_flash.html.twig" %}
         {% block body %}{% endblock %}
     </body>

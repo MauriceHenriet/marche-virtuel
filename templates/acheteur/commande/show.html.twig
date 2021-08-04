@@ -1,11 +1,8 @@
 {% extends "acheteur/base_acheteur.html.twig" %}
 
 {% block body %}
-{% include "acheteur/shared/_header.html.twig" %}
- 
-{% include "acheteur/shared/_sidebar.html.twig" %}
 
-<setion class="col-10 mt-4">
+<section class="col-10 mt-4">
     <h1>Vos commandes : </h1>
         
     <div class="section-mid pt-3 pb-3">
@@ -15,17 +12,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesAFacturer %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount}}  
@@ -53,17 +54,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesAttentePaiement %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount }}  
@@ -94,17 +99,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesPayees %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount  }}  
@@ -129,17 +138,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesLivraison %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount }}  
@@ -167,17 +180,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesLivree %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount }}  
@@ -202,17 +219,21 @@
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
+                    <th class="col-2">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
                 </tr>
             </thead>
-            <tbody  >
+            <tbody>
 
                 {% for item in commandesAnnulee %}
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount }}  
@@ -231,6 +252,9 @@
                 <tr class="d-flex align-items-center justify-content-around" >
                     <td class="col-2" >
                         {{ item.id }}
+                    </td>
+                    <td class="col-2" >
+                        {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
                         {{ item.total | amount }}  
@@ -252,5 +276,5 @@
     </div>
         
 </section>
-{% include "acheteur/shared/_footer.html.twig" %}  
+
 {% endblock %}

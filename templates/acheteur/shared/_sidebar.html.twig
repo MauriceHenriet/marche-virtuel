@@ -10,12 +10,21 @@
     </div>
     <div>
         <a href="{{ path('profile_commandes_show') }}" class="col-12 btn btn-primary mt-3">
-            <i class="fas fa-users"></i> Commandes
+            <i class="fas fa-users">
+            {% if nbCommandesAPayer > 0 %}
+                <span style="color:red ; font-size:20px"> {{ nbCommandesAPayer }}</span>
+            {% endif %}
+            
+            </i> Commandes
         </a>
     </div>
     <div>
         <a href="{{ path('cart_show')}}" class="col-12 btn btn-primary mt-3">
-            Panier
+            <i class="fas fa-shopping-cart">
+            {% if nbArticles > 0 %}
+                <span style="color:orange ; font-size:20px"> {{ nbArticles }}</span>
+            {% endif %}
+            </i> Panier
         </a>
     </div>
     {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}

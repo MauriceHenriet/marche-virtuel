@@ -28,7 +28,6 @@ class ShowCommandesController extends AbstractController
         foreach($boutiques as $boutique)
         {
             $commandesAFacturer = array_merge( $commandesAFacturer, $commandeRepository->findCommandesBoutiqueAfacturer($boutique) );
-            // $commandesAfacturer[] = $commandeRepository->findCommandesBoutiqueAfacturer($boutique);
 
             $commandesAttentePaiement = array_merge($commandesAttentePaiement, $commandeRepository->findCommandesBoutiqueAttentePaiement($boutique) ) ;
 
@@ -43,8 +42,6 @@ class ShowCommandesController extends AbstractController
             $commandesRefusee = array_merge( $commandesRefusee, $commandeRepository->findCommandesBoutiqueRefusee($boutique) );
         }
 
-
-
         return $this->render('vendeur/commande/show.html.twig', [
             'commandesAFacturer' => $commandesAFacturer,
             'commandesAttentePaiement' => $commandesAttentePaiement,
@@ -55,5 +52,4 @@ class ShowCommandesController extends AbstractController
             'commandesRefusee' => $commandesRefusee
         ]);
     }
-
 }

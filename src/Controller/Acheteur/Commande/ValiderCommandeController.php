@@ -102,7 +102,7 @@ class ValiderCommandeController extends AbstractController
         $this->addFlash('success', 'Vous venez de passer une commande à '.$panierBoutique['produits'][0]['produit']->getBoutique()->getNom().'. 
             Vous recevrez une confirmation par email, ainsi que la facture à payer de la part du vendeur.');
 
-        return $this->redirectToRoute('profile_personnel');
+        return $this->redirectToRoute('profile_commandes_show');
 
     }
 }

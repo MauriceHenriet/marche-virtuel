@@ -60,7 +60,10 @@
 .add-adresse {
   color: red;
 }
-
+/*----------------------Panier-------------------------------*/
+/* .fa-shopping-cart {
+  font-size: 20px;
+} */
 /*---------------------Responsive-------------------------*/
 .alert-success {
   background-color: rgb(122, 233, 140);

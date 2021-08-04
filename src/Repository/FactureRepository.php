@@ -22,6 +22,21 @@ class FactureRepository extends ServiceEntityRepository
     // /**
     //  * @return Facture[] Returns an array of Facture objects
     //  */
+    public function findLastFacture($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.numero LIKE :numero')
+            ->setParameter('numero', $value.'%')
+            ->orderBy('f.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    // /**
+    //  * @return Facture[] Returns an array of Facture objects
+    //  */
     /*
     public function findByExampleField($value)
     {

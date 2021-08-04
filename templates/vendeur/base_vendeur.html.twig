@@ -43,8 +43,11 @@
     </head>
     <body>
         {% include "/public/shared/_messages_flash.html.twig" %}
-        
+        {% include "vendeur/shared/_header.html.twig" %}
+        {# {% include "vendeur/shared/_sidebar.html.twig" %} #}
+        {{ render( path('vendeur_sidebar')  ) }}
+
         {% block body %}{% endblock %}
-            
+        {% include "vendeur/shared/_footer.html.twig" %}    
     </body>
 </html>

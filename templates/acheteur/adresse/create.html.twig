@@ -4,11 +4,8 @@
 
 
 {% block body %}
-{% include "acheteur/shared/_header.html.twig" %}
 
-<div class="row mainVendeur">
-    {% include "acheteur/shared/_sidebar.html.twig" %}
-    <setion class="col-9 mt-4 card">
+    <section class="col-9 mt-4 card">
 
         <div class="card-header col-12 boutique-up">
             <h3> Votre adresse : </h3>
@@ -18,7 +15,6 @@
         </div>
 
         <div class="car-body col-12 section-down">
-           {# {% include "admin/shared/_messages_flash.html.twig" %} #}
             {{ form_start(formAdresse) }}
 
             {{ form_widget(formAdresse) }}
@@ -27,7 +23,6 @@
         </div>
 
     </section>
-</div>
 
 
 {% endblock %}
