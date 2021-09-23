@@ -43,9 +43,12 @@
         Se connecter
     </button>
 </form>
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-around">
     <a class="btn btn-lg btn-primary" href="{{ path('app_register')}}?vendeur=no">
         Créer un compte
+    </a>
+    <a class="btn btn-lg btn-primary" href="{{ path('app_forgot_password_request')}}">
+        Mot-de-passe oublié ?
     </a>
 </div>
 {% endblock %}

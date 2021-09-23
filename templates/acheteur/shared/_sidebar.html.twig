@@ -11,8 +11,8 @@
     <div>
         <a href="{{ path('profile_commandes_show') }}" class="col-12 btn btn-primary mt-3">
             <i class="fas fa-users">
-            {% if nbCommandesAPayer > 0 %}
-                <span style="color:red ; font-size:20px"> {{ nbCommandesAPayer }}</span>
+            {% if nbCommandesAttente > 0 %}
+                <span style="color:red ; font-size:20px"> {{ nbCommandesAttente }}</span>
             {% endif %}
             
             </i> Commandes
@@ -27,7 +27,7 @@
             </i> Panier
         </a>
     </div>
-    {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
+    {% if "ROLE_VENDEUR" in app.user.roles %}
     <div>
         <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3"> Espace Vendeur </a>
     </div>

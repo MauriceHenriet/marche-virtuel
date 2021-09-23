@@ -14,13 +14,9 @@ class Commande
 {
 
     // status que peut prendre la commande :
-    public const A_FACT = 'a-facturer';
-    public const ATT_PAIE = 'attente-paiement';
     public const A_EXPE = 'a-expedier';
     public const EN_LIV = 'en-livraison';
     public const LIVR = 'livree';
-    public const ANNUL = 'annulee';
-    public const REFU = 'refusee';
 
 
     /**

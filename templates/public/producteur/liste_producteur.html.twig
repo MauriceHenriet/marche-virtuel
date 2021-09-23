@@ -1,32 +1,35 @@
 {% extends "base.html.twig" %}
-
+{% block title %}Producteurs - Le marché virtuel{% endblock %}
 {% block body %}
     
-    <section id="sec1" class="section-producteurs">
-        <h1> Liste des producteurs :</h1>
-        <h2 style="color:red"> ajouter filtres par catégorie et par région</h2>
+    <section id="sec1">
+        <h1>Liste des producteurs</h1>
 
-        <div class="section-down col-11">
+        <div class="section-down col-12 sec-tab">
                 {% if producteurs | length > 0 %}
-                    <table class="table-hover col-12">
+                
+                    <table id="table_id" class="table-hover col-12 display">
                         <thead>
-                            <tr class="d-flex align-items-center justify-content-around" >
-                                <th class="col-1"></th>
+                            <tr>
+                                <th class="col-1">&nbsp;</th>
                                 <th class="col-2">Producteur</th>
                                 <th class="col-2">Région</th>
                                 <th class="col-1">Catégorie</th>
-                                <th class="col-2">action1</th>
+                                <th class="col-1">Statut</th>
+                                <th class="col-2">Produits</th>
                             </tr>
                         </thead>
                         <tbody  >
                             {% for producteur in producteurs %}
-                            <tr class="d-flex align-items-center justify-content-around" >
+                            <tr>
                                 <td class="col-1" >
-                                    {% if producteur.imageUrl is same as null %}
-                                        <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
-                                    {% else %}
-                                        <img class="image-classe" src="{{ asset( producteur.imageUrl ) }}" alt="category.slug">
-                                    {% endif %}
+                                    <div class="div-image">
+                                        {% if producteur.imageUrl is same as null %}
+                                            <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                        {% else %}
+                                            <img class="image-classe" src="{{ asset( producteur.imageUrl ) }}" alt="category.slug">
+                                        {% endif %}
+                                    </div>
                                 </td>
                                 <td class="col-2">
                                     {{ producteur.nom}}
@@ -37,22 +40,102 @@
                                 <td class="col-1">
                                     {{ producteur.categorie}}
                                 </td>
+                                <td class="col-1">
+                                    {{ producteur.status}}
+                                </td>
                                 <td class="col-2">
-                                    <a class="btn btn-info" href="{{ path('producteur', { 'id' : producteur.id, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Voir les produits </a>
+                                    <a class="btn" href="{{ path('producteur', { 'id' : producteur.id, 'producteurSlug' : producteur.slug } ) }}">
+                                        <i class="fas fa-eye"></i> voir
+                                    </a>
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                
                 {% else %}
-                    
+                    <p>il n'y a pas de producteurs répertorié sur cette recherche</p>
                 {% endif %}
             </div>
 
     </section>
 
-    <section id="sec2">  
+    <section class="sec-card">
+        {% if producteursPagi | length > 0 %}
+
+            <div class="card-nav">
+                {{ knp_pagination_render(producteursPagi) }}
+            </div>
+            <div class="card-global">
+                {% for producteur in producteursPagi %}
+            
+                <div class="card">
+                    <div>
+                    {% if producteur.imageUrl is same as null %}
+                        <img class="cardimage" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                    {% else %}
+                        <img class="cardimage" src="{{ asset( producteur.imageUrl ) }}" alt="category.slug">
+                    {% endif %}
+                    </div>
+                    
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">{{ producteur.nom}}</h5>
+                            <p class="card-text">{{ producteur.region}}</p>
+                            <p>Catégorie : {{ producteur.categorie}}</p>
+                            <p>Statut : {{ producteur.status}}</p>
+                        </div>
+                        <div>
+                            <a class="btn btn-card" href="{{ path('producteur', { 'id' : producteur.id, 'producteurSlug' : producteur.slug } ) }}">
+                                <i class="fas fa-eye"></i> voir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="card-nav">
+                {{ knp_pagination_render(producteursPagi) }}
+            </div>
+            
+
+        {% else %}
+            <p>il n'y a pas de producteurs répertorié sur cette recherche</p>
+        {% endif %}
     </section>
+
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable( { 
+                "order": [[1,"asc" ]],
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Il n'y a pas de données à afficher dans le tableau",
+                    "info":           "Affichage _START_ à _END_ sur _TOTAL_ des données",
+                    "infoEmpty":      "Affiche 0 sur 0 de 0 données",
+                    "infoFiltered":   "(filtrés sur _MAX_ total données)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Affiche _MENU_ données",
+                    "loadingRecords": "Chargement...",
+                    "processing":     "Processing...",
+                    "search":         "Recherche:",
+                    "zeroRecords":    "Aucun résultat trouvé",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Next",
+                        "previous":   "Previous"
+                    },
+                    "aria": {
+                        "sortAscending":  ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+            } );
+        } );
+    </script>  
  
 {% include "/public/shared/_carte.html.twig" %}
 {% include "/public/shared/_footer.html.twig" %}

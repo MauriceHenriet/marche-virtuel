@@ -4,7 +4,6 @@
     
     <section id="sec1" class="section-producteurs">
         <h1>{{ producteur.nom }}</h1>
-        <h2 style="color:red"> proposer liens vers autres producteurs de la région ET vers produits de même catégorie</h2>
         <div class="section-mid container pt-3 pb-3">
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -22,6 +21,7 @@
                     <h3>Frais de port par commande : {{ producteur.fdp | amount }}</h3>
                     <p>{{ producteur.description }}</p>
                     <h4>{{ producteur.rue }} {{ producteur.codePostal }} {{ producteur.ville }} {{ producteur.region }}</h4>
+                    <h4> Tél : {{ producteur.vendeur.phone }}</h4>
                 </div>
             </div>
         </div>
@@ -63,7 +63,10 @@
                                 </td>
                                 <td class="col-4">
                                     <a class="btn btn-info" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : producteur.slug } ) }}"><i class="fas fa-eye"></i> Voir Produit </a>
-                                    <a class="btn btn-info" href="{{ path('cart_add', { 'id' : produit.id } ) }}?producteur=ok"><i class="fas fa-plus"></i> Ajouter au panier </a>
+                                    {% if (produit.status is same as "Indisponible") or (producteur.status is same as "CLOSED") %}
+                                    {% else %}
+                                        <a class="btn btn-info" href="{{ path('cart_add', { 'id' : produit.id } ) }}?producteur=ok"><i class="fas fa-plus"></i> Ajouter au panier </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}

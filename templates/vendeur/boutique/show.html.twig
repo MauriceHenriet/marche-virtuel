@@ -27,6 +27,7 @@
                     <p>Description : {{ boutique.description }}</p>
                     <p>Frais de port : {{ boutique.fdp | amount }}</p>
                     <h4>{{ boutique.rue }} {{ boutique.codePostal }} {{ boutique.ville }} {{ boutique.region }}</h4>
+                    <h4>Téléphone : {{ boutique.vendeur.phone}}</h4>
                 </div>
             </div>
         </div>

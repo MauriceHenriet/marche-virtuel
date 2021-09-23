@@ -1,0 +1,511 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding-top: 56px;
+  background-color: #c8d8e4;
+  /* background-color: aqua; */
+  /* min-height: 100vh; */
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+main {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 20px;
+}
+main a {
+  text-decoration: none;
+}
+.foot-head {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.foot-main {
+  background-color: #52ab98;
+  /* background-color: rgb(0, 4, 255); */
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: top;
+  padding-top: 15px;
+  padding-bottom: 35px;
+}
+footer {
+  background-color: #2b6777;
+  /* background-color: royalblue; */
+}
+.foot-link {
+  color: white;
+  transition: 0.3s;
+}
+.foot-link:hover {
+  color: black;
+  cursor: pointer;
+}
+.foot-link-top {
+  color: white;
+  transition: 0.3s;
+}
+.foot-link-top:hover {
+  color: #fd7a7a;
+  cursor: pointer;
+}
+.btn {
+  background-color: #52ab98;
+  color: white;
+}
+.btn:hover {
+  background-color: #2b6777;
+  color: white;
+  /* color: #fd7a7a; */
+}
+
+/*------------------------section 1--------------------------------------*/
+
+#sec1 {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  color: black;
+}
+#sec1 h1 {
+  font-size: 100px;
+  margin: auto;
+  font-family: "Montserrat Subrayada", sans-serif;
+  text-align: center;
+  color: black;
+  /* background: center / 50%
+    url(../images/japanese-vintage-rising-sun-symbol-vector-23635130.jpg)
+    no-repeat; */
+}
+#descri {
+  padding: 5px;
+  width: 100%;
+  background: #f2f2f2;
+  border-top: solid 1px black;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 20px;
+  text-align: center;
+}
+
+/*------------------------section 2--------------------------------------*/
+#sec2 {
+  background: linear-gradient(0deg, #c8d8e4, #f2f2f2);
+  display: flex;
+  justify-content: space-between;
+}
+.radius-left {
+  border-bottom-left-radius: 7%;
+}
+.radius-right {
+  border-bottom-right-radius: 7%;
+}
+
+#sec2 img {
+  background: linear-gradient(0deg, #c8d8e4, #f2f2f2);
+  display: flex;
+  justify-content: space-between;
+}
+
+#sec2 a {
+  text-decoration: none;
+}
+#sec2 a h2 {
+  color: #52ab98;
+  /* color: #2b6777; */
+  transition: 1s;
+}
+
+#sec2 a h2:hover {
+  /* color: #39395f; */
+  /* color: #fd7a7a; */
+  color: white;
+}
+
+.log {
+  opacity: 1;
+  transition: 0.5s;
+  border: solid 1px black;
+  background: #f5eec2;
+  width: 49%;
+  position: relative;
+  z-index: 0;
+}
+.log:hover {
+  opacity: 0.85;
+  background-color: #2b6777;
+  /* background-color: #52ab98; */
+  color: #f5eec2;
+}
+.log h2 {
+  text-align: center;
+  /*confiance*/
+  color: #52ab98;
+  color: #2b6777;
+
+  /*eco*/
+  color: #416a59;
+  color: #39395f;
+  color: #73a24e;
+  color: #a9c25d;
+}
+
+#a-pro {
+  position: absolute;
+  top: 25%;
+  left: 60%;
+  padding: 10px;
+  border: solid 1px black;
+  z-index: 1;
+}
+
+#a-conso {
+  position: absolute;
+  top: 25%;
+  right: 60%;
+  padding: 10px;
+  border: solid 1px black;
+  z-index: 1;
+}
+
+#sec2 img {
+  max-width: 100%;
+  height: auto;
+}
+
+#sec2 .container {
+  height: 300px;
+  width: 100%;
+  background: url("../images/producteur.jpg") no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container a {
+  text-decoration: none;
+}
+.container h2 {
+  color: red;
+}
+/*------------------------liste Producteurs/Produits--------------------------------*/
+.div-image {
+  height: 70px;
+  width: 100px;
+}
+.image-classe {
+  height: 70px;
+  width: 100px;
+  object-fit: contain;
+}
+.section-down {
+  /* background-color: #52ab98; */
+  /* background-color: #2b6777; */
+  /* background: #f5eec2; */
+  background: #f2f2f2;
+
+  border: black 1px solid;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+  /* margin-bottom: 100px; */
+}
+.section-producteurs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*-------------------------datatables---------------*/
+td,
+th {
+  text-align: center;
+  /* border-bottom-width: 0px !important;
+  border-top-width: 0px !important; */
+}
+td {
+  height: 70px;
+  /* background: #f5eec2; */
+}
+/*------------------------panier--------------------------------*/
+.image-panier {
+  height: 72px;
+  width: 128px;
+  object-fit: contain;
+}
+.section-panier {
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 20px;
+}
+.section-sous-panier {
+  background: blue;
+  text-align: right;
+  padding-right: 10%;
+}
+.tr-bottom {
+  border-bottom: 1px black solid;
+}
+.fa-shopping-cart {
+  font-size: 20px;
+}
+/*-----------------------Page Produit Publique--------------------------*/
+.section-produit {
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.produit-top {
+  text-align: center;
+}
+.produit-main {
+  width: 100%;
+  background: red;
+  display: flex;
+  flex-direction: row;
+}
+.produit-main-left {
+  text-align: center;
+  width: 40%;
+  background: chartreuse;
+  padding: 25px 25px 25px 25px;
+}
+.produit-main-left img {
+  height: auto;
+  width: 100%;
+  /* object-fit: contain; */
+}
+.produit-main-right {
+  padding: 25px 25px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.produit-achat {
+  padding: 15px 15px 15px 15px;
+  background: coral;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*------------------------section 3--------------------------------------*/
+.sec3 {
+  padding: 20px 20px 20px 20px;
+  background: green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sec3 h2 {
+  margin-bottom: 20px;
+}
+.sec33 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.prodShop {
+  background: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.prodShop a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prodShop img {
+  width: 250px;
+  /* height: auto; */
+  object-fit: contain;
+}
+.shop {
+  position: absolute;
+  top: 130px;
+  background-color: rgba(192, 192, 192, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 2;
+}
+.carousel-item div {
+  width: 30%;
+}
+.carousel-item div img {
+  width: 100%;
+}
+/* .carousel-item {
+    display: flex;
+    flex-direction: row;
+  } */
+/*------------------------section 4 carte de France-----------------------*/
+.map {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.map svg {
+  margin-top: 80px;
+  width: 60%;
+}
+
+.region {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.region:hover {
+  stroke: #fd7a7a;
+  fill: #fd7a7a;
+}
+
+/*  --------------  cookies   -------------*/
+.cgu {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footix {
+  margin-top: 20px;
+  width: 100%;
+}
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #ffffff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*----------------------- Responsive --------------*/
+@media screen and (max-width: 975px) {
+  /*  --------------  nav  ---------------   */
+
+  .accordion {
+    font-size: 1rem;
+  }
+  #aShop i span {
+    font-size: 2.5rem;
+  }
+  .accordion a span:last-child {
+    font-size: 1.8rem;
+  }
+  #nav-desk {
+    display: none;
+  }
+  #nav-mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .burger {
+    display: block;
+  }
+  .divLogo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #aShop {
+    padding: 5px;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  #aShop i {
+    margin-right: 5%;
+  }
+  /*  --------------  section 1  ----------------   */
+  #sec1 {
+    padding-top: 0px;
+  }
+  #sec1 h1 {
+    font-size: 50px;
+  }
+  #sec1 p {
+    font-size: 0.9rem;
+  }
+  /*  --------------  section 2  ----------------   */
+  #sec2 {
+    flex-direction: column;
+  }
+  .log {
+    width: 100%;
+  }
+  /*  --------------  section4   -------------*/
+  .map svg {
+    margin-top: 0px;
+    width: 100%;
+  }
+}
+/* @media screen and (min-width: 751px) {
+    #nav-desk {
+      display: flex;
+    }
+    #nav-mobile {
+      display: none;
+    }
+    .acc {
+      display: none;
+    }
+  } */

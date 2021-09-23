@@ -22,39 +22,7 @@ class CommandeRepository extends ServiceEntityRepository
     }
 
 /******************Acheteur************************ */
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesAcheteurAFacturer(User $user)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.user = :user_id')
-            ->setParameter('user_id', $user)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::A_FACT)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesAcheteurAttentePaiement(User $user)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.user = :user_id')
-            ->setParameter('user_id', $user)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::ATT_PAIE)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }    
-
+  
     /**
      * @return Commande[] Returns an array of Commande objects
      */
@@ -103,70 +71,7 @@ class CommandeRepository extends ServiceEntityRepository
         ;
     }     
 
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesAcheteurRefusee(User $user)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.user = :user_id')
-            ->setParameter('user_id', $user)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::REFU)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }     
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesAcheteurAnnulee(User $user)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.user = :user_id')
-            ->setParameter('user_id', $user)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::ANNUL)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
 /******************Boutique************************ */
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesBoutiqueAFacturer(Boutique $boutique)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.boutique = :boutique_id')
-            ->setParameter('boutique_id', $boutique)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::A_FACT)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesBoutiqueAttentePaiement(Boutique $boutique)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.boutique = :boutique_id')
-            ->setParameter('boutique_id', $boutique)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::ATT_PAIE)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }    
 
     /**
      * @return Commande[] Returns an array of Commande objects
@@ -215,38 +120,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }     
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesBoutiqueRefusee(Boutique $boutique)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.boutique = :boutique_id')
-            ->setParameter('boutique_id', $boutique)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::REFU)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }     
-
-    /**
-     * @return Commande[] Returns an array of Commande objects
-     */
-    public function findCommandesBoutiqueAnnulee(Boutique $boutique)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.boutique = :boutique_id')
-            ->setParameter('boutique_id', $boutique)
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Commande::ANNUL)
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }       
+    
 /**************************************************************** */
 
 

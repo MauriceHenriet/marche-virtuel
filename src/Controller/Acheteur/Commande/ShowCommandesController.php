@@ -16,28 +16,17 @@ class ShowCommandesController extends AbstractController
     {
         $user = $this->getUser();
 
-        $commandesAFacturer = $commandeRepository->findCommandesAcheteurAFacturer($user);
-
-        $commandesAttentePaiement = $commandeRepository->findCommandesAcheteurAttentePaiement($user);
-
         $commandesPayees = $commandeRepository->findCommandesAcheteurAEnvoyer($user);
 
         $commandesLivraison = $commandeRepository->findCommandesAcheteurLivraison($user);
 
         $commandesLivree = $commandeRepository->findCommandesAcheteurLivree($user);
 
-        $commandesAnnulee = $commandeRepository->findCommandesAcheteurAnnulee($user);
-
-        $commandesRefusee = $commandeRepository->findCommandesAcheteurRefusee($user);
-
         return $this->render('acheteur/commande/show.html.twig', [
-            'commandesAFacturer' => $commandesAFacturer,
-            'commandesAttentePaiement' => $commandesAttentePaiement,
+
             'commandesPayees' => $commandesPayees,
             'commandesLivraison' => $commandesLivraison,
-            'commandesLivree' => $commandesLivree,
-            'commandesAnnulee' => $commandesAnnulee,
-            'commandesRefusee' => $commandesRefusee
+            'commandesLivree' => $commandesLivree
         ]);
     }
 }

@@ -1,0 +1,115 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Le marché Virtuel - Politique de confidentialité - Cookies{% endblock %}
+
+{% block body %}
+    <section class="cgu">
+        <div>
+            <a class="foot-link" href="{{ path('public_home')}}">Retour</a>
+            <h1>Politique de confidentialité - Cookies</h1>
+            <h2>Collecte des données (Art.4 des mentions légales)</h2>
+            <p>
+                Le site assure à l'Utilisateur une collecte et un traitement d'informations personnelles dans le respect 
+                de la vie privée conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers 
+                et aux libertés.
+                En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit 
+                d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur 
+                exerce ce droit, par formulaire depuis son Espace utilisateur et/ou par mail à l'adresse email maurice.henriet@yahoo.fr
+            </p>
+            <h2>Cookies (Art.5 des mentions légales)</h2>
+            <p>
+                L’Utilisateur est informé que lors de ses visites sur le site, un cookie peut s’installer automatiquement 
+                sur son logiciel de navigation.
+                En naviguant sur le site, il accepte le cookie de session lui permettant de constituer un panier 
+                et, si il le souhaite, de se connecter à son espace utilisateur.
+                Un cookie est un élément qui ne permet pas d’identifier l’Utilisateur mais sert à enregistrer des 
+                informations relatives à la navigation de celui-ci sur le site Internet. L’Utilisateur pourra désactiver ce 
+                cookie par l’intermédiaire des paramètres figurant au sein de son logiciel de navigation.
+            </p>
+            <a class="btn" id="goCookie">Modifier votre choix concernant les Cookies publicitaires</a>
+
+        </div>
+
+        <div>
+            {% include "/public/shared/_footer.html.twig" %}
+        </div>
+
+    </section>
+    <div id="modal_id" class="modal">
+        <div class="modal-content">
+            <h3>Politique cookies</h3>
+            <p>
+                Notre site utilise le cookie opérationnel de session :
+                - pour vous permettre d'accéder à votre compte utilisateur,
+                - pour vous permettre de constituer un panier.  
+                Le cookie de session ne peut pas être désactivé pour fournir nos services.
+            </p>
+            <p>
+                Vous pouvez accepter ou refuser les Cookies publicitaires. 
+                Vous pourrez modifier votre choix ultérieurement depuis la page de la politique de confidentialité, 
+                accessible en bas des pages du site.
+            </p>
+            <div class="d-flex align-items-center justify-content-around">
+                <button id="btn_accept">Accepter Cookie Publicitaire</button>
+                <button id="btn_refuse">Continuer sans Accepter</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var modal = document.getElementById("modal_id");
+
+    var btn_accept = document.getElementById("btn_accept");
+    var btn_refuse = document.getElementById("btn_refuse");
+    var btn_cookie = document.getElementById("goCookie");
+
+    // Ferme la modale et met la valeur du cookie à true
+    btn_accept.onclick = function() {
+      modal.style.display = "none";
+      var dateExpiration = new Date();
+      dateExpiration.setMonth(dateExpiration.getMonth()+1);
+      document.cookie = "userAcceptCookie=true; expires="+dateExpiration+"; path=/;";
+      //console.log("cookies : ", document.cookie);
+    }
+
+    // Ferme la modale et la valeur du cookie reste à false
+    btn_refuse.onclick = function() {
+      modal.style.display = "none";
+      var dateExpiration = new Date();
+      dateExpiration.setMonth(dateExpiration.getMonth()+1);
+      document.cookie = "userAcceptCookie=false; expires="+dateExpiration+"; path=/;";
+      //console.log("cookies : ", document.cookie);
+    }
+
+    //Ouvre la modale
+    btn_cookie.onclick = function() {
+      modal.style.display = "block";
+    }
+
+  window.onload = function() {
+
+    // vérifie si le cookie d'acceptation des cookie existe :
+    if( document.cookie.split('=')[0] != "userAcceptCookie" ) {
+      // si il n'existe pas on le crée et on l'initialise à false
+      // et la modale est donc affichée
+      var dateExpiration = new Date();
+      dateExpiration.setMonth(dateExpiration.getMonth()+1);
+      
+      document.cookie = "userAcceptCookie=false; expires="+dateExpiration+"; path=/;";
+      console.log("cookies : ", document.cookie);
+
+      // pour supprimer le cookie :
+      //document.cookie = "userAcceptCookie=true; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        
+      } else {
+        // l'utilisateur a déjà fait son choix donc la modale ne doit pas s'afficher
+        modal.style.display = "none";
+      }
+
+
+  }
+</script>
+
+
+{% endblock %}

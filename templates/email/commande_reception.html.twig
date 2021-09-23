@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/email.css')}}">
+    <title>Commande {{ commande.id }}</title>
+
+</head>
+<body style="background-color: #fff;">
+<div class="container">
+    <h1 class="text-center">Le marché virtuel : la Commande a bien été livrée chez {{ acheteur.firstName }} {{ acheteur.name }}</h1>
+    <div class="row">
+        <div class="col-4">
+            <h2>Le marché Virtuel</h2>
+        </div>
+        <div>
+            <h2>Commande #{{ commande.id }}</h2>
+            <p>effectuée le {{ commande.createdAt |date("d/m/Y") }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Client : {{ acheteur.firstName }} {{ acheteur.name }}</p>
+            <p>Adresse de Livraison : </p>
+            <p>{{ adresseLivraison.rue}}</p>
+            <p>{{ adresseLivraison.codePostal}} {{ adresseLivraison.ville}}</p>
+            <p>{{ adresseLivraison.region}}</p>
+            <p>numéro de téléphone : {{ acheteur.phone}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Boutique : {{ boutique.nom }} -  {{ boutique.vendeur.firstname }} {{ boutique.vendeur.name }}</p>
+            <p>Adresse : </p>
+            <p>{{ boutique.rue}}</p>
+            <p>{{ boutique.codePostal}} {{ boutique.ville}}</p>
+            <p>{{ boutique.region}}</p>
+            <p>numéro de téléphone : {{ boutique.vendeur.phone}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                <tr class="d-flex align-items-center justify-content-around">
+                    <th class="col-2">Produits</th>
+                    <th class="col-2">Prix unitaire</th>
+                    <th class="col-2">Quantité</th>
+                    <th class="col-2">sous-total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in lignes %}
+                    <tr class="d-flex align-items-center justify-content-around">
+                        <td class="col-2">
+                             <p class="tableP">{{ item.produit.nom }}</p>
+                        </td>
+                        <td class="col-2">
+                            <p class="tableP"> {{ item.produit.prix | amount}}</p>
+                        </td>
+                        <td class="col-2">
+                            <p class="tableP">{{ item.quantite }}</p>
+                        </td>
+                        <td class="col-2">
+                            <p class="tableP"> {{ item.sousTotal | amount}}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr class="d-flex align-items-center justify-content-around">
+                        <td class="col-2"></td>
+                        <td class="col-2"></td>
+                        <td class="col-2"><p>Frais de Livraison : </p></td>
+                        <td class="col-2"><p>{{ boutique.fdp | amount}}</p></td>
+                    </tr>
+                    <tr class="d-flex align-items-center justify-content-around tr-top">
+                        <td class="col-2"></td>
+                        <td class="col-2"></td>
+                        <td class="col-2"><p><strong>A Facturer : </strong></p></td>
+                        <td class="col-2"><p><strong>{{ commande.total | amount }}</strong></p></td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <p>Etape 1 : commande effectuée et payée par l'Acheteur : <strong style="color:green">complétée</strong></p>
+                    <p>Etape 2 : commande à expédier par le vendeur : <strong style="color:green">complétée</strong></p>
+                    <p>Etape 3 : <strong style="color:red"> Veuillez notifier que la commande a bien été livrée sur votre Espace Acheteur</strong></p>
+                    <p>Etape 4 : En tant qu'acheteur n'hésitez pas à poster un avis sur la boutique/vos achats (à suivre)</p>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

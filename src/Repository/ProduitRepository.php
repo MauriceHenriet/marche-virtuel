@@ -19,6 +19,23 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     */
+    public function findByCategorie($categorie)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Produit p
+            INNER JOIN p.boutique b
+            WHERE b.categorie = :categorie'
+        )->setParameter('categorie', $categorie);
+
+        return $query->getResult();
+    } 
+
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */

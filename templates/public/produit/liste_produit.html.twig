@@ -1,0 +1,105 @@
+{% extends "base.html.twig" %}
+{% block title %}Produits - Le marché virtuel{% endblock %}
+{% block body %}
+    
+    <section id="sec1">
+        <h1> Liste des produits</h1>
+
+        <div class="section-down col-12">
+                {% if produits | length > 0 %}
+                
+                    <table id="table_id" class="table-hover col-12 display">
+                        <thead>
+                            <tr>
+                                <th class="col-1">&nbsp;</th>
+                                <th class="col-1">Produit</th>
+                                <th class="col-1">Prix</th>
+                                <th class="col-1">Catégorie</th>
+                                <th class="col-2">Région</th>
+                                <th class="col-1">Statut</th>
+                                <th class="col-1">Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody  >
+                            {% for produit in produits %}
+                            <tr>
+                                <td class="col-1" >
+                                    <div class="div-image">
+                                        {% if produit.imageUrl is same as null %}
+                                            <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                        {% else %}
+                                            <img class="image-classe" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.nom}}
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.prix | amount}}
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.boutique.categorie}}
+                                </td>
+                                <td class="col-2">
+                                    {{ produit.boutique.region}}
+                                </td>
+                                <td class="col-1">
+                                    {{ produit.status}}
+                                </td>
+                                <td class="col-1">
+                                    <a class="btn" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : produit.boutique.slug } ) }}">
+                                        <i class="fas fa-eye"></i> voir
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                {% else %}
+                    <p>il n'y a pas de produits pour cette catégorie à ce jour</p>
+                {% endif %}
+            </div>
+
+    </section>
+
+    <section id="sec2">  
+    </section>
+    
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable( { 
+                "order": [[1,"asc" ]],
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Il n'y a pas de données à afficher dans le tableau",
+                    "info":           "Affichage _START_ à _END_ sur _TOTAL_ des données",
+                    "infoEmpty":      "Affiche 0 sur 0 de 0 données",
+                    "infoFiltered":   "(filtrés sur _MAX_ total données)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Affiche _MENU_ données",
+                    "loadingRecords": "Chargement...",
+                    "processing":     "Processing...",
+                    "search":         "Recherche:",
+                    "zeroRecords":    "Aucun résultat trouvé",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Next",
+                        "previous":   "Previous"
+                    },
+                    "aria": {
+                        "sortAscending":  ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+            } );
+        } );
+    </script>        
+ 
+{% include "/public/shared/_carte.html.twig" %}
+{% include "/public/shared/_footer.html.twig" %}
+
+{% endblock %}

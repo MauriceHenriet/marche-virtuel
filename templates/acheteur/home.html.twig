@@ -9,9 +9,10 @@
     <h1>Bienvenue, {{ app.user.firstName }} {{ app.user.name }}</h1>
     <P>Cet espace est fait pour gérer votre profil personnel d'acheteur (suivi de commandes, adresses et téléphone).</P>
     <div class="section-up">
-        <h3>Votre Email : {{ app.user.email }}</h3>
-        <h3>Votre Téléphone : {{ app.user.phone }}</h3>
-
+        <p>Votre Email : {{ app.user.email }}</p>
+        <p>Votre Téléphone : {{ app.user.phone }}
+            <a href="{{ path('edit_phone') }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier le numéro de téléphone</a>
+        </p>
     {% if app.user.adresses is empty  %}
         <h3>Vous n'avez pas encore saisi votre adresse</h3>
             <a href="{{ path('create_adresse') }}?adresselivraison=true" class="btn btn-primary">
@@ -25,15 +26,15 @@
                         <span style="color:red">(adresse de livraison)</span> : {{ adresse.rue}}
                             , {{ adresse.codePostal}} {{ adresse.ville}}
                             , {{ adresse.region}}
-                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">modifier l'adresse</a>
-                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">supprimer l'adresse</a></p>
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier l'adresse</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer l'adresse</a></p>
                 {% else %}
                     <p>Adresse {{ loop.index }} : {{ adresse.rue}}
                         , {{ adresse.codePostal}} {{ adresse.ville}}
                         , {{ adresse.region}}
                     <a href="{{ path('livraison_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">choisir comme adresse de livraison</a>
-                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">modifier l'adresse</a>
-                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">supprimer l'adresse</a></p>
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier l'adresse</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer l'adresse</a></p>
                 {% endif %}
             
         {% endfor %}
@@ -45,7 +46,12 @@
     </div>
             
     <div class="section-down">
-
+    {% if app.user.roles[0] != "ROLE_VENDEUR" %}
+        <P>Vous êtes artisan, producteur ou agriculteur et vous souhaitez vendre vos produits ? Vous pouvez créer votre espace vendeur gratuitement.</P>
+        <a href="{{ path('go_vendeur') }}" class="btn btn-primary">
+            Créer mon espace Vendeur
+        </a>
+    {% endif %}
     </div>
             
 </section>

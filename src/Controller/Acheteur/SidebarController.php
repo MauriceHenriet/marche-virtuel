@@ -16,15 +16,17 @@ class SidebarController extends AbstractController
     {
         $user = $this->getUser();
 
-        $commandesAttentePaiement = $commandeRepository->findCommandesAcheteurAttentePaiement($user);
+        $nbCommandesAttente = 0;
+        $commandesAExpedier = $commandeRepository->findCommandesAcheteurAEnvoyer($user);
+        $commandesEnLivraison = $commandeRepository->findCommandesAcheteurLivraison($user);
+        $nbCommandesAttente = count($commandesAExpedier) + count($commandesEnLivraison);
 
         $nbArticles = $cartService->countArticles();
 
-        $nbCommandesAPayer= count($commandesAttentePaiement);
 
         return $this->render('acheteur/shared/_sidebar.html.twig', [
             'nbArticles' => $nbArticles,
-            'nbCommandesAPayer' => $nbCommandesAPayer
+            'nbCommandesAttente' => $nbCommandesAttente
         ]);
     }
 }

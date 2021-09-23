@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav id="the-nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ path('public_home')}}">Le Marché Virtuel</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,29 +41,29 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Produits</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ path('public_home') }}">Tous les Produits</a>
+            <a class="dropdown-item" href="{{ path('liste_produit') }}">Tous les Produits</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Fromages et Laitages</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'LAIT'})}}">Fromages et Laitages</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Fruits et Légumes</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'VEGE'})}}">Fruits et Légumes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Charcuteries</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'CHAR'})}}">Charcuteries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Conserves</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'CONS'})}}">Conserves</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Céréales et Graines</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'CERE'})}}">Céréales et Graines</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Vins et Alcools</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'ALCO'})}}">Vins et Alcools</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Miels et Confiseries</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'SUCR'})}}">Miels et Confiseries</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Eaux et Boissons sans alcool</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'H2O'})}}">Eaux et Boissons sans alcool</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Huiles et Assaisonnements</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'EPIC'})}}">Huiles et Assaisonnements</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Objets, Outils</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'OBJE'})}}">Objets, Outils</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('public_home')}}">Habits et Autres</a>
+            <a class="dropdown-item" href="{{ path('produit_cat', {'categorie' : 'HABI'})}}">Habits et Autres</a>
           </div>
         </li>
       </ul>
@@ -82,7 +82,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path('profile_personnel') }}">Espace Acheteur</a>
         </li>
-          {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
+          {% if "ROLE_VENDEUR" in app.user.roles %}
         <li class="nav-item">
           <a class="nav-link" href="{{ path('vendeur_home')}}">Espace Vendeur</a>
         </li>
@@ -108,3 +108,40 @@
     </div>
   </div>
 </nav>
+<script>
+  // code pour la navbar
+  var lastScrollTop = 0;
+
+  window.addEventListener("scroll", () => {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop && ($(window).width() > 360) ) {
+      document.querySelector("#the-nav").style.display = "none";
+    } else if (st < lastScrollTop && ($(window).width() > 360) ) {
+      document.querySelector("#the-nav").style.display = "block";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  },
+  false
+);
+
+$(document).ready( function(){
+  if($(window).width() <= 360){
+    $("#the-nav").removeClass("fixed-top");
+    $("body").css('padding-top', '0px');
+  }
+  else{
+    $("#the-nav").addClass("fixed-top");
+    $("body").css('padding-top', '56px');
+  }
+});
+
+$(document).resize( function(){
+  if($(window).width() > 360){
+    $("#the-nav").addClass("fixed-top");
+    $("body").css('padding-top', '56px');
+  }
+});
+
+
+
+</script>

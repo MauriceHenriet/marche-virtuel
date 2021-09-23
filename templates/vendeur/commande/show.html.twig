@@ -4,92 +4,11 @@
 
 <section class="col-10 mt-4">
     <h1>Vos commandes : </h1>
+    {% if ( commandesAExpedier | length == 0) and ( commandesEnLivraison | length == 0 ) and (commandesLivree | length == 0) %}
+        <p> vous n'avez pas encore passé de commandes sur le marché virtuel.</p>
+    {% else %}
         
     <div class="section-mid pt-3 pb-3">
-        {% if commandesAFacturer | length > 0 %}
-        <h2><strong style="color:red">Commandes en attente de facturation :</strong></h2>
-        <table class="table-hover col-10">
-            <thead>
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
-                    <th class="col-2">Total</th>
-                    <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
-                </tr>
-            </thead>
-            <tbody  >
-
-                {% for item in commandesAFacturer %}
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
-                        {{ item.id }}
-                    </td>
-                    <td class="col-2" >
-                        {{ item.boutique.nom }}
-                    </td>
-                    <td class="col-2">
-                        {{ item.total | amount}}  
-                    </td>
-                    <td class="col-2">
-                       {{ item.createdAt | date("d/m/Y") }}
-                    </td>
-                    <td class="col-4 d-flex">
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
-                            <i class="fas fa-eye"></i> détail
-                        </a>
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_facturer', { 'id' : item.id } ) }}">
-                            <i class="fas fa-file-invoice"></i> facturer
-                        </a>
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_refuser', { 'id' : item.id } ) }}">
-                            <i class="fas fa-times"></i> refuser
-                        </a>
-                    </td>
-                </tr>                    
-                {% endfor %}
-
-            </tbody>
-        </table>
-        {% endif %}
-        {% if commandesAttentePaiement | length > 0 %}
-        <h2>Commandes en attente de paiement :</h2>
-        <table class="table-hover col-10">
-            <thead>
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
-                    <th class="col-2">Total</th>
-                    <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
-                </tr>
-            </thead>
-            <tbody  >
-
-                {% for item in commandesAttentePaiement %}
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
-                        {{ item.id }}
-                    </td>
-                    <td class="col-2" >
-                        {{ item.boutique.nom }}
-                    </td>
-                    <td class="col-2">
-                        {{ item.total | amount }}  
-                    </td>
-                    <td class="col-2">
-                       {{ item.createdAt | date("d/m/Y") }}
-                    </td>
-                    <td class="col-4">
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
-                            <i class="fas fa-eye"></i> détail
-                        </a>
-                    </td>
-                </tr>             
-                {% endfor %}
-            
-            </tbody>
-        </table>
-        {% endif %}
         {% if commandesAExpedier | length > 0 %}     
         <h2><strong style="color:red">Commandes payées, à expedier :</strong></h2>
         <table class="table-hover col-10">
@@ -133,7 +52,7 @@
         </table>
         {% endif %}
         {% if commandesEnLivraison | length > 0 %}
-        <h2>Commandes en cours de livraison :</h2>
+        <h2>Commandes<strong style="color:green"> en cours de livraison :</strong></h2>
         <table class="table-hover col-10">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
@@ -210,67 +129,8 @@
             </tbody>
         </table>
         {% endif %}
-        {% if ( commandesAnnulee | length > 0 or commandesRefusee | length > 0 ) %}
-        <h2>Commandes annulées de votre part ou refusées par le vendeur :</h2>
-        <table class="table-hover col-10">
-            <thead>
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
-                    <th class="col-2">Total</th>
-                    <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
-                </tr>
-            </thead>
-            <tbody  >
-
-                {% for item in commandesAnnulee %}
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
-                        {{ item.id }}
-                    </td>
-                    <td class="col-2" >
-                        {{ item.boutique.nom }}
-                    </td>
-                    <td class="col-2">
-                        {{ item.total | amount }}  
-                    </td>
-                    <td class="col-2">
-                       {{ item.createdAt | date("d/m/Y") }}
-                    </td>
-                    <td class="col-4">
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
-                            <i class="fas fa-eye"></i> détail
-                        </a>
-                    </td>
-                </tr>          
-                {% endfor %}
-                {% for item in commandesRefusee %}
-                <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
-                        {{ item.id }}
-                    </td>
-                    <td class="col-2" >
-                        {{ item.boutique.nom }}
-                    </td>
-                    <td class="col-2">
-                        {{ item.total | amount }}  
-                    </td>
-                    <td class="col-2">
-                       {{ item.createdAt | date("d/m/Y") }}
-                    </td>
-                    <td class="col-4">
-                        <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
-                            <i class="fas fa-eye"></i> détail
-                        </a>
-                    </td>
-                </tr>        
-                {% endfor %}
-            
-            </tbody>
-        </table>
-        {% endif %}      
-    </div>
         
+    </div>
+    {% endif %}
 </section>
 {% endblock %}

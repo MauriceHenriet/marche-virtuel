@@ -8,16 +8,17 @@
     <section id="sec1">
         <h1> Bienvenue sur le marché virtuel</h1>
         
-        
         <div id="descri">
         {% if app.user %}
         {% else %}
-          <p>
-            Pour une vente directe au consommateur : inscrivez-vous et créez
-            votre stand virtuel gratuitement.
+        <p>
+            Le Marché Virtuel est la marketplace mettant en relation directe le Producteur avec le Consommateur.
           </p>
           <p>
-            Pour acheter un produit : séléctionnez-le et passez la commande.
+            Vous souhaitez <span style="color:#52ab98">vendre</span> ? Inscrivez-vous et créez votre boutique virtuelle gratuitement.
+          </p>
+          <p>
+            Vous désirez <span style="color:#52ab98">acheter</span> des produits du terroir ? Séléctionnez et passez commande.
           </p>
         {% endif %}
         </div>
@@ -35,148 +36,95 @@
             </div>
           {% endif %}
         {% else %}
-         <div class="log">
+         <div class="log radius-left">
             <a href="{{ path('app_register')}}?vendeur=true">
-                <h2>Vous êtes producteur ?</h2>
-                <img src="{{ asset( 'images/producteur.jpg' )}}" alt="producteur" />
-                <a id="a-pro" href="{{ path('app_register')}}?vendeur=yes">S'inscrire</a>
+                <h2>Vous êtes producteur</h2>
+                <img class="radius-left" src="{{ asset( 'images/producteur.jpg' )}}" alt="producteur" />
+                <a id="a-pro" class="btn" href="{{ path('app_register')}}?vendeur=yes">S'inscrire</a>
             </a>
           </div>
-          <div class="log">
+          <div class="log radius-right">
             <a href="{{ path('app_register')}}?vendeur=false">
-              <h2>Vous voulez acheter ?</h2>
-              <img src="{{ asset( 'images/consommatrice.jpg' )}}" alt="consommatrice" />
-              <a id="a-conso" href="{{ path('app_register')}}?vendeur=no">S'inscrire</a>
+              <h2>Vous êtes consommateur</h2>
+              <img class="radius-right" src="{{ asset( 'images/consommatrice.jpg' )}}" alt="consommatrice" />
+              <a id="a-conso" class="btn" href="{{ path('app_register')}}?vendeur=no">S'inscrire</a>
             </a>
           </div>
         {% endif %}
         
     </section>
-      <!-- <section class="sec3">
-        <h2>Produits du moments</h2>
-        <div class="sec33">
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Reblochon</h3>
-              <img src="/assets/reblochon.jpg" alt="reblochon" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Chèvre</h3>
-              <img src="/assets/chevre.jpg" alt="chevre" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-          <div class="prodShop">
-            <a href="#!">
-              <h3>Camembert</h3>
-              <img src="/assets/camembert.jpg" alt="camembert" />
-            </a>
-            <a class="shop" href="#!achat">Acheter</a>
-          </div>
-      </section> -->
 
-    {# <section class="sec3">
-        <h2>Produits du moments</h2>
-        <div
-          id="carouselProd"
-          class="carousel slide"
-          data-bs-touch="false"
-          data-bs-interval="false"
-        >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                </div>
-                <div class="carousel-item">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                </div>
-                <div class="carousel-item">
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Camembert</h3>
-                    <img src="/assets/camembert.jpg" alt="camembert" />
-                    </a>
-                    <a class="shop" href="#!achatCamembert">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Reblochon</h3>
-                    <img src="/assets/reblochon.jpg" alt="reblochon" />
-                    </a>
-                    <a class="shop" href="#!achatReblochon">Acheter</a>
-                </div>
-                <div class="prodShop">
-                    <a href="#!">
-                    <h3>Chèvre</h3>
-                    <img src="/assets/chevre.jpg" alt="chevre" />
-                    </a>
-                    <a class="shop" href="#!achatChevre">Acheter</a>
-                </div>
-                </div>
-            </div>
-            <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselProd"
-                data-bs-slide="prev"
-            >
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselProd"
-                data-bs-slide="next"
-            >
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </section> #}
+<div id="modal_id" class="modal">
+    <div class="modal-content">
+      <h3>Politique cookies</h3>
+      <p>
+        Notre site utilise le cookie opérationnel de session :
+        - pour vous permettre d'accéder à votre compte utilisateur,
+        - pour vous permettre de constituer un panier.  
+        Le cookie de session ne peut pas être désactivé pour fournir nos services.
+        </p>
+      <p>
+        Vous pouvez accepter ou refuser les Cookies publicitaires. 
+        Vous pourrez modifier votre choix ultérieurement depuis la page de la politique de confidentialité, 
+        accessible en bas des pages du site.
+        <a href="{{ path('public_politique_cookies') }}" aria-label="Pour en savoir plus sur la protection de votre vie privée" >Politique de confidentialité - Cookies</a>
+      </p>
+      <div class="d-flex align-items-center justify-content-around">
+		    <button id="btn_accept">Accepter Cookie Publicitaire</button>
+			  <button id="btn_refuse">Continuer sans Accepter</button>
+	    </div>
+    </div> 
+</div>
+
+
+<script>
+
+    var modal = document.getElementById("modal_id");
+    var btn_accept = document.getElementById("btn_accept");
+    var btn_refuse = document.getElementById("btn_refuse");
+
+    // Ferme la modale et met la valeur du cookie à true
+    btn_accept.onclick = function() {
+      modal.style.display = "none";
+      var dateExpiration = new Date();
+      dateExpiration.setMonth(dateExpiration.getMonth()+1);
+      document.cookie = "userAcceptCookie=true; expires="+dateExpiration+"; path=/;";
+      console.log("cookies : ", document.cookie);
+    }
+
+    // Ferme la modale et la valeur du cookie reste à false
+    btn_refuse.onclick = function() {
+      modal.style.display = "none";
+      console.log("cookies : ", document.cookie);
+    }
+
+
+    
+
+  window.onload = function() {
+
+    // vérifie si le cookie d'acceptation des cookie existe :
+    if( document.cookie.split('=')[0] != "userAcceptCookie" ) {
+      // si il n'existe pas on le crée et on l'initialise à false
+      // et la modale est donc affichée
+      var dateExpiration = new Date();
+      dateExpiration.setMonth(dateExpiration.getMonth()+1);
+      
+      document.cookie = "userAcceptCookie=false; expires="+dateExpiration+"; path=/;";
+      console.log("cookies : ", document.cookie);
+
+      // pour supprimer le cookie :
+      //document.cookie = "userAcceptCookie=true; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        
+      } else {
+        // l'utilisateur a déjà fait son choix donc la modale ne doit pas s'afficher
+        modal.style.display = "none";
+      }
+
+
+  }
+</script>
+
 {% include "/public/shared/_carte.html.twig" %}
 {% include "/public/shared/_footer.html.twig" %}
 {% endblock %}

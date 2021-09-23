@@ -12,9 +12,9 @@
 </head>
 <body style="background-color: #fff;">
 <div class="container">
-    <h1 class="text-center">Commande crée sur le marché virtuel par {{ acheteur.firstName }} {{ acheteur.name }}</h1>
-    <div class="row divPDFtitle">
-        <div class="col-4 kirakiraBrand">
+    <h1 class="text-center">Le marché virtuel, la commande #{{ commande.id }}-{{ boutique.nom }} vient d'être expédiée à l'adresse de {{ acheteur.firstName }} {{ acheteur.name }}</h1>
+    <div class="row">
+        <div class="col-4">
             <h2>Le marché Virtuel</h2>
         </div>
         <div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <hr>
-    <div class="row divPDFAdresse">
+    <div class="row">
         <div class="col-sm-12">
             <p>Client : {{ acheteur.firstName }} {{ acheteur.name }}</p>
             <p>Adresse de Livraison : </p>
@@ -31,6 +31,17 @@
             <p>{{ adresseLivraison.codePostal}} {{ adresseLivraison.ville}}</p>
             <p>{{ adresseLivraison.region}}</p>
             <p>numéro de téléphone : {{ acheteur.phone}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Boutique : {{ boutique.nom }} -  {{ boutique.vendeur.firstname }} {{ boutique.vendeur.name }}</p>
+            <p>Adresse : </p>
+            <p>{{ boutique.rue}}</p>
+            <p>{{ boutique.codePostal}} {{ boutique.ville}}</p>
+            <p>{{ boutique.region}}</p>
+            <p>numéro de téléphone : {{ boutique.vendeur.phone}}</p>
         </div>
     </div>
     <hr>
@@ -77,10 +88,10 @@
 
                 </tbody>
                 <tfoot>
-                    <p>Etape 1 : commande effectuée par l'Acheteur : <strong style="color:red">complétée</strong></p>
-                    <p>Etape 2 : commande à accepter par le vendeur : <strong style="color:green">en cours</strong></p>
-                    <p>Etape 3 : commande à payer par l'acheteur suite à réception de la facture (à suivre)</p>
-                    <p>Etape 4 : commande à expédier par le vendeur (à suivre)</p>
+                    <p>Etape 1 : commande effectuée et payée par l'Acheteur : <strong style="color:green">complétée</strong></p>
+                    <p>Etape 2 : commande à expédier par le Vendeur : <strong style="color:green">complétée</strong></p>
+                    <p>Etape 3 : récupérer la notification de livraison effective (à suivre)<strong style="color:red">en cours de livraison</strong></p>
+                    <p>Etape 4 : En tant qu'acheteur n'hésitez pas à poster un avis sur la boutique/vos achats (à suivre)</p>
                 </tfoot>
             </table>
         </div>

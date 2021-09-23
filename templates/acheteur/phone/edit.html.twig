@@ -1,0 +1,28 @@
+{% extends "acheteur/base_acheteur.html.twig" %}
+
+{% block title %}modifier le numéro de téléphone{% endblock %}
+
+
+{% block body %}
+
+    <section class="col-9 mt-4 card">
+
+        <div class="card-header col-12 boutique-up">
+            <h3> Votre téléphone : </h3>
+            <a href="{{ path('profile_personnel') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+
+        <div class="car-body col-12 section-down">
+            {{ form_start(formPhone) }}
+
+            {{ form_widget(formPhone) }}
+                <button class="btn btn-primary mt-3">Modifier</button>
+            {{ form_end(formPhone) }}
+        </div>
+
+    </section>
+
+
+{% endblock %}

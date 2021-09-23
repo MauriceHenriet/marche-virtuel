@@ -26,13 +26,20 @@
                     <tr class="d-flex align-items-center justify-content-around">
                         <td class="col-1">
                             {% if item.produit.imageUrl is same as null %}
+                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
                                 <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
+                            </a>
+                                
                             {% else %}
-                                <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}">                                
+                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}"> 
+                            </a>                               
                             {% endif %}
                         </td>
                         <td class="col-2">
-                            <p>{{item.produit.nom}}</p>
+                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                <p>{{item.produit.nom}}</p>
+                            </a>
                         </td>
                         <td class="col-1">
                             {{ item.produit.prix | amount }}

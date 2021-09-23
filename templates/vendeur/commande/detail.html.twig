@@ -4,7 +4,7 @@
 
 <section class="col-10 mt-4">
     <h1>Détail de votre commande, numéro: {{ commande.id }} </h1>
-    {% if commande.status is same as 'paiement-attente' %}
+    {% if commande.status is same as 'a-expedier' %}
         <h2 style="color:red">Etat : {{ commande.status}}</h2>
     {% else %}
         <h2 style="color:green">Etat : {{ commande.status}}</h2>
@@ -57,20 +57,6 @@
                     <td class="col-2"><p>{{ fdp | amount }}</p></td>
                 </tr>
                 <tr class="d-flex align-items-center justify-content-around tr-top">
-
-                    {% if commande.status is same as 'a-facturer' %}
-                        <td class="col-2"></td>
-                        <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('vendeur_commande_facturer', { 'id' : commande.id } ) }}">
-                                <i class="fas fa-file-invoice"></i> facturer
-                            </a>
-                        </td>
-                        <td class="col-2">
-                            <a class="btn btn-info" href="{{ path('vendeur_commande_refuser', { 'id' : commande.id } ) }}">
-                                <i class="fas fa-times"></i> refuser
-                            </a>
-                        </td>
-                    {% endif %}
 
                     {% if commande.status is same as 'a-expedier' %}
                         <td class="col-2"></td>

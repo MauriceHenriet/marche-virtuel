@@ -14,24 +14,20 @@ class SidebarCommandeController extends AbstractController
     public function alert(CommandeRepository $commandeRepository)
     {
         $vendeur = $this->getUser();
-
         $boutiques = $vendeur->getBoutiques();
 
-        $commandesAFacturer = [];
         $commandesAExpedier = [];
-
-        $nbCommandesATraiter = 0;
+        $nbCommandesAExpedier = 0;
 
         foreach($boutiques as $boutique)
         {
-            $commandesAFacturer = array_merge( $commandesAFacturer, $commandeRepository->findCommandesBoutiqueAfacturer($boutique) );
             $commandesAExpedier = array_merge( $commandesAExpedier , $commandeRepository->findCommandesBoutiqueAExpedier($boutique) );
         }
 
-        $nbCommandesATraiter = count($commandesAFacturer) + count($commandesAExpedier);
+        $nbCommandesAExpedier = count($commandesAExpedier);
 
         return $this->render('vendeur/shared/_sidebar.html.twig', [
-            'nbCommandesATraiter' => $nbCommandesATraiter
+            'nbCommandesATraiter' => $nbCommandesAExpedier
         ]);
     }
 }

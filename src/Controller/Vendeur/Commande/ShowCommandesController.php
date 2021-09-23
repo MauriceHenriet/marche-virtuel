@@ -14,42 +14,25 @@ class ShowCommandesController extends AbstractController
     public function show(CommandeRepository $commandeRepository)
     {
         $vendeur = $this->getUser();
-
         $boutiques = $vendeur->getBoutiques();
 
-        $commandesAFacturer = [];
-        $commandesAttentePaiement = [];
         $commandesAExpedier = [];
         $commandesEnLivraison = [];
         $commandesLivree = [];
-        $commandesAnnulee = [];
-        $commandesRefusee = [];
 
         foreach($boutiques as $boutique)
         {
-            $commandesAFacturer = array_merge( $commandesAFacturer, $commandeRepository->findCommandesBoutiqueAfacturer($boutique) );
-
-            $commandesAttentePaiement = array_merge($commandesAttentePaiement, $commandeRepository->findCommandesBoutiqueAttentePaiement($boutique) ) ;
-
             $commandesAExpedier = array_merge( $commandesAExpedier , $commandeRepository->findCommandesBoutiqueAExpedier($boutique));
     
             $commandesEnLivraison = array_merge( $commandesEnLivraison , $commandeRepository->findCommandesBoutiqueEnLivraison($boutique) );
 
             $commandesLivree = array_merge( $commandesLivree , $commandeRepository->findCommandesBoutiqueLivree($boutique) );
-
-            $commandesAnnulee = array_merge( $commandesAnnulee, $commandeRepository->findCommandesBoutiqueAnnulee($boutique) );
-
-            $commandesRefusee = array_merge( $commandesRefusee, $commandeRepository->findCommandesBoutiqueRefusee($boutique) );
         }
 
         return $this->render('vendeur/commande/show.html.twig', [
-            'commandesAFacturer' => $commandesAFacturer,
-            'commandesAttentePaiement' => $commandesAttentePaiement,
             'commandesAExpedier' => $commandesAExpedier,
             'commandesEnLivraison' => $commandesEnLivraison,
-            'commandesLivree' => $commandesLivree,
-            'commandesAnnulee' => $commandesAnnulee,
-            'commandesRefusee' => $commandesRefusee
+            'commandesLivree' => $commandesLivree
         ]);
     }
 }
