@@ -3,25 +3,25 @@
 {% block body %}
     
     <section id="sec1">
-        <h1> Liste des produits</h1>
+        <h1>Liste des produits</h1>
 
-        <div class="section-down col-12">
-                {% if produits | length > 0 %}
+        <div class="section-down col-12 sec-tab">
+            {% if produits | length > 0 %}
                 
-                    <table id="table_id" class="table-hover col-12 display">
-                        <thead>
-                            <tr>
-                                <th class="col-1">&nbsp;</th>
-                                <th class="col-1">Produit</th>
-                                <th class="col-1">Prix</th>
-                                <th class="col-1">Catégorie</th>
-                                <th class="col-2">Région</th>
-                                <th class="col-1">Statut</th>
-                                <th class="col-1">Détails</th>
-                            </tr>
-                        </thead>
-                        <tbody  >
-                            {% for produit in produits %}
+                <table id="table_id" class="table-hover col-12 display">
+                    <thead>
+                        <tr>
+                            <th class="col-1">&nbsp;</th>
+                            <th class="col-1">Produit</th>
+                            <th class="col-1">Prix</th>
+                            <th class="col-1">Catégorie</th>
+                            <th class="col-2">Région</th>
+                            <th class="col-1">Statut</th>
+                            <th class="col-1">Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody  >
+                        {% for produit in produits %}
                             <tr>
                                 <td class="col-1" >
                                     <div class="div-image">
@@ -53,18 +53,60 @@
                                     </a>
                                 </td>
                             </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 
-                {% else %}
-                    <p>il n'y a pas de produits pour cette catégorie à ce jour</p>
-                {% endif %}
-            </div>
-
+            {% else %}
+                <p>il n'y a pas de produits pour cette catégorie à ce jour</p>
+            {% endif %}
+        </div>
     </section>
 
-    <section id="sec2">  
+    <section class="sec-card">
+        {% if produitsPagi | length > 0 %}
+
+            <div class="card-nav">
+                {{ knp_pagination_render(produitsPagi) }}
+            </div>
+            <div class="card-global">
+                {% for produit in produitsPagi %}
+            
+                <div class="card">
+                    <div>
+                        {% if produit.imageUrl is same as null %}
+                            <img class="cardimage" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                        {% else %}
+                            <img class="cardimage" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
+                        {% endif %}
+                    </div>
+                    
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">{{ produit.nom}}</h5>
+                            <p class="card-text">Prix : {{ produit.prix | amount }}</p>
+                            <p>Catégorie : {{ produit.boutique.categorie}}</p>
+                            <p>{{ produit.boutique.region}}</p>
+                            <p>Statut : {{ produit.status}}</p>
+                        </div>
+                        <div>
+                            <a class="btn btn-card" href="{{ path('produit', { 'id' : produit.id, 'produitSlug' : produit.slug, 'producteurSlug' : produit.boutique.slug } ) }}">
+                                <i class="fas fa-eye"></i> voir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="card-nav">
+                {{ knp_pagination_render(produitsPagi) }}
+            </div>
+            
+
+        {% else %}
+            <p>il n'y a pas de produits pour cette catégorie à ce jour</p>
+        {% endif %}
     </section>
     
     <script>

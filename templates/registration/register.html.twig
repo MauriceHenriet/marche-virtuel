@@ -1,38 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{# {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset ('css/register.css') }}">
-{% endblock %} #}
-
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
 
+<section class="cgu">
+  <div class="inscriptionDiv">
     {{ form_start(registrationForm) }}
-    
+      <h1>Inscription</h1>
         {{ form_row(registrationForm.firstName) }}
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.phone) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
         {# {{ form_row(registrationForm.agreeTerms) }} #}
-        
+        <div>
         <label for="choice">Votre type de profil Utilisateur* : </label>
-        <select name="choice" id="choice">
-          <option value="no">Acheteur</option>
-          <option value="yes">Vendeur</option>
-        </select>
+          <select name="choice" id="choice">
+            <option value="no">Acheteur</option>
+            <option value="yes">Vendeur</option>
+          </select>
+        </div>
+        
         <br>
-        <button type="submit" class="btn">S'inscrire</button> 
+        <button type="submit" class="btn" style="width:100%">S'inscrire</button> 
     {{ form_end(registrationForm) }}
 
     <br><br>
-    <p>* Lorsque vous vous inscrivez en tant que Vendeur, 
+    <p>
+      * Lorsque vous vous inscrivez en tant que Vendeur, 
       votre compte vous permet de faire des achats, tout comme Acheteur. 
       Mais vous aurez un espace en plus pour proposer vos produits à la vente.
       <br>
       Si vous vous inscrivez en tant que Acheteur, 
-      vous aurez la possibilité de devenir Vendeur depuis votre espace personnel.</p>
+      vous aurez la possibilité de devenir Vendeur depuis votre espace personnel.
+    </p>
+  </div>
+  <div>
+    {% include "/public/shared/_footer.html.twig" %}
+  </div>
+</section>
 
 {% endblock %}

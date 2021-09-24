@@ -1,99 +1,181 @@
 {% extends "base.html.twig" %}
-
-{% block title %}Le marché Virtuel Panier{% endblock %}
-
+{% block title %}Le marché Virtuel - Panier{% endblock %}
 {% block body %}
 
-<div class="container col-12">
-    {% if panier | length > 0 %}
-        <h1>Votre panier</h1>
-        <div class="section-panier col-10">
-            <table class="table table-hover">
-                <thead>
-                    <tr class="d-flex align-items-center justify-content-around tr-bottom">
-                        <th class="col-1"></th>
-                        <th class="col-2">Produit</th>
-                        <th class="col-1">Prix</th>
-                        <th class="col-2">Quantité</th>
-                        <th class="col-2">sous-total</th>
-                        <th class="col-1"></th>
-                    </tr>
-                </thead>
+<section id="sec1">
+    <h1>Votre panier</h1>
+    <div class="container col-12 sec-tab">
 
-        {% for idBoutique, boutique in panier %}
-                <tbody>
-                {% for item in boutique.produits %}
-                    <tr class="d-flex align-items-center justify-content-around">
-                        <td class="col-1">
-                            {% if item.produit.imageUrl is same as null %}
-                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
-                                <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
-                            </a>
-                                
-                            {% else %}
-                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
-                                <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}"> 
-                            </a>                               
-                            {% endif %}
-                        </td>
-                        <td class="col-2">
-                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
-                                <p>{{item.produit.nom}}</p>
-                            </a>
-                        </td>
-                        <td class="col-1">
-                            {{ item.produit.prix | amount }}
-                        </td>
-                        <td class="col-2">
-                            <div class="d-flex align-items justify-content-between">
-                                <a class="btn btn-sm btn-primary" href="{{ path('cart_decrement', { 'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}"><i class="fas fa-minus"></i></a>
-                                <button class="btn btn-secondary btn-sm">{{ item.qte }}</button>
-                                <a class="btn btn-sm btn-primary" href="{{ path('cart_add', { 'id' : item.produit.id } ) }}"><i class="fas fa-plus"></i></a>
-                            </div>
-                        </td>
-                        <td class="col-2">
-                            {{ (item.produit.prix * item.qte) | amount }}
-                        </td>
-                        <td class="col-1">
-                            <a href="{{ path('cart_remove', {'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}" class="btn btn-danger btn-sm">Supprimer</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                    
-                    <tr class="d-flex align-items-center justify-content-around">
-                        <td class="col-1"></td>
-                        <td class="col-2"></td>
-                        <td class="col-1"></td>
-                        <td class="col-2"><p>Frais de Livraison : </p></td>
-                        <td class="col-2"><p> {{ boutique.fdp | amount}} </p></td>
-                        <td class="col-1"></td>
-                    </tr>
-                    <tr class="d-flex align-items-center justify-content-around tr-bottom">
-                        <td class="col-1"></td>
-                        <td class="col-2">
-                            <a href="{{ path('profile_commande_create', { 'id' : idBoutique } ) }}" class="btn btn-primary btn-lg"> commander </a>
-                        </td>
-                        <td class="col-1"></td>
-                        <td class="col-2"><p>TOTAL : </p></td>
-                        <td class="col-2"><p>{{ boutique.total | amount }}</p></td>
-                        <td class="col-1"></td>
-                    </tr>
-                </tbody>                    
-        {% endfor %}
-                
-
-            </table>
-        </div>
-
-    {% else %}
-        <h2>Votre panier est vide</h2>
-    {% endif %}
-        <div class="section-sous-panier col-10">
-             <a class="btn btn-warning" href="{{ path('public_home') }}">
+        {% if panier | length > 0 %}
+            <div class="section-panier col-12">
+                <table class="table table-hover tabPanier">
+                    <thead>
+                        <tr class="d-flex align-items-center justify-content-around tr-bottom">
+                            <th class="col-2">&nbsp;</th>
+                            <th class="col-2">Produit</th>
+                            <th class="col-2">Prix</th>
+                            <th class="col-2">Quantité</th>
+                            <th class="col-2">sous-total</th>
+                            <th class="col-2">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    {% for idBoutique, boutique in panier %}
+                        <tbody>
+                            {% for item in boutique.produits %}
+                                <tr class="d-flex align-items-center justify-content-around">
+                                    <td class="col-2">
+                                        {% if item.produit.imageUrl is same as null %}
+                                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                                <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
+                                            </a>
+                                        {% else %}
+                                            <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                                <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}"> 
+                                            </a>                               
+                                        {% endif %}
+                                    </td>
+                                    <td class="col-2">
+                                        <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                            <p>{{item.produit.nom}}</p>
+                                        </a>
+                                    </td>
+                                    <td class="col-2">
+                                        {{ item.produit.prix | amount }}
+                                    </td>
+                                    <td class="col-2">
+                                        <div class="d-flex align-items justify-content-between">
+                                            <a class="btn-sm btn-primary" href="{{ path('cart_decrement', { 'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
+                                            <button class="btn-light btn-sm">{{ item.qte }}</button>
+                                            <a class="btn-sm btn-primary" href="{{ path('cart_add', { 'id' : item.produit.id } ) }}">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="col-2">
+                                        {{ (item.produit.prix * item.qte) | amount }}
+                                    </td>
+                                    <td class="col-2">
+                                        <a href="{{ path('cart_remove', {'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}" class="btn btn-sm">
+                                            Supprimer
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr class="d-flex align-items-center justify-content-around">
+                                <td class="col-2"></td>
+                                <td class="col-2"></td>
+                                <td class="col-2"></td>
+                                <td class="col-2"><p>Frais de Livraison : </p></td>
+                                <td class="col-2"><p> {{ boutique.fdp | amount}} </p></td>
+                                <td class="col-2"></td>
+                            </tr>
+                            <tr class="d-flex align-items-center justify-content-around tr-bottom">
+                                <td class="col-2"></td>
+                                <td class="col-2">
+                                    <a href="{{ path('profile_commande_create', { 'id' : idBoutique } ) }}" class="btn">
+                                        commander
+                                    </a>
+                                </td>
+                                <td class="col-2"></td>
+                                <td class="col-2"><p>TOTAL : </p></td>
+                                <td class="col-2"><p>{{ boutique.total | amount }}</p></td>
+                                <td class="col-2"></td>
+                            </tr>
+                        </tbody>                    
+                    {% endfor %}
+                </table>
+            </div>
+        {% else %}
+            <h3>Votre panier est vide</h3>
+        {% endif %}
+        <div class="section-sous-panier col-12">
+            <a class="btn" href="{{ path('public_home') }}">
                 Continuer le shopping
             </a>
         </div>
-</div>
+    </div>
+</section>
+
+<section class="sec-card">
+    {% if panier | length > 0 %}
+        {# 
+        {% if panierPagi | length > 0 %}
+        <div class="card-nav">
+            {{ knp_pagination_render(panierPagi) }}
+        </div> #}
+        <div class="card-global">
+            {% for idBoutique, boutique in panier %}
+                <div class="card">
+                    <div class="card-header">
+                        <p>Boutique : nom{# {{boutique.nom}} #}</p>
+                        <p>Frais de Livraison : {{ boutique.fdp | amount}}</p>
+                        <p>TOTAL : {{ boutique.total | amount }}</p>
+                        <a href="{{ path('profile_commande_create', { 'id' : idBoutique } ) }}" class="btn" style="width:100%">
+                            commander
+                        </a>
+                    </div>
+                            
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for item in boutique.produits %}
+                                
+                                <li class="list-group-item" style="text-align:center">
+                                    <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                        {% if item.produit.imageUrl is same as null %}
+                                            <img class="image-panier" src="{{ asset('images/android-chrome-192x192.png')}}" alt="{{item.produit.slug}}">
+                                        {% else %}
+                                            <img class="image-panier" src="{{ asset(item.produit.imageUrl)}}" alt="{{item.produit.slug}}">                      
+                                        {% endif %}
+                                    </a>
+                                </li>
+                                <li class="list-group-item" style="text-align:center">
+                                    <a href="{{ path('produit', { 'id' : item.produit.id, 'produitSlug' : item.produit.slug, 'producteurSlug' : item.produit.boutique.slug } ) }}">
+                                        {{item.produit.nom}}&nbsp;:&nbsp;{{ item.produit.prix | amount }}
+                                    </a>
+                                </li>
+                                
+                                <li class="list-group-item">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        Quantité:
+                                        <a class="btn-sm btn-primary" href="{{ path('cart_decrement', { 'id' : item.produit.id, 'boutique' : item.produit.boutique.id } ) }}">
+                                            <i class="fas fa-minus"></i>
+                                        </a>
+                                        <button class="btn-light btn-sm">{{ item.qte }}</button>
+                                        <a class="btn-sm btn-primary" href="{{ path('cart_add', { 'id' : item.produit.id } ) }}">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                
+                                <li class="list-group-item">
+                                    Sous-Total : {{ (item.produit.prix * item.qte) | amount }}
+                                </li>
+                                {% if loop.index < (boutique.produits | length) %}
+                                    <hr style="height:5px ; color:#2b6777;">
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        
+                    </div>
+                </div>
+    
+            {% endfor %}
+        </div>
+            
+        {# <div class="card-nav">
+            {{ knp_pagination_render(panierPagi) }}
+        </div> #}
+            
+    {% else %}
+        <p>il n'y a pas de produits pour cette catégorie à ce jour</p>
+    {% endif %}
+</section>
+
 {% include "/public/shared/_carte.html.twig" %}
 {% include "/public/shared/_footer.html.twig" %}
 {% endblock %}
