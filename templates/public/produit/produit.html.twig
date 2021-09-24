@@ -3,19 +3,16 @@
 {% block body %}
     
     <section id="sec1" class="section-producteurs">
-    <h1>{{ produit.nom }}</h1>
+    
+        <div class="produit-top btn" style="margin-bottom:20px;margin-top:20px">
+            <a  href="{{ path('producteur', { 'id' : produit.boutique.id, 'producteurSlug' : produit.boutique.slug } ) }}">
+                <h3 class="foot-link-top">{{ produit.boutique.nom }} <button class="btn btn-sm"><i class="fas fa-arrow-left"></i> Boutique</button></h3>
+            </a>
+        </div>
+        <h1>{{ produit.nom }}</h1>
 
-        <div class="section-produit col-11">
-            <div class="produit-top">
-                
-                <span> </span>
-                <a href="{{ path('producteur', { 'id' : produit.boutique.id, 'producteurSlug' : produit.boutique.slug } ) }}">
-                    <h3>{{ produit.boutique.nom }} <a class="btn btn-info btn-sm"><i class="fas fa-arrow-left"></i> Boutique</a></h3>
-                    
-                </a>
-                
-            </div>
-            <div class="produit-main col-5">
+        <div class="section-produit col-12">
+            <div class="produit-main">
                 <div class="produit-main-left">
                     {% if produit.imageUrl is same as null %}
                         <img class="" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
@@ -23,18 +20,18 @@
                         <img class="" src="{{ asset( produit.imageUrl ) }}" alt="category.slug">
                     {% endif %}
                 </div>
-                <div class="produit-main-right col-6">
+                <div class="produit-main-right">
                     <h4>{{ produit.description}}</h4>
                     <h4>{{ produit.status}}</h4>
-                    <div class="produit-achat col-12">
+                    <div class="produit-achat">
                         <h4>Prix : {{ produit.prix | amount }}</h4>
                         <div>
-                        {% if (produit.status is same as "Indisponible") or (produit.boutique.status is same as "CLOSED") %}
-                        {% else %}
-                            <a class="btn btn-info" href="{{ path('cart_add', { 'id' : produit.id } ) }}?produit=ok">
-                                <i class="fas fa-plus"></i> Ajouter au panier 
-                            </a>
-                        {% endif %}
+                            {% if (produit.status is same as "Indisponible") or (produit.boutique.status is same as "CLOSED") %}
+                            {% else %}
+                                <a class="btn" href="{{ path('cart_add', { 'id' : produit.id } ) }}?produit=ok">
+                                    <i class="fas fa-plus"></i> Ajouter au panier 
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -46,23 +43,26 @@
     </section>
 
     <section class="section-producteurs">
-        
+        <h3>
+            <span>{{ produit.boutique.nom }}</span>
             {% if produit.boutique.status is same as "CLOSED" %}
-                <h3>{{ produit.boutique.nom }} <span style="color:red" >(Statut : {{ produit.boutique.status }})</span></h3>
+                <span style="color:red" >(Statut : {{ produit.boutique.status }})</span>
             {% else %}
-                <h3>{{ produit.boutique.nom }} <span style="color:green" >(Statut : {{ produit.boutique.status }})</span></h3>
+                <span style="color:green" >(Statut : {{ produit.boutique.status }})</span>
             {% endif %}
-            <h5>{{ produit.boutique.description }}</h5>
-            <p>{{ produit.boutique.rue }} {{ produit.boutique.codePostal }} {{ produit.boutique.ville }}, {{ produit.boutique.region }}</p>
-            <h4>Tél : {{ produit.boutique.vendeur.phone }}</h4>
-            <div>
-                {% if produit.boutique.imageUrl is same as null %}
-                    <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
-                {% else %}
-                    <img src="{{ produit.boutique.imageUrl }}" alt="{{ produit.boutique.slug }}" class="img-fluid image-classe">    
-                {% endif %}
-            </div>
-            <h4>Catégorie : {{ produit.boutique.categorie }}</h4>
+        </h3>
+            
+        <h5>{{ produit.boutique.description }}</h5>
+        <p>{{ produit.boutique.rue }} {{ produit.boutique.codePostal }} {{ produit.boutique.ville }}, {{ produit.boutique.region }}</p>
+        <h4>Tél : {{ produit.boutique.vendeur.phone }}</h4>
+        <div>
+            {% if produit.boutique.imageUrl is same as null %}
+                <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
+            {% else %}
+                <img src="{{ produit.boutique.imageUrl }}" alt="{{ produit.boutique.slug }}" class="img-fluid image-classe">    
+            {% endif %}
+        </div>
+        <h4>Catégorie : {{ produit.boutique.categorie }}</h4>
             
     </section> 
  

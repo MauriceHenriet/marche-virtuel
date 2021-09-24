@@ -122,11 +122,11 @@ footer {
   border-bottom-right-radius: 7%;
 }
 
-#sec2 img {
+/* #sec2 img {
   background: linear-gradient(0deg, #c8d8e4, #f2f2f2);
   display: flex;
   justify-content: space-between;
-}
+} */
 
 #sec2 a {
   text-decoration: none;
@@ -319,30 +319,30 @@ td {
 }
 .produit-main {
   width: 100%;
-  background: red;
   display: flex;
   flex-direction: row;
 }
 .produit-main-left {
   text-align: center;
-  width: 40%;
-  background: chartreuse;
   padding: 25px 25px 25px 25px;
+  display: flex;
+  align-items: center;
+  width: 40%;
 }
 .produit-main-left img {
   height: auto;
   width: 100%;
-  /* object-fit: contain; */
 }
 .produit-main-right {
   padding: 25px 25px 25px 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 60%;
 }
 .produit-achat {
   padding: 15px 15px 15px 15px;
-  background: coral;
+  background: #f2f2f2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -499,6 +499,17 @@ form {
   flex-direction: column;
   padding: 5px 5px 5px 5px;
 }
+/*------------fiche producteur-----------*/
+.fiche-producteur-stat {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* .fiche-producteur-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+} */
 /*----------------------- Responsive --------------*/
 @media screen and (max-width: 995px) {
   /*  --------------  section 1  ----------------   */
@@ -569,11 +580,27 @@ form {
   .login-btn-other a {
     margin-top: 20px;
   }
-  .card-header p {
+  .card-header p,
+  h5 {
     font-size: 12px;
   }
-  .card-body li {
+  .card-body li,
+  p {
     font-size: 12px;
+  }
+
+  /*------------fiche produit--------------*/
+  .produit-main-right {
+    padding: 15px;
+  }
+  .produit-main-left {
+    padding: 15px;
+  }
+  .produit-main-right h4 {
+    font-size: 18px;
+  }
+  .produit-achat {
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 425px) {
@@ -679,10 +706,44 @@ form {
   .tabPanier {
     font-size: 15px;
   }
-  .card-header p {
+  .card-header p,
+  h5 {
     font-size: 10px;
   }
-  .card-body li {
+  .card-body li,
+  p {
     font-size: 10px;
+  }
+  /*------------fiche produit--------------*/
+  .produit-main {
+    flex-direction: column;
+    width: 100%;
+  }
+  .produit-main-left,
+  .produit-main-right {
+    width: 100%;
+  }
+
+  .produit-main-right h4 {
+    font-size: 13px;
+  }
+  .produit-top h3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .section-producteurs h3 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .section-producteurs h5,
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .section-producteurs h4,
+  p {
+    font-size: 16px;
+    text-align: center;
   }
 }
