@@ -9,9 +9,7 @@
         <h1> Bienvenue sur le marché virtuel</h1>
         
         <div id="descri">
-        {% if app.user %}
-        {% else %}
-        <p>
+          <p>
             Le Marché Virtuel est la marketplace mettant en relation directe le Producteur avec le Consommateur.
           </p>
           <p>
@@ -20,7 +18,6 @@
           <p>
             Vous désirez <span style="color:#52ab98">acheter</span> des produits du terroir ? Séléctionnez et passez commande.
           </p>
-        {% endif %}
         </div>
         
     </section>
@@ -31,7 +28,13 @@
           {% if app.user.roles[0] is same as "ROLE_VENDEUR" %}
             <div class="container">
                 <a class="btn" href="{{ path('vendeur_home')}}">
-                  <h2>Gérer mon espace vendeur et mes produits</h2>
+                  <h3>Gérer mon espace Vendeur et mes produits</h3>
+                </a>
+            </div>
+          {% else %}
+            <div class="container2">
+                <a class="btn" href="{{ path('profile_personnel') }}">
+                  <h3>Gérer mon espace Acheteur</h3>
                 </a>
             </div>
           {% endif %}

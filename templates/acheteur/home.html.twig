@@ -3,15 +3,13 @@
 
 {% block body %}
 
-<section class="col-10 mt-4">
-    <h2 style="color:red"> modale de validation remove adresse</h2>
-    <h2 style="color:red"> edit telephone</h2>
+<section class="main-acheteur">
     <h1>Bienvenue, {{ app.user.firstName }} {{ app.user.name }}</h1>
     <P>Cet espace est fait pour gérer votre profil personnel d'acheteur (suivi de commandes, adresses et téléphone).</P>
     <div class="section-up">
         <p>Votre Email : {{ app.user.email }}</p>
         <p>Votre Téléphone : {{ app.user.phone }}
-            <a href="{{ path('edit_phone') }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier le numéro de téléphone</a>
+            <a href="{{ path('edit_phone') }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier</a>
         </p>
     {% if app.user.adresses is empty  %}
         <h3>Vous n'avez pas encore saisi votre adresse</h3>
@@ -26,15 +24,15 @@
                         <span style="color:red">(adresse de livraison)</span> : {{ adresse.rue}}
                             , {{ adresse.codePostal}} {{ adresse.ville}}
                             , {{ adresse.region}}
-                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier l'adresse</a>
-                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer l'adresse</a></p>
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer</a></p>
                 {% else %}
                     <p>Adresse {{ loop.index }} : {{ adresse.rue}}
                         , {{ adresse.codePostal}} {{ adresse.ville}}
                         , {{ adresse.region}}
-                    <a href="{{ path('livraison_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">choisir comme adresse de livraison</a>
-                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier l'adresse</a>
-                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer l'adresse</a></p>
+                    <a href="{{ path('livraison_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm">adresse de livraison</a>
+                    <a href="{{ path('edit_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i>modifier</a>
+                    <a href="{{ path('remove_adresse', { 'id' : adresse.id }) }}" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i>supprimer</a></p>
                 {% endif %}
             
         {% endfor %}

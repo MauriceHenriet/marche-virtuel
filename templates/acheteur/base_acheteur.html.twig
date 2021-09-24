@@ -32,7 +32,7 @@
             />
             <link rel="stylesheet" href="{{ asset('css/acheteur.css')}}">
 
-            <link rel="stylesheet" href="{{ asset('css/payer.css')}}">
+            {# <link rel="stylesheet" href="{{ asset('css/payer.css')}}"> #}
 
         {% endblock %}
         
@@ -50,11 +50,12 @@
     <body>
     {% include "/public/shared/_messages_flash.html.twig" %}
     {% include "acheteur/shared/_header.html.twig" %}
-    {{ render( path('acheteur_sidebar')  ) }}
-    {# {% include "acheteur/shared/_sidebar.html.twig" %} #}
-        
-        
+    {{ render( path('acheteur_navSidebar')  ) }}
+    <div class="back-response">
+        {{ render( path('acheteur_sidebar')  ) }}
         {% block body %}{% endblock %}
+    </div>
+    
     {% include "acheteur/shared/_footer.html.twig" %}          
     </body>
 </html>

@@ -2,23 +2,23 @@
 
 {% block body %}
 
-<section class="col-10 mt-4">
+<section class="main-acheteur">
     <h1>Vos commandes : </h1>
     {% if (commandesPayees | length == 0) and (commandesLivraison | length == 0 ) and (commandesLivree | length == 0) %}
         <p> vous n'avez pas encore passé de commandes sur le marché virtuel.</p>
     {% else %}
-    <div class="section-mid pt-3 pb-3">
+    <div class="sec-tab pt-3 pb-3">
        
         {% if commandesPayees | length > 0 %}     
-        <h2>Commandes <span style="color:red">en attente d'expédition :</span></h2>
-        <table class="table-hover col-10">
+        <h2>Commandes <span style="color:green">en attente d'expédition :</span></h2>
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-4">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
+                    <th class="col-2">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                     <td class="col-2" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-4" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -37,7 +37,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-4">
+                    <td class="col-2">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -50,14 +50,14 @@
         {% endif %}
         {% if commandesLivraison | length > 0 %}
         <h2>Commandes <span style="color:red">en cours de livraison :</span></h2>
-        <table class="table-hover col-10">
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-4">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
+                    <th class="col-2">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +67,7 @@
                     <td class="col-2" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-4" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -76,7 +76,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-4">
+                    <td class="col-2">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -92,14 +92,14 @@
         {% endif %}
         {% if commandesLivree | length > 0 %}
         <h2>Commandes <span style="color:green">livrees : </span></h2>
-        <table class="table-hover col-10">
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
                     <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-4">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
-                    <th class="col-4">action</th>
+                    <th class="col-2">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,7 +109,7 @@
                     <td class="col-2" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-4" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -118,7 +118,7 @@
                     <td class="col-2">
                        {{ item.createdAt | date("d/m/Y") }}
                     </td>
-                    <td class="col-4">
+                    <td class="col-2">
                         <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
                             <i class="fas fa-eye"></i> détail
                         </a>
@@ -130,6 +130,86 @@
         </table>
         {% endif %}
         
+    </div>
+
+    <div class="sec-card pt-3 pb-3">
+        {% if commandesPayees | length > 0 %}   
+        <h2>Commandes <span style="color:green">en attente d'expédition :</span></h2>
+            <div class="card-global">
+                {% for item in commandesPayees %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                Commande N° {{ item.id }}
+                            </h5>
+                           <h5>
+                                Boutique {{ item.boutique.nom }}
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if commandesLivraison | length > 0 %} 
+        <h2>Commandes <span style="color:red">en cours de livraison :</span></h2>
+            <div class="card-global">
+                {% for item in commandesLivraison %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <span>Commande N° {{ item.id }}</span>
+                                <span>Boutique {{ item.boutique.nom }}</span>
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                            <a class="btn btn-info" href="{{ path('profile_commande_livree', { 'id' : item.id } ) }}">
+                                <i class="fas fa-truck-loading"></i> livrée ! <i class="fas fa-thumbs-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if commandesLivree | length > 0 %}  
+        <h2>Commandes <span style="color:green">livrees :</span></h2>
+            <div class="card-global">
+                {% for item in commandesLivree %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <span>Commande N° {{ item.id }}</span>
+                                <span>Boutique {{ item.boutique.nom }}</span>
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('profile_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %} 
     </div>
     {% endif %}
         

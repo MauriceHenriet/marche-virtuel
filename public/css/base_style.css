@@ -61,6 +61,7 @@ footer {
   background-color: #52ab98;
   color: white;
 }
+
 .btn:hover {
   background-color: #2b6777;
   color: white;
@@ -133,13 +134,19 @@ footer {
 }
 #sec2 a h2 {
   color: #52ab98;
-  /* color: #2b6777; */
   transition: 1s;
 }
 
 #sec2 a h2:hover {
-  /* color: #39395f; */
-  /* color: #fd7a7a; */
+  color: white;
+}
+
+#sec2 a h3 {
+  color: #2b6777;
+  transition: 1s;
+}
+
+#sec2 a h3:hover {
   color: white;
 }
 
@@ -192,6 +199,17 @@ footer {
 #sec2 img {
   max-width: 100%;
   height: auto;
+}
+#sec2 .container2 {
+  height: 300px;
+  width: 100%;
+  background: url("../images/consommatrice.jpg") no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container2 a {
+  text-decoration: none;
 }
 
 #sec2 .container {

@@ -7,10 +7,10 @@ use App\Repository\CommandeRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class SidebarController extends AbstractController
+class NavSidebarController extends AbstractController
 {
     /**
-     * @Route("/acheteur/sidebar", name="acheteur_sidebar")
+     * @Route("/acheteur/navsidebar", name="acheteur_navSidebar")
      */
     public function alert(CartService $cartService, CommandeRepository $commandeRepository)
     {
@@ -23,7 +23,7 @@ class SidebarController extends AbstractController
         $nbArticles = $cartService->countArticles();
 
 
-        return $this->render('acheteur/shared/_sidebar.html.twig', [
+        return $this->render('acheteur/shared/_navSidebar.html.twig', [
             'nbArticles' => $nbArticles,
             'nbCommandesAttente' => $nbCommandesAttente
         ]);

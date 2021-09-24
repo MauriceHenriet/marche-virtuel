@@ -1,5 +1,14 @@
 /* ------------------header------------------- */
-.top {
+
+.acheteur-header h2 {
+  color: white;
+  margin-left: 10px;
+  text-align: center;
+}
+.acheteur-header a {
+  text-decoration: none;
+}
+.acheteur-header {
   background: black;
   padding: 10px;
   display: flex;
@@ -7,21 +16,12 @@
   align-items: center;
   justify-content: space-between;
 }
-
-.top h2 {
-  color: white;
-  margin-left: 10px;
-  text-align: center;
-}
-.top a {
-  text-decoration: none;
-}
 /* ------------------main------------------- */
 .main {
-  height: 100vh;
-  border-top: 1px solid gray;
+  /* height: 100vh; 
+   border-top: 1px solid gray;
   display: flex;
-  flex-direction: row;
+  flex-direction: row; */
 }
 .section-up {
   display: flex;
@@ -37,11 +37,32 @@
 .section-up button {
   width: 50%;
 }
-.section-mid,
-.section-down {
-}
+
 .section-down {
   margin-bottom: 100px;
+}
+/*------------------------- base ----------------*/
+.back-response {
+  display: flex;
+  flex-direction: row;
+}
+/*------------------------ sidebar--------------------------------*/
+.sideBarAdmin {
+  min-width: 240px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid ghostwhite;
+  padding-left: 10px;
+}
+.vMobile {
+  display: none;
+}
+
+/*------------------------ home acheteur--------------------------------*/
+.main-acheteur {
+  width: 100%;
+  margin: 20px;
 }
 /*------------------------commande--------------------------------*/
 .tr-top {
@@ -60,11 +81,33 @@
 .add-adresse {
   color: red;
 }
+/*------------- liste des commandes back acheteur-------------*/
+.card {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px black;
+  margin-bottom: 2px;
+}
+.card-header {
+  width: 40%;
+}
+.card-body {
+  width: 30%;
+}
+.card-footer {
+  width: 30%;
+}
+.sec-tab {
+  display: block;
+}
+.sec-card {
+  display: none;
+}
 /*----------------------Panier-------------------------------*/
 /* .fa-shopping-cart {
   font-size: 20px;
 } */
-/*---------------------Responsive-------------------------*/
+/*-------------------------------------------*/
 .alert-success {
   background-color: rgb(122, 233, 140);
 }
@@ -78,18 +121,76 @@ select option {
 .card-body nav:last-child {
   margin-top: 15px;
 }
-
-@media screen and (max-width: 800px) {
-  .vDesk {
+/*---------------------Responsive-------------------------*/
+@media screen and (max-width: 995px) {
+  /*------------------------ sidebar--------------------------------*/
+  .sideBarAdmin {
     display: none;
   }
-}
-@media screen and (min-width: 800px) {
   .vMobile {
+    display: block;
+    width: 100%;
+  }
+  .acheteur-header {
     display: none;
   }
-}
 
+  /*------------------------ home acheteur--------------------------------*/
+  .main-acheteur {
+    margin: 15px;
+  }
+  /*-----------liste des commandes back acheteur-------------*/
+  .sec-tab {
+    display: none;
+  }
+  .sec-card {
+    display: block;
+  }
+  .card h5 {
+    font-size: 16px;
+  }
+  .card p {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .main-acheteur {
+    text-align: center;
+  }
+  .main-acheteur p {
+    font-size: 14px;
+  }
+  .card {
+    flex-direction: column;
+  }
+  .card p {
+    font-size: 14px;
+  }
+  .card h5 {
+    font-size: 15px;
+  }
+
+  .card-body,
+  .card-footer,
+  .card-header {
+    padding: 10px;
+  }
+  .card-body p {
+    margin-bottom: 5px;
+  }
+  .card-header,
+  .card-body,
+  .card-footer {
+    width: 100%;
+  }
+  /*-----------detail commande back acheteur-------------*/
+  .detail h4,
+  h1,
+  h2 {
+    font-size: 18px;
+  }
+}
+/* 
 .user-card {
   padding: 10px;
-}
+} */
