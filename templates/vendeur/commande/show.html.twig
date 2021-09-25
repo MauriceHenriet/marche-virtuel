@@ -2,20 +2,20 @@
 
 {% block body %}
 
-<section class="col-10 mt-4">
+<section class="main-acheteur">
     <h1>Vos commandes : </h1>
     {% if ( commandesAExpedier | length == 0) and ( commandesEnLivraison | length == 0 ) and (commandesLivree | length == 0) %}
         <p> vous n'avez pas encore passé de commandes sur le marché virtuel.</p>
     {% else %}
         
-    <div class="section-mid pt-3 pb-3">
+    <div class="sec-tab pt-3 pb-3">
         {% if commandesAExpedier | length > 0 %}     
         <h2><strong style="color:red">Commandes payées, à expedier :</strong></h2>
-        <table class="table-hover col-10">
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-1">N° commande</th>
+                    <th class="col-3">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
@@ -25,10 +25,10 @@
 
                 {% for item in commandesAExpedier %}
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
+                    <td class="col-1" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-3" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -53,11 +53,11 @@
         {% endif %}
         {% if commandesEnLivraison | length > 0 %}
         <h2>Commandes<strong style="color:green"> en cours de livraison :</strong></h2>
-        <table class="table-hover col-10">
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-1">N° commande</th>
+                    <th class="col-3">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
@@ -67,10 +67,10 @@
 
                 {% for item in commandesEnLivraison %}
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
+                    <td class="col-1" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-3" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -91,12 +91,12 @@
         </table>
         {% endif %}
         {% if commandesLivree | length > 0 %}
-        <h2>Commandes livrees :</h2>
-        <table class="table-hover col-10">
+        <h2>Commandes <span style="color:green">livrees :</span></h2>
+        <table class="table-hover col-12">
             <thead>
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <th class="col-2">N° commande</th>
-                    <th class="col-2">Boutique</th>
+                    <th class="col-1">N° commande</th>
+                    <th class="col-3">Boutique</th>
                     <th class="col-2">Total</th>
                     <th class="col-2">Date</th>
                     <th class="col-4">action</th>
@@ -106,10 +106,10 @@
 
                 {% for item in commandesLivree %}
                 <tr class="d-flex align-items-center justify-content-around" >
-                    <td class="col-2" >
+                    <td class="col-1" >
                         {{ item.id }}
                     </td>
-                    <td class="col-2" >
+                    <td class="col-3" >
                         {{ item.boutique.nom }}
                     </td>
                     <td class="col-2">
@@ -130,6 +130,86 @@
         </table>
         {% endif %}
         
+    </div>
+
+    <div class="sec-card pt-3 pb-3">
+        {% if commandesAExpedier | length > 0 %}   
+        <h2><strong style="color:red">Commandes payées, à expedier :</strong></h2>
+            <div class="card-global">
+                {% for item in commandesAExpedier %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                Commande N° {{ item.id }}
+                            </h5>
+                           <h5>
+                                Boutique {{ item.boutique.nom }}
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_expedier', { 'id' : item.id } ) }}">
+                                <i class="fas fa-shipping-fast"></i> expédiée
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if commandesEnLivraison | length > 0 %}
+        <h2>Commandes<strong style="color:green"> en cours de livraison :</strong></h2>
+            <div class="card-global">
+                {% for item in commandesEnLivraison %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <span>Commande N° {{ item.id }}</span>
+                                <span>Boutique {{ item.boutique.nom }}</span>
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if commandesLivree | length > 0 %}  
+        <h2>Commandes <span style="color:green">livrees :</span></h2>
+            <div class="card-global">
+                {% for item in commandesLivree %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <span>Commande N° {{ item.id }}</span>
+                                <span>Boutique {{ item.boutique.nom }}</span>
+                           </h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Total : {{ item.total | amount  }}</p>
+                            <p>Date : {{ item.createdAt | date("d/m/Y") }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" href="{{ path('vendeur_commande_detail', { 'id' : item.id } ) }}">
+                                <i class="fas fa-eye"></i> détail
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %} 
     </div>
     {% endif %}
 </section>

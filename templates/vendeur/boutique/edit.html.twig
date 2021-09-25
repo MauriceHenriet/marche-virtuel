@@ -1,13 +1,13 @@
 {% extends "vendeur/base_vendeur.html.twig" %}
 
-{% block title %}modifier boutique{% endblock %}
+{% block title %}Modifier Boutique{% endblock %}
 
 
 {% block body %}
 
-    <section class="col-9 mt-4 card">
+    <section class="main-acheteur">
 
-        <div class="card-header col-12 boutique-up">
+        <div class="card-header boutique-up"> 
             <h3> Modifier la boutique</h3>
             <a href="{{ path('show_boutique', { 'id' : id }) }}" class="btn btn-warning">
                 <i class="fas fa-arrow-left"></i> Retour
@@ -15,8 +15,8 @@
             
         </div>
 
-        <div class="car-body col-12 section-down">
-           {# {% include "admin/shared/_messages_flash.html.twig" %} #}
+        <div class="car-body section-down form-boutique">
+          
             {{ form_start(formBoutique) }}
 
             {{ form_widget(formBoutique) }}

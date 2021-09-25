@@ -2,29 +2,33 @@
 
 {% block body %}
 
-    <section class="col-10 mt-4">
-        <div class="section-up">
+    <section class="main-acheteur">
+        <div class="section-up-vendeur">
             <h1>Boutique : {{ boutique.nom}}</h1>
             <a href="{{ path('edit_boutique', { 'id' : boutique.id } )}}" class="btn btn-primary">
-                <i class="fas fa-pen"></i> Modifier la boutique
+                <i class="fas fa-pen"></i> Modifier
             </a>
         </div>
         
-        <div class="section-mid container pt-3 pb-3">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div>
+        <div class="section-mid">
+            <div class="mid-detail">
+                <div class="mid-detail-left">
+                    
                     {% if boutique.imageUrl is same as null %}
                         <img src="{{ asset('images/android-chrome-512x512.png') }}" alt="defautimage" class="image-classe img-fluid">
                     {% else %}
                         <img src="{{ boutique.imageUrl }}" alt="{{ boutique.slug }}" class="img-fluid image-classe">    
                     {% endif %}
-                    </div>
+                    
                 </div>
-                <div class="col-12 col-md-6">
-                    <h2>Statut : {{ boutique.status }}</h2>
+                <div class="mid-detail-right">
+                    {% if boutique.status is same as "OPEN" %}
+                        <h2>Statut : <span style="color:green"> {{ boutique.status }}</span></h2>
+                    {% else %}
+                        <h2>Statut : <span style="color:red"> {{ boutique.status }}</span></h2>
+                    {% endif %}
                     <h2>Catégorie : {{ boutique.categorie }}</h2>
-                    <p>Description : {{ boutique.description }}</p>
+                    <p>{{ boutique.description }}</p>
                     <p>Frais de port : {{ boutique.fdp | amount }}</p>
                     <h4>{{ boutique.rue }} {{ boutique.codePostal }} {{ boutique.ville }} {{ boutique.region }}</h4>
                     <h4>Téléphone : {{ boutique.vendeur.phone}}</h4>
@@ -32,7 +36,7 @@
             </div>
         </div>
 
-        <div class="section-down pt-3 pb-3">
+        <div class="section-down sec-tab">
             <div class="sec-down-div">
                 <h2>Liste des produits de la boutique :</h2>
                 <a href="{{ path('create_produit', { 'id' : boutique.id } )}}" class="btn btn-primary">
@@ -85,6 +89,45 @@
                 <p>Vous n'avez pas encore ajouté de produits dans cette boutique</p>
             {% endif %}
         </div>
+
+        <div class="sec-card pt-3 pb-3">
+            {% if boutique.produits | length > 0 %}
+                <div class="down-div-prods">
+                    <h2>Liste des produits de la boutique :</h2>
+                    <a href="{{ path('create_produit', { 'id' : boutique.id } )}}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Ajouter Produit
+                    </a>
+                </div>
+                <div class="card-global">
+                    {% for produit in boutique.produits %}
+                        <div class="card">
+                            <div class="card-header">
+                                {% if produit.imageUrl is same as null %}
+                                    <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                {% else %}
+                                    <img class="image-classe" src="{{ asset( produit.imageUrl ) }}" alt="{{ asset( produit.slug ) }}">
+                                {% endif %}
+                                <h5>
+                                    {{ produit.nom}}
+                                </h5>
+                            </div>
+                            <div class="card-body" style="margin-top:auto;margin-bottom:auto">
+                                <p>{{ produit.status}}</p>
+                                <p>{{ produit.description}}</p>
+                                <p>Prix : {{ produit.prix | amount}}</p>
+                            </div>
+                            <div class="card-footer btn-detail">
+                                <a class="btn btn-info" href="{{ path('edit_produit', { 'id' : produit.id } ) }}">
+                                    <i class="fas fa-pen"></i> Modifier 
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Vous n'avez pas encore ajouté de produits dans cette boutique</p>
+            {% endif %}
+            </div>
         
     </section>
 

@@ -161,6 +161,24 @@ select option {
   margin-bottom: 10px;
   padding: 15px 15px 15px 15px;
 }
+.mid-detail {
+  display: flex;
+  flex-direction: row;
+}
+.mid-detail-left {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+}
+.mid-detail-right {
+  width: 60%;
+}
+.down-div-prods {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 .sec-down-div {
   display: flex;
@@ -193,9 +211,35 @@ th {
   margin-top: auto;
   margin-bottom: auto;
 }
+/*-----------------création Boutique----------------*/
+.form-boutique .boutique div {
+  margin: 3px;
+}
+.form-boutique input,
+select {
+  width: 100%;
+  padding: 2px;
+}
+.form-boutique textarea {
+  width: 100%;
+  padding: 2px;
+  height: 5em;
+}
+.form-boutique option {
+  background-color: rgb(235, 226, 214);
+  word-wrap: break-word;
+  width: 100%;
+}
 /*---------------- ONLY VENDEUR STOP  --------------------------------------------*/
 /*---------------------Responsive-------------------------*/
 @media screen and (max-width: 995px) {
+  /*--------------------creation boutique--------------------------*/
+  .form-boutique input,
+  select,
+  textarea,
+  label {
+    font-size: 14px;
+  }
   /*------------------------ sidebar--------------------------------*/
   .sideBarAdmin {
     display: none;
@@ -236,8 +280,41 @@ th {
   .card p {
     font-size: 14px;
   }
+  .down-div-prods {
+    flex-direction: column-reverse;
+  }
+  .down-div-prods a {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
 }
 @media screen and (max-width: 500px) {
+  /*--------------------creation boutique--------------------------*/
+  .form-boutique input,
+  select,
+  textarea,
+  label {
+    font-size: 11px;
+  }
+  .boutique-up {
+    flex-direction: column-reverse;
+  }
+  .boutique-up h3 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  /*--------------------------*/
+  .mid-detail {
+    flex-direction: column;
+  }
+  .mid-detail-left,
+  .mid-detail-right {
+    width: 100%;
+  }
+  .mid-detail-right h4 {
+    font-size: 15px;
+  }
   .section-up-vendeur {
     display: flex;
     flex-direction: column-reverse;
