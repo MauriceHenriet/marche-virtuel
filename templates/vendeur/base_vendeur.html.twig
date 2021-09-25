@@ -44,10 +44,13 @@
     <body>
         {% include "/public/shared/_messages_flash.html.twig" %}
         {% include "vendeur/shared/_header.html.twig" %}
-        {# {% include "vendeur/shared/_sidebar.html.twig" %} #}
-        {{ render( path('vendeur_sidebar')  ) }}
+        {{ render( path('vendeur_navSidebar')  ) }}
 
-        {% block body %}{% endblock %}
+        <div class="back-response">
+            {{ render( path('vendeur_sidebar')  ) }}
+            {% block body %}{% endblock %}
+        </div>
+        
         {% include "vendeur/shared/_footer.html.twig" %}    
     </body>
 </html>

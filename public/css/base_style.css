@@ -75,6 +75,12 @@ footer {
   background-color: #2b6777;
   color: white;
 }
+.modal-content div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
 
 /*------------------------section 1--------------------------------------*/
 
@@ -622,6 +628,27 @@ form {
   }
 }
 @media screen and (max-width: 425px) {
+  /*-------------------------------------*/
+  .modal-content p,
+  li {
+    font-size: 10px;
+  }
+  .modal-content {
+    padding: 3px;
+  }
+  .modal-content h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+  .modal-content div {
+    flex-direction: column;
+    width: 100%;
+  }
+  .modal-content button {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  /*------------------------------------*/
   .card-nav nav {
     font-size: 12px;
   }

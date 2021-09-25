@@ -1,11 +1,13 @@
 {% extends "vendeur/base_vendeur.html.twig" %}
 
+{% block title %}Espace Vendeur{% endblock %}
+
 {% block body %}
 
-        <section class="col-10 mt-4">
+        <section class="main-acheteur">
             <P>Cet espace est fait pour gérer vos boutiques(catégories) et les produits de chacune d'elles. 
                 Vous pouvez aussi accéder aux factures de vos clients</P>
-            <div class="section-up">
+            <div class="section-up-vendeur">
                 {% if boutiques | length > 1 %}
                     <h1>Vos Boutiques</h1>
                 {% elseif boutiques | length == 1 %}
@@ -18,15 +20,15 @@
                 </a>
             </div>
             
-            <div class="section-down">
+            <div class="section-down sec-tab">
                 {% if boutiques | length > 0 %}
-                    <table class="table-hover col-11">
+                    <table class="table-hover col-12">
                         <thead>
                             <tr class="d-flex align-items-center justify-content-around" >
                                 <th class="col-4">image</th>
                                 <th class="col-3">Nom</th>
                                 <th class="col-3">Catégorie</th>
-                                <th class="col-1">action1</th>
+                                <th class="col-2">action1</th>
                             </tr>
                         </thead>
                         <tbody  >
@@ -45,7 +47,7 @@
                                 <td class="col-3">
                                     {{ boutique.categorie}}
                                 </td>
-                                <td class="col-1">
+                                <td class="col-2">
                                     <a class="btn btn-info" href="{{ path('show_boutique', { 'id' : boutique.id } ) }}"><i class="fas fa-pen"></i> Détail</a>
                                 </td>
                             </tr>
@@ -55,6 +57,35 @@
                 {% else %}
                     
                 {% endif %}
+            </div>
+
+            <div class="sec-card pt-3 pb-3">
+            {% if boutiques | length > 0 %}
+                <div class="card-global">
+                    {% for boutique in boutiques %}
+                        <div class="card">
+                            <div class="card-header">
+                                {% if boutique.imageUrl is same as null %}
+                                    <img class="image-classe" src="{{asset('images/android-chrome-512x512.png')}}" alt="imgdefaut">
+                                {% else %}
+                                    <img class="image-classe" src="{{ asset( boutique.imageUrl ) }}" alt="category.slug">
+                                {% endif %}
+                                <h5>
+                                    {{ boutique.nom }}
+                                </h5>
+                            </div>
+                            <div class="card-body" style="margin-top:auto;margin-bottom:auto">
+                                <p>Catégorie : {{ boutique.categorie }}</p>
+                            </div>
+                            <div class="card-footer btn-detail">
+                                <a class="btn btn-info" href="{{ path('show_boutique', { 'id' : boutique.id } ) }}">
+                                    <i class="fas fa-pen"></i> Détail
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
             </div>
             
         </section>

@@ -1,4 +1,132 @@
 /* ------------------header------------------- */
+.acheteur-header h2 {
+  color: white;
+  margin-left: 10px;
+  text-align: center;
+}
+.acheteur-header a {
+  text-decoration: none;
+}
+.acheteur-header {
+  background: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+/* ------------------main------------------- */
+.section-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  border: black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 15px;
+}
+.section-up button {
+  width: 50%;
+}
+
+.section-down {
+  margin-bottom: 100px;
+}
+/*------------------------- base ----------------*/
+.back-response {
+  display: flex;
+  flex-direction: row;
+}
+/*------------------------ sidebar--------------------------------*/
+.sideBarAdmin {
+  min-width: 240px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid ghostwhite;
+  padding-left: 10px;
+}
+.vMobile {
+  display: none;
+}
+
+/*------------------------ home acheteur--------------------------------*/
+.main-acheteur {
+  width: 100%;
+  margin: 20px;
+}
+.main-acheteur2 {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.main-acheteur2-right {
+  min-width: 200px;
+  margin: 10px;
+}
+/*------------------------commande--------------------------------*/
+.tr-top {
+  border-top: 1px black solid !important;
+}
+
+.image-panier {
+  height: 72px;
+  width: 128px;
+  object-fit: contain;
+}
+.commander {
+  display: flex;
+  flex-direction: row;
+}
+.add-adresse {
+  color: red;
+}
+/*------------- liste des commandes back acheteur-------------*/
+.card {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px black;
+  margin-bottom: 2px;
+}
+.card-header {
+  width: 40%;
+}
+.card-body {
+  width: 30%;
+}
+.card-footer {
+  width: 30%;
+}
+.sec-tab {
+  display: block;
+}
+.sec-card {
+  display: none;
+}
+/*----------------------Panier-------------------------------*/
+/* .fa-shopping-cart {
+    font-size: 20px;
+  } */
+/*-------------------------------------------*/
+.alert-success {
+  background-color: rgb(122, 233, 140);
+}
+tbody tr:not(:last-child) {
+  border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
+}
+select option {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.card-body nav:last-child {
+  margin-top: 15px;
+}
+/*---------------------------------------------------------------------------*/
+/*---------------- ONLY VENDEUR START -------------*/
+/* -----header------ */
 .topVendeur {
   background: black;
   padding: 10px;
@@ -17,32 +145,21 @@
   margin-left: 10px;
   text-align: center;
 }
-/* ------------------main------------------- */
-.mainVendeur {
-  height: 100vh;
-  border-top: 1px solid gray;
-  display: flex;
-  flex-direction: row;
-}
-.section-up {
+/* -----main------ */
+.section-up-vendeur {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
   margin-bottom: 20px;
 }
-.section-up button {
-  width: 50%;
-}
+
 .section-mid,
 .section-down {
   border: black 1px solid;
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 15px 15px 15px 15px;
-}
-.section-down {
-  margin-bottom: 100px;
 }
 
 .sec-down-div {
@@ -71,39 +188,127 @@ th {
   width: 60%;
   object-fit: contain;
 }
-.image-panier {
-  height: 72px;
-  width: 128px;
-  object-fit: contain;
+/*-----------------détail Boutique----------------*/
+.btn-detail {
+  margin-top: auto;
+  margin-bottom: auto;
 }
-/*-----------------détail Boutique----------------------------------*/
-
+/*---------------- ONLY VENDEUR STOP  --------------------------------------------*/
 /*---------------------Responsive-------------------------*/
-.alert-success {
-  background-color: rgb(122, 233, 140);
-}
-tbody tr:not(:last-child) {
-  border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
-}
-select option {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.card-body nav:last-child {
-  margin-top: 15px;
-}
-
-@media screen and (max-width: 800px) {
-  .vDesk {
+@media screen and (max-width: 995px) {
+  /*------------------------ sidebar--------------------------------*/
+  .sideBarAdmin {
     display: none;
   }
-}
-@media screen and (min-width: 800px) {
   .vMobile {
+    display: block;
+    width: 100%;
+  }
+  .acheteur-header {
     display: none;
   }
-}
 
-.user-card {
-  padding: 10px;
+  /*------------------------ home acheteur--------------------------------*/
+  .main-acheteur {
+    margin: 15px;
+  }
+  .main-acheteur2-right {
+    text-align: center;
+    width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .main-acheteur2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /*-----------liste des commandes back acheteur-------------*/
+  .sec-tab {
+    display: none;
+  }
+  .sec-card {
+    display: block;
+  }
+  .card h5 {
+    font-size: 16px;
+  }
+  .card p {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .section-up-vendeur {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .section-up-vendeur a,
+  .btn-detail {
+    margin-bottom: 20px;
+  }
+  .main-acheteur {
+    text-align: center;
+  }
+  .main-acheteur p {
+    font-size: 14px;
+  }
+  .card {
+    flex-direction: column;
+  }
+  .card p {
+    font-size: 14px;
+  }
+  .card h5 {
+    font-size: 15px;
+  }
+
+  .card-body,
+  .card-footer,
+  .card-header {
+    padding: 10px;
+  }
+  .card-body p {
+    margin-bottom: 5px;
+  }
+  .card-header,
+  .card-body,
+  .card-footer {
+    width: 100%;
+  }
+  /*-----------detail commande back acheteur-------------*/
+  .detail h4,
+  h1,
+  h2 {
+    font-size: 18px;
+  }
+  /*-----------------Achat -----------------*/
+  .main-acheteur2-right {
+    min-width: 150px;
+  }
+  .main-acheteur2-right h5 {
+    font-size: 17px;
+  }
+  .main-acheteur2-right p {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  .card div {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+  .card h5,
+  .card-footer p {
+    margin-bottom: 2px;
+  }
+  .card-pay {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .input-cart-number,
+  #card-holder,
+  #card-ccv,
+  .credit-pay {
+    width: 100%;
+  }
 }

@@ -1,8 +1,4 @@
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/vendeur-sidebar.css')}}">
-{% endblock %}
-
-<div class="col-2 ml-4 sideBarAdmin vDesk">
+<div class="sideBarAdmin">
     <div>
         <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-success mt-3">
             <i class="fas fa-store"></i> Boutiques
@@ -28,29 +24,3 @@
     </div>
 
 </div>
-
-{# <div class="col-2 ml-4 sideBarAdmin vMobile">
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-success mt-3">
-            <i class="fas fa-store"></i>
-        </a>
-    </div>
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3">
-            <i class="fas fa-archive"></i> Cat
-        </a>
-    </div>
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3">
-            <i class="fab fa-product-hunt"></i> Prod
-        </a>
-    </div>
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-primary mt-3">
-            <i class="fas fa-arrow-left"></i>
-        </a>
-    </div>
-    <div>
-        <a href="{{ path('vendeur_home') }}" class="col-12 btn btn-danger mt-3"> Déco </a>
-    </div> 
-</div>#}
