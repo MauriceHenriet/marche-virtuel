@@ -5,17 +5,16 @@
 
 {% block body %}
 
-    <section class="col-9 mt-4 card">
+    <section class="main-acheteur">
 
-        <div class="card-header col-12 boutique-up">
-            {# <a href="{{ path('vendeur_home') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-arrow-left"></i> Retour
-            </a> #}
+        <div class="card-header boutique-up">
             <h3> Ajouter un Produit</h3>
+            <a href="{{ path('show_boutique', { 'id' : boutiqueId }) }}" class="btn btn-warning">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
         </div>
 
-        <div class="car-body col-12 section-down">
-           {# {% include "admin/shared/_messages_flash.html.twig" %} #}
+        <div class="car-body section-down form-boutique">
             {{ form_start(formProduit) }}
 
             {{ form_widget(formProduit) }}

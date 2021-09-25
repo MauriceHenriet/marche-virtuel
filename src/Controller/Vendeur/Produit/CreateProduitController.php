@@ -49,7 +49,8 @@ class CreateProduitController extends AbstractController
         }
 
         return $this->render('vendeur/produit/create.html.twig', [
-            'formProduit' => $form->createView()
+            'formProduit' => $form->createView(),
+            'boutiqueId'=>$id
         ]);
     }
 
